@@ -47,15 +47,15 @@
 }
 
 .patchtitle{
-    background: url('../patch511.png') 50% 50% no-repeat;
+    background: url('../images/patch511.png') 50% 50% no-repeat;
     height: 20px;
 }
 .patchtitle2{
-    background: url('../patch514.png') 50% 50% no-repeat;
+    background: url('../images/patch514.png') 50% 50% no-repeat;
     height: 20px;
 }
 .box{
-    background: url('../box.png') no-repeat;
+    background: url('../images/box.png') no-repeat;
     width:165px;
     height: 70px;    
     margin: 0 auto;
@@ -102,7 +102,7 @@
     margin-left: 63px;
 }
 .arrowdown{
-    background: url('../down.png') no-repeat;
+    background: url('../images/down.png') no-repeat;
     width:14px;
     height: 8px; 
     margin-top:-18px
@@ -149,7 +149,7 @@
 }
 
 .headtable{
-    background: url('../table.png') no-repeat;
+    background: url('../images/table.png') no-repeat;
     width:450px;
     height: 31px;
     margin-left:80px;
@@ -224,6 +224,6 @@
     width: 240px;
     height: 34px;
     overflow: hidden;
-    background: url(../selec.png) no-repeat right #ddd;
+    background: url(../images/selec.png) no-repeat right #ddd;
     border: 1px solid #ccc;
 }

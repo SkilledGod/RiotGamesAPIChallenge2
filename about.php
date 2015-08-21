@@ -91,7 +91,7 @@
                             <Br />
                             <small>Web Designer</small>
                         </div>
-                        <img  width="200" height="200"  class="img-circle" src="a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                        <img  width="200" height="200"  class="img-circle" src="images/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
                         <div style="color:black;margin-top:15px;">
                             <span>20-01-1994</span> |
                             <span>Palestine - Gaza</span> |
@@ -125,7 +125,7 @@
                             <Br />
                             <small>Web Programmer</small>
                         </div>
-                        <img  width="200" height="200"  class="img-circle" src="a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                        <img  width="200" height="200"  class="img-circle" src="images/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
                         <div style="color:black;margin-top:15px;">
                             <span>dd-mm-yyy</span> |
                             <span>German - City</span> |

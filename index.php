@@ -6,7 +6,6 @@ $result = $mysqli->query("SELECT * FROM `511`");
 <html lang="en">
 
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,20 +84,21 @@ $result = $mysqli->query("SELECT * FROM `511`");
                     <p>Click on item to see the Note for <code> Patch 5.11</code> and <code> Patch 5.14</code></p>
                 </div>
                 <div class="col-lg-12">
-                    <?php while ($row = $result->fetch_assoc()) {
-                    $items = file_get_contents("item.json");
-                    $getItem = json_decode($items, true);
-                    foreach ($getItem['data'] as $key => $val) { 
-                        if ($key == $row['id']) {
-                        ?>
-                        <a href="item.php?id=<?php echo $row['id']; ?>" title="<?php echo $row['name']; ?>" data-toggle="popover" data-placement="top" data-content="<?php echo $val['plaintext']; ?>">
-                            <img class="img-circle" style="padding:9px;" src="item/<?php echo $row['id'] ?>.png" alt="" />
-                        </a>
-                        <?php
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                        $items = file_get_contents("item.json");
+                        $getItem = json_decode($items, true);
+                        foreach ($getItem['data'] as $key => $val) {
+                            if ($key == $row['id']) {
+                                ?>
+                                <a href="item.php?id=<?php echo $row['id']; ?>" title="<?php echo $row['name']; ?>" data-toggle="popover" data-placement="top" data-content="<?php echo $val['plaintext']; ?>">
+                                    <img class="img-circle" style="padding:9px;" src="images/item/<?php echo $row['id'] ?>.png" alt="" />
+                                </a>
+                                <?php
+                            }
                         }
-                        
-                        } 
-                    }?> 
+                    }
+                    ?> 
                 </div>
             </div>
 
@@ -121,9 +121,9 @@ $result = $mysqli->query("SELECT * FROM `511`");
         <script src="js/jquery.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
-<script>
-$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
-</script>
+        <script>
+        $('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
+        </script>
     </body>
 
 </html>
