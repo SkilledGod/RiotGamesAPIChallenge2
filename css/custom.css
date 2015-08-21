@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'f1';
+    src: url('../fonts/light.otf') format('truetype');
+}
+body{
+    font-family: 'f1', sans-serif;
+    font-size: 18px;
+    background:#2F3238 none repeat scroll 0% 0%;
+    color:white;
+}
+.topmargin{
+    margin-top: 60px;
+}
+
+.col-lg-12 a{
+    text-decoration: none;
+}
+
+.widthserach{
+    width: 300px;
+}
+
+#searchid
+{
+    width:330px;
+    border:3px solid #6092b2;
+    border-radius: 3px;
+    height:34px;
+}
+#result
+{
+    position:absolute;
+    width:312px;
+    padding:10px;
+    display:none;
+    margin-top:-1px;
+    border-top:0px;
+    overflow:hidden;
+    border:1px #CCC solid;
+    background-color: white;
+    z-index: 10;
+}
+.show
+{
+    padding:10px; 
+    border-bottom:1px #999 dashed;
+    font-size:15px; 
+    height:50px;
+}
+.show:hover
+{
+    background:#4c66a4;
+    color:#FFF;
+    cursor:pointer;
+}

@@ -1,0 +1,229 @@
+.matchinfo{
+    width: 900px;
+    margin: 0 auto;
+    background: transparent linear-gradient(#F6F1E5, #BD6F23) repeat scroll 0% 0%;
+    height: 100%; 
+    overflow:auto;
+    border-radius: 10px;
+}
+
+.chmap{
+    float:left;
+    padding: 10px;
+    position: relative;  
+
+}
+
+.summoner{
+    float:left;
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+}
+
+.mh-item-div {
+    display: table-cell;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    padding-right: 5px;
+}
+
+.items{
+    float: left;
+    margin-left: 300px;    
+}
+
+.mh-img{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #B9AF7D;
+    width: 55px;
+}
+
+.img-rounded {
+    border-radius: 6px;
+}
+
+.patchtitle{
+    background: url('../patch511.png') 50% 50% no-repeat;
+    height: 20px;
+}
+.patchtitle2{
+    background: url('../patch514.png') 50% 50% no-repeat;
+    height: 20px;
+}
+.box{
+    background: url('../box.png') no-repeat;
+    width:165px;
+    height: 70px;    
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.pickrate{
+    font-size: 16.6px;
+    color:white;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.threerate{
+    width:140px;
+    height: 50px;
+    float: left;
+    margin-left: 10px;
+}
+
+.normalpick{
+    width:60px;
+    height: 40px;
+    margin-top: -10px;    
+}
+
+.normaltitle{
+    font-size: 8.9px;
+    margin-top: 10px; 
+    text-align: center;
+}
+
+.percentgenormal{
+    color:white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.arrowpick{
+    width:20px;
+    height: 40px;
+    margin-top: -10px;    
+    margin-left: 63px;
+}
+.arrowdown{
+    background: url('../down.png') no-repeat;
+    width:14px;
+    height: 8px; 
+    margin-top:-18px
+}
+
+.rankedpick{
+    width:60px;
+    height: 40px;
+    margin-top: -62px;    
+    margin-left: 78px;
+}
+
+.rankedtitle{
+    font-size: 8.9px;
+    text-align: center;
+}
+
+.percentgeranked{
+    color:white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*Now the CSS*/
+.insidetree{
+    position: relative;
+    margin:0 auto;
+    width:500px;
+    z-index: 10;
+}
+
+.mainitems{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.requireitems{
+    text-align: center;
+    padding-top: 30px;
+}
+
+.tabledown{
+    text-align: center;
+    margin-top: 98px;
+}
+
+.headtable{
+    background: url('../table.png') no-repeat;
+    width:450px;
+    height: 31px;
+    margin-left:80px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.title1{
+    font-size: 10px;
+    color: white;
+    float: left;
+    margin-left: 20px;
+}
+
+.title2{
+    font-size: 10px;
+    color: white;
+    float: left;
+    margin-left: 80px;
+}
+
+.title3{
+    font-size: 10px;
+    color: white;
+    float: left;
+    margin-left: 70px;
+}
+
+.title2v{
+    font-size: 10px;
+    color: #fac00a;
+    font-weight: bold;
+    float: left;
+    margin-left: 110px;
+}
+
+.title3v{
+    font-size: 10px;
+    color: #fac00a;
+    font-weight: bold;
+    float: left;
+    margin-left: 130px;
+}
+
+
+.headbody{
+    width:450px;
+    height: 31px;
+    background-color: #45474b;
+    margin-left:80px;
+}
+.headbody2{
+    width:450px;
+    height: 31px;
+    background-color: #66686c;
+    margin-left:80px;
+}
+
+.styled-select select {
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+}
+
+.styled-select {
+    width: 240px;
+    height: 34px;
+    overflow: hidden;
+    background: url(../selec.png) no-repeat right #ddd;
+    border: 1px solid #ccc;
+}
