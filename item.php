@@ -149,7 +149,7 @@ $row = $result->fetch_assoc();
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="requireitems">
-                        <a href="#"><img class="img-circle" src="item/<?php echo $itemid; ?>.png" alt=""/></a>
+                        <a href="#"><img class="img-circle" src="images/item/<?php echo $itemid; ?>.png" alt=""/></a>
                     </div>
                     <?php
                     foreach ($getItem['data'] as $key => $val) {
@@ -159,7 +159,7 @@ $row = $result->fetch_assoc();
                                 foreach ($val['from'] as $ky) {
                                     foreach ($getItem['data'] as $keyy => $vall) {
                                         if ($keyy == $ky) {
-                                            echo "<a class=\"mainitems\" href=\"#\" title=\"{$vall['name']}\" data-toggle=\"popover\" data-placement=\"top\" data-content=\"{$vall['plaintext']}\"><img class=\"img-circle\" src=\"item/$ky.png\" alt=\"\"/></a>";
+                                            echo "<a class=\"mainitems\" href=\"#\" title=\"{$vall['name']}\" data-toggle=\"popover\" data-placement=\"top\" data-content=\"{$vall['plaintext']}\"><img class=\"img-circle\" src=\"images/item/$ky.png\" alt=\"\"/></a>";
                                         }
                                     }
                                 }
