@@ -7,7 +7,6 @@ class Ardent_Censer extends Item {
 	function applySpecial($champion, $enemy) {
 		$champion->increaseStat("cdr", 10);
 		$champion->increaseStatPercentBase("mpregen", 1);
-		$champion->increaseStatPercentBase("movespeed", 0.08);
 	}
 }
 ?>

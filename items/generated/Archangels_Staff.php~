@@ -5,7 +5,7 @@ class Archangels_Staff extends Item {
 	}
 
 	function applySpecial($champion, $enemy) {
-		$champion->increaseStat("magicdamage", $champion->getStat("mp") * 0.03);
+		$champion->increaseStat("magicdamage", $champion->getStat("magicdamage") * 0.03);
 	}
 }
 ?>

@@ -6,7 +6,6 @@ class Athenes_Unholy_Grail extends Item {
 
 	function applySpecial($champion, $enemy) {
 		$champion->increaseStat("cdr", 20);		
-		$champion->increaseStatPercentBase("mpregen", 1);
 	}
 }
 ?>
