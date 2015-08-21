@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 $itemid = strip_tags(htmlspecialchars($_GET['id']));
-$result = $mysqli->query("SELECT * FROM `511` WHERE `id` = $itemid ");
+$result = $mysqli->query("SELECT * FROM `ap_items` WHERE `id` = $itemid ");
 $row = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>

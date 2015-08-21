@@ -1,6 +1,6 @@
 <?php
 include 'db.php';
-$result = $mysqli->query("SELECT * FROM `511`");
+$result = $mysqli->query("SELECT * FROM `ap_items`");
 ?>
 <!DOCTYPE html>
 <html lang="en">
