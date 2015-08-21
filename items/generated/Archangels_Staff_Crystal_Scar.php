@@ -1,0 +1,9 @@
+<?php
+class Archangels_Staff_Crystal_Scar extends Item {
+	function __construct() {
+		parent::__construct(3007, "Archangel's Staff (Crystal Scar)", array("FlatMPPoolMod"=> 250,"FlatMagicDamageMod"=> 80,), "3007.png", "+80 Ability Power<br><mana>+250 Mana<br>+50% Base Mana Regen </mana><br><br><mana><unique>UNIQUE Passive - Insight:</unique> Grants Ability Power equal to 3% of maximum Mana.<br><unique>UNIQUE Passive - Mana Charge:</unique> Grants +10 maximum Mana (max +750 Mana) for each spell cast and Mana expenditure (occurs up to 2 times every 6 seconds). Transforms into Seraph's Embrace at +750 Mana.<br></mana><br><i>(Unique Passives with the same name don't stack.)</i>");
+	}
+
+	function applySpecial($champion, $enemy) {}
+}
+?>
