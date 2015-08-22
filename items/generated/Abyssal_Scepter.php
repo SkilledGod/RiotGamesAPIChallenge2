@@ -6,7 +6,7 @@ class Abyssal_Scepter extends Item {
 
 	function applySpecial($champion, $enemy) {
 		// Passive
-		$enemy->increaseStat("spellblock", -20);
+		$enemy->increaseStat("FlatSpellBlockMod", -20);
 	}
 }
 ?>

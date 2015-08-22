@@ -9,26 +9,27 @@ class Champion {
 	function __construct($champName) {
 		$this->name = $champName;
 		// get champData out of api by name (can't look up api definition atm but will when i'm back) and safe it in $baseStats
-		$this->baseStats["magicdamage"] = 0; // set ap
 		$this->baseStats["cdr"] = 0;
-		$this->baseStats["percentattackspeed"] = 0;
 	}	
 
 	function increaseStat($statName, $statValue) {
-		$this->stats[$statName] = $this->stats[$statName] + $statValue;
-		if ($statName = "cdr") {
-			$this->stats["cdr"] = min($this->stats["cdr"], 40);
+		if ($statName == "percentmovementspeed") {
+			if (!is_array($this->stats[$statName])) { // movespeed bonuses are multiplicative...
+				$this->stats[$statName] = array();
+			}
+			$this->stats[$statName][] = $statValue;
+		} else {
+			if (!isset($this->stats[$statName])) {
+				$this->stats[$statName] = 0;
+			}
+			$this->stats[$statName] = $this->stats[$statName] + $statValue;
 		}
 	}
 
-	function calculateAttackSpeed() {
+	private function getAttackSpeed() {
 		return 0.625 / (1-$this->baseStats["attackspeedoffset"]) * (1 + $this->stats["percentattackspeed"]);
 	}
 	
-	function increaseStatPercentBase($statName, $statValue) {
-		$this->stats[$statName] = $this->stats[$statName] + $statValue * $this->baseStats[$statName];
-	}
-
 	function addItem($item) {
 		if (is_a($item, "Item") {
 			$this->itemInventory[] = $item; // addItem at the end
@@ -38,20 +39,13 @@ class Champion {
 		}
 	}
 	
-	function getStat($name) {
-		return $this->stats[$name];
-	}
-
-	function getStats() {
-		return $this->stats;
-	}
-
 	function recalculateStats() {
 		$stats = $baseStats;
 		usort($itemInventory, array('Item', 'compareTo'));
 		foreach($itemInventory as $item) {
 			$item->apply($this);
 		}
+		// TODO recalculate all stats (--> movespeed etc from the values supplied. then delete those shittie things from stats. --> getStats function
 	}
 
 	function evaluateChampion() {

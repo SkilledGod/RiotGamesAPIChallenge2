@@ -25,7 +25,7 @@ abstract class Item {
 
 	final function apply($champion, $enemy) {
 		foreach ($this->stats as $statName => $statValue) {
-			$champion->apply(str_replace("Mod", "", $statName), $statValue);
+			$champion->apply(strtolower(str_replace("Mod", "", $statName)), $statValue);
 		}
 		$this->applySpecial($champion, $enemy);
 	}

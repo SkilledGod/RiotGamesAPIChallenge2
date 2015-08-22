@@ -5,7 +5,7 @@ class Archangels_Staff_Crystal_Scar extends Item {
 	}
 
 	function applySpecial($champion, $enemy) {
-		$champion->increaseStat("ap", $champion->getStat("ap") * 0.03);
+		$champion->increaseStat("magicdamage", $champion->getStat("mp") * 0.03);
 	}
 }
 ?>
