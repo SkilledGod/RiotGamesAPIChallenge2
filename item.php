@@ -95,6 +95,7 @@ $row = $result->fetch_assoc();
                     ?></p>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-lg-3 text-center">
                     <div class="patchtitle"></div>
@@ -170,7 +171,7 @@ $row = $result->fetch_assoc();
                     ?> 
                     <div class="table-responsive" style="margin-top:10px;">
                         <table class="table">
-                            <thead  >
+                            <thead>
                                 <tr>
                                     <th class="text-center">Patch/Type</th>
                                     <th class="text-center">Winrate Normal/Ranked</th>

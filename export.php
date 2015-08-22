@@ -108,18 +108,164 @@
                                     <td class="text-center">Europe West</td>
                                     <td class="text-center">10,000</td>
                                     <td class="text-center">10,000</td>
-                                </tr>                          
+                                </tr>    
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">Brazil</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">Europe Nordic</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>      
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">Korea</td>
+                                    <td class="text-center">6,207</td>
+                                    <td class="text-center">7,475</td>
+                                </tr>  
+                                <tr>
+                                    <td class="text-center">5</td>
+                                    <td class="text-center">Latin American North</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">6</td>
+                                    <td class="text-center">Latin American South</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">7</td>
+                                    <td class="text-center">North America</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">9,994</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">Turkey</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">9,958</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">9</td>
+                                    <td class="text-center">Oceania</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>  
+                                 <tr>
+                                    <td class="text-center">10</td>
+                                    <td class="text-center">Russia</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>                                
                             </tbody>
                             <tfoot>
                                  <tr>
-                                    <td class="text-center" colspan="3">Total</td>
-                                    <td class="text-center">100,000</td>
+                                    <td class="text-center" colspan="2">Total</td>
+                                    <td class="text-center">96,207</td>
+                                    <td class="text-center">97,427</td>
                                 </tr>                                 
                             </tfoot>
                         </table>
-                    </div>                 
+                    </div>  
+                    <h4 style="margin-top:20px;color:#D9534F;" class="text-center">Patch 5.14</h4>
+                    <div class="table-responsive" style="margin-top:10px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Server</th>
+                                    <th class="text-center">Normal Matches</th>
+                                    <th class="text-center">Ranked Matches</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">Europe West</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>    
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">Brazil</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">Europe Nordic</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>      
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">Korea</td>
+                                    <td class="text-center">6,207</td>
+                                    <td class="text-center">7,475</td>
+                                </tr>  
+                                <tr>
+                                    <td class="text-center">5</td>
+                                    <td class="text-center">Latin American North</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">6</td>
+                                    <td class="text-center">Latin American South</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">7</td>
+                                    <td class="text-center">North America</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">Turkey</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center">9</td>
+                                    <td class="text-center">Oceania</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>  
+                                 <tr>
+                                    <td class="text-center">10</td>
+                                    <td class="text-center">Russia</td>
+                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">10,000</td>
+                                </tr>                                
+                            </tbody>
+                            <tfoot>
+                                 <tr>
+                                    <td class="text-center" colspan="2">Total</td>
+                                    <td class="text-center">96,207</td>
+                                    <td class="text-center">97,427</td>
+                                </tr>                                 
+                            </tfoot>
+                        </table>
+                    </div>                     
                 </div>
-            </div>             
+            </div>    
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="text-left" style="color:#D9534F;">Download Data</h3>
+                    <p><a href="#">Download Winrate/Picrate For Patch 5.11 (Normal)</a></p>
+                    <p><a href="#">Download Winrate/Picrate For Patch 5.11 (Ranked)</a></p>
+                    <p><a href="#">Download Winrate/Picrate For Patch 5.14 (Normal)</a></p>
+                    <p><a href="#">Download Winrate/Picrate For Patch 5.14 (Ranked)</a></p>  
+                </div>
+            </div>            
             <!-- Footer -->
             <footer>
                 <div class="row">
