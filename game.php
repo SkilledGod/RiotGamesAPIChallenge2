@@ -13,7 +13,10 @@
 
         <!-- Custom CSS -->
         <link href="css/custom.css" rel="stylesheet">
-
+        <link id="data-uikit-theme" rel="stylesheet" href="js/tip/uikit.docs.min.css">
+        <script src="js/tip/jquery.js"></script>
+        <script src="js/tip/uikit.min.js"></script>
+        <script src="js/tip/tooltip.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -215,43 +218,44 @@
                     <div class="col-lg-6">
                         <div class="score">
                             <div class="yourscore"><span class="gradeitntext">0</span></div>
+                            <div class="vsicon hidden-md hidden-sm hidden-xs hidden-print"></div>
                             <div class="topscore"><span class="gradeitntext2">51</span></div>
                         </div>
                         <div class="randomitems">
                             <hr class="hrstyle">
-                            Click On One Item To Move It To Your Inventory
+                            Click On One Item To Move It To Your Inventory <span style="float:right;">1/6</span>
                             <table class="table table-full-width custum-table">
                                 <tbody>
                                     <tr>
                                         <td class="text-center">
-                                            <img class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr></table> <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                         <td class="text-center">
-                                            <img class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>50%</td><td style='color:red;'><img style='margin-top:-2px;' src='images/arrowDown.png' width='8' height='8' alt=''/> 10%</td></tr></table>  <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                         <td class="text-center">
-                                            <img class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                                <img data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>60%</td><td style='color:gray;'>0%</td></tr></table> <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                     </tr> 
                                 </tbody>
                             </table> 
                             <div class="row">
-                            <div class="col-sm-12 text-center" style="padding-top:50px;">
-                                <p class="text-center">if he finish pick all items</p>
-                                <button style="width:200px;margin:0 auto;font-size: 30px;" type="button" class="btn btn-success">Final Answer</button>
-                            </div>
-                           <div class="col-sm-12 text-center" style="padding-top:50px;">
-                                <p class="text-center">if he win</p>
-                                <div class="col-sm-3"><button style="margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">Your AP : 520</button></div>
-                                <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-danger">Opponent AP : 420</button></div>
-                                <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Next Round</button></div>
-                            </div>
-                           <div class="col-sm-12 text-center" style="padding-top:50px;">
-                                <p class="text-center">if he lose</p>
-                                <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px; " type="button" class="btn btn-danger">Your AP : 410</button></div>
-                                <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-success">Opponent AP : 600</button></div>
-                                <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Try Again ?</button></div>
-                            </div>   
+                                <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                    <p class="text-center">if he finish pick all items</p>
+                                    <button style="width:200px;margin:0 auto;font-size: 30px;" type="button" class="btn btn-success">Final Answer</button>
+                                </div>
+                                <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                    <p class="text-center">if he win</p>
+                                    <div class="col-sm-3"><button style="margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">Your AP : 520</button></div>
+                                    <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-danger">Opponent AP : 420</button></div>
+                                    <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Next Round</button></div>
+                                </div>
+                                <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                    <p class="text-center">if he lose</p>
+                                    <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px; " type="button" class="btn btn-danger">Your AP : 410</button></div>
+                                    <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-success">Opponent AP : 600</button></div>
+                                    <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Try Again ?</button></div>
+                                </div>   
                             </div>
                         </div>
                     </div>
@@ -389,7 +393,8 @@
         <script>
             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top'});
         </script>
-    
 
 
-</body></html>
+
+    </body>
+</html>

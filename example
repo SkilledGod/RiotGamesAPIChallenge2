@@ -1,0 +1,8 @@
+iterate over all files
+        read file into array
+        check who's the winner ( team 100 )
+            iterate over all participants ( all )
+                    iterate over all items of the current participant
+                           sql query to increment the pickrate for that item by  (update ... set ... where id = currentItemId)
+                           if participant is in team 100 increment winrate by 1 same for winrate if the participant is in the winning team 
+        increment the match counter in the db by 1

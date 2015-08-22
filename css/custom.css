@@ -144,6 +144,11 @@ body{
     border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
 }
 
+.custum-table2{
+    font-size: 9px;
+    position: relative;
+}
+
 .custum-table{
     font-size: 10px;
     position: relative;
@@ -168,6 +173,14 @@ body{
     float:right;
 }
 
+.vsicon{
+    background: url('../images/vs.png') no-repeat;
+    width:51px;
+    height:36px;   
+    float:left;
+    margin-left:55px;
+    margin-top: 80px;
+}
 .gradeitntext {
     width: 55px;
     font-size: 40px;
