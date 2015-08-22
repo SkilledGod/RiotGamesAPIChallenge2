@@ -59,7 +59,12 @@ body{
     height: 379px;
     margin: 0 auto;
     border-radius: 10px;
-    
+
+}
+
+.backgroundimg2{
+    background-color: #202126;
+    border-radius: 10px;
 }
 
 .col-centered{
@@ -75,4 +80,109 @@ body{
 .select2{
     height:50px;
     overflow:scroll;
+}
+
+.opponentname{
+    background: url('../images/opponetname.png') no-repeat;
+    width:230px;
+    height:28px;
+    margin: 20px auto 0px;
+    color:#49515e;
+    text-align: center;
+}
+
+.your{
+    background: url('../images/your.png') no-repeat;
+    width:230px;
+    height:28px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-left: 10px;
+    color:#49515e;
+    text-align: center;
+
+}
+
+.champpic{
+    background: url('../images/champic.png') no-repeat;
+    width:167px;
+    height:167px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+}
+
+.absimg{
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.champname{
+    background: url('../images/namechamp.png') no-repeat;
+    width:191px;
+    height:47px;
+    margin-top: -48px;
+    margin-left:-13px;
+    z-index: 10;
+    text-align: center;
+    color:#49515e;
+    padding-top:10px;
+    position: absolute;
+}
+
+.hrstyle{
+    border: 0; 
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255,255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+.hrstyle2 { 
+    border: 0; 
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+}
+
+.custum-table{
+    font-size: 10px;
+    position: relative;
+}
+
+.score{
+    height: 130px;
+    margin-top:105px;
+}
+.yourscore{
+    background: url('../images/score.png') no-repeat;
+    width:192px;
+    height:50px;   
+    float:left;
+    margin-bottom: 20px;
+
+}
+.topscore{
+    background: url('../images/top.png') no-repeat;
+    width:192px;
+    height:50px;   
+    float:right;
+}
+
+.gradeitntext {
+    width: 55px;
+    font-size: 40px;
+    float:right;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.gradeitntext2 {
+    width: 55px;
+    font-size: 40px;
+    float:left;
+    text-align: center;
+    margin-left:10px;
+}
+
+.randomitems{
 }
