@@ -1,6 +1,5 @@
 <?php
 abstract class Item {
-	private $priority = 0; // least priority --> first item
 	private $stats;
 	private $name;
 	private $picture;
@@ -13,14 +12,6 @@ abstract class Item {
 		$this->stats = $stats;
 		$this->picture = $picture;		
 		$this->description = $description;
-	}
-
-	static function compareTo($itemA, $itemB) {
-		return $itemA->getPriority() < $itemB->getPriority();
-	}
-
-	function getPriority() {
-		return $this->priority();
 	}
 
 	final function apply($champion, $enemy) {
