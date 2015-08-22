@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-
-    <head>
+<html lang="en"><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link href="css/fonts.css" rel="stylesheet" type="text/css"/>
+        <link href="css/fonts.css" rel="stylesheet" type="text/css">
         <title>Riot Project v2 -  Start the game</title>
 
         <!-- Bootstrap Core CSS -->
@@ -79,7 +77,7 @@
                     <h1>Game</h1>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="background-color: #202126;">
                 <div class="col-lg-12 backgroundimg col-centered">
                     <form action="" method="get" class="form-horizontal" role="search" style="padding-top:100px;">
                         <div class="form-group">
@@ -87,7 +85,7 @@
                                 Your Name
                             </p>
                             <div class="col-sm-3">
-                                <input style="width:200px;margin:0 auto;" placeholder="Enter Your Name" class="form-control" type="text" required="">
+                                <input style="width:200px;margin:0 auto;" placeholder="Enter Your Name" class="form-control" required="" type="text">
                             </div>
                             <p class="col-sm-3 text-center" style="padding-top:10px;">
                                 Champion
@@ -97,20 +95,285 @@
                                     <option style="background: url('images/chmpions/Zed.png') no-repeat;background-size: 25px 25px;" class="selectoptioon">Zed</option>
                                 </select>
                             </div>   
-                             <div class="col-sm-12 text-center" style="padding-top:50px;">
-                                 <button style="width:200px;margin:0 auto;" type="submit    " class="btn btn-success">Start Game</button>
+                            <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                <button style="width:200px;margin:0 auto;font-size: 30px;" type="submit" class="btn btn-success">Start Game</button>
                             </div>                             
                         </div>
                     </form>
                 </div>
-            </div>
-            <hr />
+                <hr>
+                <p class="text-center">if he click start game this would show </p>
+                <div class="col-lg-12 backgroundimg2 col-centered">
+                    <div class="col-lg-3">
+                        <div class="your">Summoner Name</div>
+                        <div class="champpic">
+                            <img class="absimg" src="images/chmpions/Zed.png" alt="" height="146" width="146">
+                            <div class="champname">
+                                Twisted Fate
+                            </div>
+                        </div>
+                        <hr class="hrstyle">
+                        Status
+                        <table class="table table-full-width custum-table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/hp.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Health</span>
+                                        <br>
+                                        <span>579.4</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/ad.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Attack Damage</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/ap.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Ability Damage</span>
+                                        <br>
+                                        <span>579.4</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/mr.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Magic Resist</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/ar.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Armor</span>
+                                        <br>
+                                        <span>579.4</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/as.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Attack Speed</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/as.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Movement Speed</span>
+                                        <br>
+                                        <span>579.4</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/bs.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Magic Resist</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                        <hr class="hrstyle">
+                        Items
+                        <table class="table table-full-width custum-table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                </tr> 
 
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="score">
+                            <div class="yourscore"><span class="gradeitntext">0</span></div>
+                            <div class="topscore"><span class="gradeitntext2">51</span></div>
+                        </div>
+                        <div class="randomitems">
+                            <hr class="hrstyle">
+                            Click On One Item To Move It To Your Inventory
+                            <table class="table table-full-width custum-table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">
+                                            <img class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                        </td>
+                                        <td class="text-center">
+                                            <img class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                        </td>
+                                        <td class="text-center">
+                                            <img class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                        </td>
+                                    </tr> 
+                                </tbody>
+                            </table> 
+                            <div class="row">
+                            <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                <p class="text-center">if he finish pick all items</p>
+                                <button style="width:200px;margin:0 auto;font-size: 30px;" type="button" class="btn btn-success">Final Answer</button>
+                            </div>
+                           <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                <p class="text-center">if he win</p>
+                                <div class="col-sm-3"><button style="margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">Your AP : 520</button></div>
+                                <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-danger">Opponent AP : 420</button></div>
+                                <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Next Round</button></div>
+                            </div>
+                           <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                <p class="text-center">if he lose</p>
+                                <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px; " type="button" class="btn btn-danger">Your AP : 410</button></div>
+                                <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-success">Opponent AP : 600</button></div>
+                                <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Try Again ?</button></div>
+                            </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="opponentname"> Twisted Fate </div>
+                        <div class="champpic">
+                            <img class="absimg" src="images/chmpions/Zed.png" alt="" height="146" width="146">
+                            <div class="champname">
+                                Twisted Fate
+                            </div>
+                        </div>
+                        <hr class="hrstyle">
+                        Status
+                        <table class="table table-full-width custum-table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/hp.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Health</span>
+                                        <br>
+                                        <span>579.4</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/ad.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Attack Damage</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/ap.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Ability Damage</span>
+                                        <br>
+                                        <span>???</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/mr.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Magic Resist</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/ar.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Armor</span>
+                                        <br>
+                                        <span>579.4</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/as.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Attack Speed</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/as.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Movement Speed</span>
+                                        <br>
+                                        <span>579.4</span>
+                                    </td>
+                                    <td class="text-left">
+                                        <img style="border:2px solid white;" class="img-responsive" src="images/bs.png" alt=""></td>
+                                    <td class="text-left">
+                                        <span>Magic Resist</span>
+                                        <br>
+                                        <span>200</span>
+                                    </td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                        <hr class="hrstyle">
+                        Items
+                        <table class="table table-full-width custum-table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                </tr> 
+
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>   
+
+            </div>
             <!-- Footer -->
             <footer>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Riot Project v2</p>
+                        <hr>
+
+                        <p>Copyright © Riot Project v2</p>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -126,6 +389,7 @@
         <script>
             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top'});
         </script>
-    </body>
+    
 
-</html>
+
+</body></html>
