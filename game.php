@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <hr class="hrstyle">
-                        Status
+                        Status<span style="float:right;">Level : 8</span>
                         <table class="table table-full-width custum-table">
                             <tbody>
                                 <tr>
@@ -225,6 +225,24 @@
                         </div>
                         <div class="randomitems">
                             <hr class="hrstyle">
+                            <span>Result</span>
+                            <div class="row">
+                                <div class="col-sm-12 text-center" style="padding-top:20px;">
+                                    <div class="col-sm-6"><div class="boxbt"><span class="leftbox" style="padding-top:7px;">15000</span><span class="rightbox" style="padding-top:7px;">Your Score</span></div></div>
+                                    <div class="col-sm-6"><div class="boxbt"><span class="leftbox1" style="padding-top:7px;">15000</span><span class="rightbox1" style="padding-top:7px;">Opponent Score</span></div></div>
+                                </div>
+                                <div class="col-sm-12 text-center" style="padding-top:20px;">
+                                    <img style="margin:0 auto;" class="img-responsive" src="images/win.png" alt=""/>
+                                    <img style="margin:0 auto;" class="img-responsive" src="images/lose.png" alt=""/>
+                                </div>  
+                                <div class="col-sm-12 text-center" style="padding-top:20px;">
+                                    <div class="col-sm-6"><button style="width:150px;margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">High Score</button></div>
+                                    <div class="col-sm-6"><button style="width:150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-danger">Try Again ?</button></div>
+                                </div>                                
+                            </div>
+                        </div>                        
+                        <div class="randomitems">
+                            <hr class="hrstyle">
                             Click On One Item To Move It To Your Inventory <span style="float:right;">1/6</span>
                             <table class="table table-full-width custum-table">
                                 <tbody>
@@ -264,7 +282,7 @@
                             </div>
                         </div>
                         <hr class="hrstyle">
-                        Status
+                        Status<span style="float:right;">Level : 8</span>
                         <table class="table table-full-width custum-table">
                             <tbody>
                                 <tr>
