@@ -174,7 +174,7 @@ $row = $result->fetch_assoc();
                             <thead>
                                 <tr>
                                     <th class="text-center">Patch/Type</th>
-                                    <th class="text-center">Winrate Normal/Ranked</th>
+                                    <th class="text-center">Ability Power</th>
                                     <th class="text-center">Picrate Normal/Ranked</th>
                                 </tr>
                             </thead>
@@ -195,54 +195,54 @@ $row = $result->fetch_assoc();
                 </div>
                 <div class="col-lg-3 text-center">
                     <div class="patchtitle2"></div>
-                    <div class="box">
+                                        <div class="box">
                         <div class="pickrate">Pick Rate</div>
                         <div class="threerate">
                             <div class="normalpick">
-                                <div class="normaltitle">Normal</div>
+                                <div class="normaltitle">Patch 5.11</div>
                                 <div class="percentgenormal">99.22%</div>
                             </div>
                             <div class="arrowpick">
                                 <div class="arrowdown"></div>
                             </div>
                             <div class="rankedpick">
-                                <div class="rankedtitle">Ranked</div>
+                                <div class="rankedtitle">Patch 5.14</div>
                                 <div class="percentgeranked">2.22%</div>
                             </div>                                    
                         </div>
                     </div> 
                     <div class="box">
-                        <div class="pickrate">Pick Rate</div>
+                        <div class="pickrate">Win Rate</div>
                         <div class="threerate">
                             <div class="normalpick">
-                                <div class="normaltitle">Normal</div>
+                                <div class="normaltitle">Patch 5.11</div>
                                 <div class="percentgenormal">99.22%</div>
                             </div>
                             <div class="arrowpick">
                                 <div class="arrowdown"></div>
                             </div>
                             <div class="rankedpick">
-                                <div class="rankedtitle">Ranked</div>
+                                <div class="rankedtitle">Patch 5.14</div>
                                 <div class="percentgeranked">2.22%</div>
                             </div>                                    
                         </div>
-                    </div> 
+                    </div>   
                     <div class="box">
-                        <div class="pickrate">Pick Rate</div>
+                        <div class="pickrate">Cost</div>
                         <div class="threerate">
                             <div class="normalpick">
-                                <div class="normaltitle">Normal</div>
-                                <div class="percentgenormal">99.22%</div>
+                                <div class="normaltitle">Patch 5.11</div>
+                                <div class="percentgenormal">3500</div>
                             </div>
                             <div class="arrowpick">
                                 <div class="arrowdown"></div>
                             </div>
                             <div class="rankedpick">
-                                <div class="rankedtitle">Ranked</div>
-                                <div class="percentgeranked">2.22%</div>
+                                <div class="rankedtitle">Patch 5.14</div>
+                                <div class="percentgeranked">3400</div>
                             </div>                                    
                         </div>
-                    </div>                    
+                    </div>                      
                 </div>
             </div>
         </div>

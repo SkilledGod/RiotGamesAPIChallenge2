@@ -17,7 +17,7 @@
         <script src="js/tip/jquery.js"></script>
         <script src="js/tip/uikit.min.js"></script>
         <script src="js/tip/tooltip.js"></script>
-	<script src="js/game.js"></script>
+        <script src="js/game.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -99,8 +99,8 @@
                                     <option value=1 style="background: url('images/chmpions/Zed.png') no-repeat;background-size: 25px 25px;" class="selectoptioon">Zed</option>
                                 </select>
                             </div>   
-                             <div class="col-sm-12 text-center" style="padding-top:50px;">
-                                 <button style="width:200px;margin:0 auto;" type="button" onClick="startGame()" class="btn btn-success">Start Game</button>
+                            <div class="col-sm-12 text-center" style="padding-top:50px;">
+                                <button style="width:200px;margin:0 auto;" type="button" onClick="startGame()" class="btn btn-success">Start Game</button>
                             </div>                             
                         </div>
                     </form>
@@ -113,7 +113,7 @@
                         <div class="champpic">
                             <img id="playerChampPic" class="absimg" src="images/chmpions/Zed.png" alt="" height="146" width="146">
                             <div id="playerChamp" class="champname">
-                                Twisted Fate
+                                Twisted Fate    
                             </div>
                         </div>
                         <hr class="hrstyle">
@@ -258,6 +258,10 @@
                                     </tr> 
                                 </tbody>
                             </table> 
+                            <div class="col-sm-12 text-center">
+                                <button style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-danger">Abort</button>
+                                <button style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-success">Continue</button>                                
+                            </div>                            
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -334,7 +338,7 @@
                                         <span>Movement Speed</span>
                                         <br>
                                         <span id="movespeedOpponent">579.4</span>
-                                  </td>
+                                    </td>
                                 </tr> 
                             </tbody>
                         </table>
@@ -437,7 +441,138 @@
 
                     </table>
                 </div>
-            </div>            
+            </div>   
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div  id="opponentName" class="opponentname"> Twisted Fate </div>
+                    <div class="champpic">
+                        <img id="opponentChampPic" class="absimg" src="images/chmpions/Zed.png" alt="" height="146" width="146">
+                        <div id="opponentChampName" class="opponentname champname">
+                            Twisted Fate
+                        </div>
+                    </div>
+                    <hr class="hrstyle">
+                    Status<span style="float:right;">Level : <span id="opponentLevel">8</span></span>
+                    <table class="table table-full-width custum-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/hp.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Health</span>
+                                    <br>
+                                    <span id="healthOpponent">579.4</span>
+                                </td>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/ad.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Attack Damage</span>
+                                    <br>
+                                    <span id="adOpponent">200</span>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/ap.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Ability Damage</span>
+                                    <br>
+                                    <span id="apOpponent">???</span>
+                                </td>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/mr.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Magic Resist</span>
+                                    <br>
+                                    <span  id="mresOpponent">200</span>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/ar.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Armor</span>
+                                    <br>
+                                    <span id="armorOpponent">579.4</span>
+                                </td>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/as.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Attack Speed</span>
+                                    <br>
+                                    <span id="asOpponent">200</span>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/as.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Cooldown Reduction</span>
+                                    <br>
+                                    <span id="cdrOpponent">200</span>
+                                </td>
+                                <td class="text-left">
+                                    <img style="border:2px solid white;" class="img-responsive" src="images/bs.png" alt=""></td>
+                                <td class="text-left">
+                                    <span>Movement Speed</span>
+                                    <br>
+                                    <span id="movespeedOpponent">579.4</span>
+                                </td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                    <hr class="hrstyle">
+                    Items
+                    <table class="table table-full-width custum-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <img id="item1Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                </td>
+                                <td class="text-center">
+                                    <img id="item2Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                </td>
+                                <td class="text-center">
+                                    <img id="item3Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                </td>
+                            </tr> 
+
+                            <tr>
+                                <td class="text-center">
+                                    <img id="item4Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                </td>
+                                <td class="text-center">
+                                    <img id="item5Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                </td>
+                                <td class="text-center">
+                                    <img id="item6Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contabort hidden-sm hidden-xs hidden-md">
+                        <div class="col-sm-12 text-center" style="padding:60px;">
+                            <button style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
+                        </div>
+                        <div class="col-sm-12 text-center">
+
+                            <button style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-success">Continue</button>                                
+                        </div>
+                    </div>
+                    <div class="hidden-lg">
+                        <div class="col-sm-12 text-center" style="padding:20px;">
+                            <button style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
+                        </div>
+                        <div class="col-sm-12 text-center" style="padding:20px;">
+
+                            <button style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-success">Continue</button>                                
+                        </div>
+                    </div>                    
+                </div>
+            </div>
             <!-- Footer -->
             <footer>
                 <div class="row">
@@ -458,7 +593,9 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <script>
-            $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top'});
+                                                $('[data-toggle="popover"]').popover(
+                                                        {trigger: 'hover', 'placement': 'top'}
+                                                );
         </script>
 
 
