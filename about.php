@@ -90,6 +90,9 @@
                             </h2>
                             <Br />
                             <small>Web Designer</small>
+                            <Br />
+                            <small>IGN : Grim R3per - EUW</small>                            
+                           
                         </div>
                         <img  width="200" height="200"  class="img-circle" src="images/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
                         <div style="color:black;margin-top:15px;">
@@ -124,6 +127,8 @@
                             </h2>
                             <Br />
                             <small>Web Programmer</small>
+                            <Br />
+                            <small>IGN : SkilledGod - EUW</small>                            
                         </div>
                         <img  width="200" height="200"  class="img-circle" src="images/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
                         <div style="color:black;margin-top:15px;">

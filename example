@@ -4,5 +4,6 @@ iterate over all files
             iterate over all participants ( all )
                     iterate over all items of the current participant
                            sql query to increment the pickrate for that item by  (update ... set ... where id = currentItemId)
-                           if participant is in team 100 increment winrate by 1 same for winrate if the participant is in the winning team 
+                           if participant is in team 100 increment winrate by 1 
+                           same for winrate if the participant is in the winning team 
         increment the match counter in the db by 1

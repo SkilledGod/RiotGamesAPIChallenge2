@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link href="css/fonts.css" rel="stylesheet" type="text/css"/>
-        <title>Riot Project v2 - Export Items Data</title>
+        <title>Riot Project v2 - High Score</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -78,72 +78,75 @@
         <div class="container topmargin">
             <div class="row">
                 <div class="col-lg-12" style="margin-top:50px;">
-                    <h1 class="text-center">Data Export</h1>
+                    <h1 class="text-center">High Score</h1>
                 </div>
-            </div>
+            </div> 
             <div class="row">
-                <div class="col-lg-12" style="margin-top:50px;">
-                    <h3 class="text-left" style="color:#D9534F;">Challenge Topic</h3>
-                    <p><a href="https://developer.riotgames.com/discussion/announcements/show/2lxEyIcE">The Riot Games API Challenge 2.0 (8/10 - 8/31)</a></p>
-                </div>
-            </div>   
-            <div class="row">
-                <div class="col-lg-12" style="margin-top:50px;">
-                    <h3 class="text-left" style="color:#D9534F;">Data analyst</h3>
-                    <p>This analyst was take from more than 300,000 match given from Riot Developer , You can download this matches by <code><a style="color:red;" href="https://s3-us-west-1.amazonaws.com/riot-api/api_challenge/AP_ITEM_DATASET.zip">Clicking Here</a></code> below information about the analyst matches</p>
-                    <div class="table-condensed" style="margin-top:10px;">
+                <div class="col-sm-12 text-center" style="margin-top:50px;">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Patch</th>
-                                    <th class="text-center">Number of Matches</th>
-                                    <th class="text-center">Matches Type</th>
+                                    <th class="text-center">Rank</th>
+                                    <th class="text-center hidden-xs">Champion</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Score</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Patch 5.11</td>
-                                    <td class="text-center">10,000</td>
-                                    <td class="text-center">Normal</td>
-                                </tr>                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Patch 5.11</td>
-                                    <td class="text-center">10,000</td>
-                                    <td class="text-center">Ranked</td>
-                                </tr>                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Patch 5.14</td>
-                                    <td class="text-center">10,000</td>
-                                    <td class="text-center">Normal</td>
-                                </tr>                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Patch 5.14</td>
-                                    <td class="text-center">10,000</td>
-                                    <td class="text-center">Ranked</td>
-                                </tr>                                   
-                            </tbody>
-                            <tfoot>
-                                 <tr>
-                                    <td class="text-center" colspan="3">Total</td>
-                                    <td class="text-center">97,427</td>
+                                    <td class="text-center firstrank">1</td>
+                                    <td class="text-center firstrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center firstrank">1st Name</td>
+                                    <td class="text-center firstrank">25</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center secrank">2</td>
+                                    <td class="text-center secrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center secrank">2nd Name</td>
+                                    <td class="text-center secrank">20</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center thirank">3</td>
+                                    <td class="text-center thirank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center thirank">3rd Name</td>
+                                    <td class="text-center thirank">10</td>
+                                </tr>   
+                                <tr>
+                                    <td class="text-center otherrank">4</td>
+                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center otherrank">4th etc ..</td>
+                                    <td class="text-center otherrank">1</td>
+                                </tr>  
+                                <tr>
+                                    <td class="text-center otherrank">5</td>
+                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center otherrank">5th etc ..</td>
+                                    <td class="text-center otherrank">1</td>
                                 </tr>                                 
-                            </tfoot>
+                                <tr class="yourrank">
+                                    <td class="text-center">6</td>
+                                    <td class="text-center hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center">Ahmed Safadi THe KING</td>
+                                    <td class="text-center">1</td>
+                                </tr> 
+                                
+                                                                <tr>
+                                    <td class="text-center otherrank">7</td>
+                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center otherrank">7th etc ..</td>
+                                    <td class="text-center otherrank">1</td>
+                                </tr> 
+                                <tr>
+                                    <td class="text-center otherrank">8</td>
+                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                    <td class="text-center otherrank">8th etc ..</td>
+                                    <td class="text-center otherrank">1</td>
+                                </tr>                                 
+                            </tbody>
+                            
                         </table>
-                    </div>                   
                 </div>
             </div>    
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="text-left" style="color:#D9534F;">Download Data</h3>
-                    <p><a href="#">Download Items Cost For Patch 5.11 and Patch 5.14 as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.11 (Normal) as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.11 (Ranked) as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.14 (Normal) as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.14 (Ranked) as JSON</a></p>  
-                </div>
-            </div>            
             <!-- Footer -->
             <footer>
                 <div class="row">

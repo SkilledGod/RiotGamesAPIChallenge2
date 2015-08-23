@@ -199,3 +199,29 @@ body{
 
 .randomitems{
 }
+
+.firstrank{
+color: red;
+text-shadow: 0px 0.5px rgba(255, 255, 255, 0.9);
+}
+
+.secrank{
+ color: gold;
+text-shadow: 0px 0.5px rgba(255, 255, 255, 0.9);   
+}
+
+.thirank{
+color: #15FF5A;
+text-shadow: 0px 0.5px rgba(255, 255, 255, 0.9);
+}
+
+.otherrank{
+ color: gray;
+text-shadow: 0px 0.5px rgba(255, 255, 255, 0.9);   
+}
+
+.yourrank{
+    background-color: #060000;
+    color:white;
+    text-shadow: 0px 0.5px rgba(0, 0, 0, 0.9); 
+}
