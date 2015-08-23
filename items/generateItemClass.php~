@@ -14,7 +14,7 @@ class {className} extends Item {
 		parent::__construct({id}, "{name}", {stats}, "{picture}", "{description}");
 	}
 
-	function applySpecial($champion) {}
+	function applySpecial($champion, $enemy) {}
 }
 ?>';
 

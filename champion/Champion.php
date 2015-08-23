@@ -1,19 +1,27 @@
 <?php
 class Champion {
+	private $id;
 	private $name; // Champion name
 	private $stats = array();	// additional stats (items etc)
 	private $baseStats = array(); // baseStats of this champion
-	private itemInventory = array();
+	private $itemInventory = array();
 	private $picture;
 	private $level;
 
-	function __construct($champName, $level) {
-		$this->name = $champName;
-		// get champData out of api by name (can't look up api definition atm but will when i'm back) and safe it in $baseStats
-		$this->baseStats["cdr"] = 0;
+	function __construct($champId, $level, $mysqli) {
+		$stats = $mysqli->query("select champs.name as champName, stats.name as stat_name, champ_stats.value as value from champs, champ_stats, stats where champs.id = champ_stats.champ_id AND champ_stats.stat_id = stats.id and champs.id = " .$champId);
+		while ($stat = $stats->fetch_assoc()) {
+			$this->name = $stat['champName'];
+			$this->baseStats[$stat['stat_name']] = $stat['value'];
+		}
+		$this->id = $champId;
 		$this->level = $level;
+		$this->stats['percentmovementspeed'] = array();
 	}	
 
+	function getId() {
+		return $this->id;
+	}
 	function increaseStat($statName, $statValue) {
 		if ($statName == "percentmovementspeed") {
 			if (!is_array($this->stats[$statName])) { // movespeed bonuses are multiplicative...
@@ -28,9 +36,24 @@ class Champion {
 		}
 	}
 	
+	function getItems() {
+		return $this->itemInventory;
+	}
+
+	function getLevel() {
+		return $this->level;
+	}
+
+	function getPicture() {
+		return $this->picture;	
+	}
+
+	function getName() {
+		return $this->name;
+	}
 	// does not recalculate stats
 	function addItem($item) {
-		if (is_a($item, "Item") {
+		if (is_a($item, "Item")) {
 			$this->itemInventory[] = $item; // addItem at the end
 			return true;	
 		} else {
@@ -38,16 +61,90 @@ class Champion {
 		}
 	}
 	
-	function evaluateChampion() {
-		// do some fancy formular to determine "the worth" of a champion.
+	function evaluateChampion($mysqli) {
+		$object = $mysqli->query("SELECT * FROM statToPointMap");
+		$score = 0;
+		while ($row = $object->fetch_assoc()) {
+			$score += $this->getStatByName($row['name']) * $row['value'];
+		}		
+
+		return $score;
 	}
 
-	function recalculateStats() {
+	function recalculateStats($enemy) {
 		$this->stats = array();
-		usort($itemInventory, array('Item', 'compareTo'));
-		foreach($itemInventory as $item) {
-			$item->apply($this);
+		$this->stats['percentmovementspeed'] = array();
+		foreach($this->itemInventory as $item) {
+			$item->apply($this, $enemy);
 		}
+	}
+
+	function getStatByName($name) {
+		$value = 0;
+		switch ($name) {
+			case "AttackSpeed":
+				$value =  $this->getAttackSpeed();
+			break;
+			case "MagicDamage":
+				$value =  $this->getMagicDamage();
+			break;
+			case "AttackDamage":
+				$value =  $this->getAttackDamage();
+			break;
+			case "SpellblockPenetration":
+				$value =  $this->getSpellblockPenetration();
+			break;
+			case "ArmorPenetration":
+				$value =  $this->getArmorPenetration();
+			break;
+			case "CooldownReduction":
+				$value =  $this->getCooldownReduction();
+			break;
+			case "Armor":
+				$value =  $this->getArmor();
+			break;
+			case "Spellblock":
+				$value =  $this->getSpellblock();
+			break;
+			case "PercentSpellblockPenetration":
+				$value =  $this->getPercentSpellblockPenetration();
+			break;
+			case "PercentArmorPenetration":
+				$value =  $this->getPercentArmorPenetration();
+			break;
+			case "MovementSpeed":
+				$value =  $this->getMovementSpeed();
+			break;
+			case "CritChance":
+				$value =  $this->getCritChance();
+			break;
+			case "CritDamage":
+				$value =  $this->getCritDamage();
+			break;
+			case "HealthPool":
+				$value =  $this->getHealthPool();
+			break;
+			case "ManaPool":
+				$value =  $this->getManaPool();
+			break;
+			case "ManaPoolRegen":
+				$value =  $this->getManaPoolRegen();
+			break;
+			case "HealthPoolRegen":
+				$value =  $this->getHealthPoolRegen();
+			break;
+			case "LifeSteal":
+				$value =  $this->getLifeSteal();
+			break;
+			case "Spellvamp":
+				$value =  $this->getSpellvamp();
+			break;
+			case "Tenacity":
+				$value =  $this->getTenacity();
+			break;
+
+		}
+		return $value == NULL ? 0.0 : $value;
 	}
 
 	function getAttackSpeed() {
@@ -70,7 +167,7 @@ class Champion {
 		return $this->stats['flatarmorpenetration'];
 	}
 	
-	function gerCooldownReduction() {
+	function getCooldownReduction() {
 		return min(40, $this->stats['flatcooldownreduction']);
 	}
 
