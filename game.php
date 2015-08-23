@@ -104,7 +104,9 @@
                         </div>
                     </form>
                 </div>
-                <hr>
+            </div>
+            <hr />
+            <div class="row" style="background-color: #202126;">                
                 <p class="text-center">if he click start game this would show </p>
                 <div class="col-lg-12 backgroundimg2 col-centered">
                     <div class="col-lg-3">
@@ -234,7 +236,7 @@
                                             <img data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>50%</td><td style='color:red;'><img style='margin-top:-2px;' src='images/arrowDown.png' width='8' height='8' alt=''/> 10%</td></tr></table>  <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                         <td class="text-center">
-                                                <img data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>60%</td><td style='color:gray;'>0%</td></tr></table> <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>60%</td><td style='color:gray;'>0%</td></tr></table> <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                     </tr> 
                                 </tbody>
@@ -246,82 +248,10 @@
                                 </div>
                                 <div class="col-sm-12 text-center" style="padding-top:50px;">
                                     <p class="text-center">if he win</p>
-                                    <div class="col-sm-3"><button style="margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">Your AP : 520</button></div>
-                                    <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-danger">Opponent AP : 420</button></div>
-                                    <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Next Round</button></div>
-                                </div>
-            <div class="row">
-                <div class="col-sm-12 text-center" style="margin-top:50px;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">Rank</th>
-                                    <th class="text-center hidden-xs">Champion</th>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Score</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center firstrank">1</td>
-                                    <td class="text-center firstrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center firstrank">1st Name</td>
-                                    <td class="text-center firstrank">25</td>
-                                </tr> 
-                                <tr>
-                                    <td class="text-center secrank">2</td>
-                                    <td class="text-center secrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center secrank">2nd Name</td>
-                                    <td class="text-center secrank">20</td>
-                                </tr> 
-                                <tr>
-                                    <td class="text-center thirank">3</td>
-                                    <td class="text-center thirank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center thirank">3rd Name</td>
-                                    <td class="text-center thirank">10</td>
-                                </tr>   
-                                <tr>
-                                    <td class="text-center otherrank">4</td>
-                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center otherrank">4th etc ..</td>
-                                    <td class="text-center otherrank">1</td>
-                                </tr>  
-                                <tr>
-                                    <td class="text-center otherrank">5</td>
-                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center otherrank">5th etc ..</td>
-                                    <td class="text-center otherrank">1</td>
-                                </tr>                                 
-                                <tr class="yourrank">
-                                    <td class="text-center">6</td>
-                                    <td class="text-center hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center">Current Player</td>
-                                    <td class="text-center">1</td>
-                                </tr> 
-                                
-                                                                <tr>
-                                    <td class="text-center otherrank">7</td>
-                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center otherrank">7th etc ..</td>
-                                    <td class="text-center otherrank">1</td>
-                                </tr> 
-                                <tr>
-                                    <td class="text-center otherrank">8</td>
-                                    <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
-                                    <td class="text-center otherrank">8th etc ..</td>
-                                    <td class="text-center otherrank">1</td>
-                                </tr>                                 
-                            </tbody>
-                            
-                        </table>
-                </div>
-            </div>                                 
-                                <div class="col-sm-12 text-center" style="padding-top:50px;">
-                                    <p class="text-center">if he lose</p>
-                                    <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px; " type="button" class="btn btn-danger">Your AP : 410</button></div>
-                                    <div class="col-sm-3"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-success">Opponent AP : 600</button></div>
-                                    <div class="col-sm-6"><button style="width: 150px;margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Try Again ?</button></div>
-                                </div>   
+                                    <div class="col-sm-4"><button style="margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">Your AP : 520</button></div>
+                                    <div class="col-sm-4"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-danger">Opponent AP : 420</button></div>
+                                    <div class="col-sm-4"><button style="margin:0 auto;font-size: 15px;" type="button" class="btn btn-warning">Next Round</button></div>
+                                </div>                                 
                             </div>
                         </div>
                     </div>
@@ -434,9 +364,81 @@
                         </table>
                     </div>
 
-                </div>   
-
+                </div>            
             </div>
+            <hr />
+            <div class="row" style="background-color: #202126;">
+                <div class="col-sm-12 text-center" style="padding-top:50px;">
+                    <p class="text-center">if he lose</p>
+                    <div class="col-sm-4"><button style="margin:0 auto;font-size: 20px; " type="button" class="btn btn-danger">Your AP : 410</button></div>
+                    <div class="col-sm-4"><button style="margin:0 auto;font-size: 18px;" type="button" class="btn btn-success">Opponent AP : 600</button></div>
+                    <div class="col-sm-4"><button style="margin:0 auto;font-size: 20px;" type="button" class="btn btn-warning">Try Again ?</button></div>
+                </div>                  
+                <div class="col-sm-12 text-center" style="margin-top:50px;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Rank</th>
+                                <th class="text-center hidden-xs">Champion</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center firstrank">1</td>
+                                <td class="text-center firstrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center firstrank">1st Name</td>
+                                <td class="text-center firstrank">25</td>
+                            </tr> 
+                            <tr>
+                                <td class="text-center secrank">2</td>
+                                <td class="text-center secrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center secrank">2nd Name</td>
+                                <td class="text-center secrank">20</td>
+                            </tr> 
+                            <tr>
+                                <td class="text-center thirank">3</td>
+                                <td class="text-center thirank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center thirank">3rd Name</td>
+                                <td class="text-center thirank">10</td>
+                            </tr>   
+                            <tr>
+                                <td class="text-center otherrank">4</td>
+                                <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center otherrank">4th etc ..</td>
+                                <td class="text-center otherrank">1</td>
+                            </tr>  
+                            <tr>
+                                <td class="text-center otherrank">5</td>
+                                <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center otherrank">5th etc ..</td>
+                                <td class="text-center otherrank">1</td>
+                            </tr>                                 
+                            <tr class="yourrank">
+                                <td class="text-center">6</td>
+                                <td class="text-center hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center">Current Player</td>
+                                <td class="text-center">1</td>
+                            </tr> 
+
+                            <tr>
+                                <td class="text-center otherrank">7</td>
+                                <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center otherrank">7th etc ..</td>
+                                <td class="text-center otherrank">1</td>
+                            </tr> 
+                            <tr>
+                                <td class="text-center otherrank">8</td>
+                                <td class="text-center otherrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
+                                <td class="text-center otherrank">8th etc ..</td>
+                                <td class="text-center otherrank">1</td>
+                            </tr>                                 
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>            
             <!-- Footer -->
             <footer>
                 <div class="row">
