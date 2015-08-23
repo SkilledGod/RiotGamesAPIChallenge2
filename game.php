@@ -90,7 +90,7 @@
                             <div class="col-sm-3">
                                 <input style="width:200px;margin:0 auto;" placeholder="Enter Your Name" class="form-control" required="" type="text">
                             </div>
-                            <p class="col-sm-3 text-center" style="padding-top:10px;">
+                            <p class="col-sm-3 text-center" style="margin: 1px;">
                                 Champion
                             </p>
                             <div class="col-sm-2">
