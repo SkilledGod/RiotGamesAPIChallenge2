@@ -27,6 +27,7 @@ function getChampionByMatch($matchFile, $participantId, $mysqli) {
 		$className = str_replace(")", "", $className);
 		$className = str_replace("'", "", $className);
 		$className = str_replace(":", "", $className);
+		$className = str_replace("-", "_", $className);
 		include_once("../items/generated/" .$className .".php");
 		$item = new $className();
 		$champion->addItem($item);
@@ -50,6 +51,8 @@ function getChampionByDB($matchId, $mysqli) {
 		$className = str_replace(")", "", $className);
 		$className = str_replace("'", "", $className);
 		$className = str_replace(":", "", $className);
+		$className = str_replace("-", "_", $className);
+		
 		include_once("../items/generated/" .$className .".php");
 		$item = new $className();
 		$champion->addItem($item);
@@ -66,7 +69,7 @@ function generateChampResponse($champion, $enemy, $mysqli) {
 	foreach($champion->getItems() as $item) {
 		$response['items'][] = $item->getId();
 	}
-
+	$response['name'] = $champion->getName();
 	$champion->recalculateStats($enemy);
 	$response['score'] = $champion->evaluateChampion($mysqli);
 

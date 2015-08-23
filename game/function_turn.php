@@ -63,8 +63,8 @@ function startGame($name, $champId, $mysqli) {
 
 	$response['opponent'] = generateChampResponse($opponent, $own, $mysqli);
 	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
-
 	$numberOfItems = count($opponent->getItems());
+	$response['numberOfItems'] = $numberOfItems;
 
 	$dbVariables = array();
 	$dbVariables['player_name'] = $name;
@@ -102,7 +102,7 @@ function startGame($name, $champId, $mysqli) {
 
 function randomItem($gameId, $mysqli) {
 	$query = $mysqli->query("select id from games where id = " .$gameId);
-	if ($gameId == NULL || !is_int($gameId) || !$query || $check->num_rows == 0) {
+	if ($gameId == NULL || !is_int($gameId) || !$query || $query->num_rows == 0) {
 		return array("code" => 104, "message" => "No valid gameId found");
 	}
 
@@ -147,7 +147,7 @@ function randomItem($gameId, $mysqli) {
 		}
 		$count++;
 	}
-
+	$response['turn'] = $currentTurn;
 	if ($mysqli->query($query) == false) {
 		return array("code" => 102, "message" => "Couldn't execute db query");
 	}
@@ -223,8 +223,6 @@ function endGame($gameId, $mysqli) {
 		$playerWon = true;
 	}
 
-
-
 	$query = $mysqli->query("update games set state_id = " .$stateId .", won = " .($playerWon ? "true" : "false") ." where id = " .$gameId);
 
 	if (!$query) {
@@ -232,7 +230,9 @@ function endGame($gameId, $mysqli) {
 	} 
 	$_SESSION['lastGameId'] = $_SESSION['gameId'];
 	unset($_SESSION['gameId']);
-	return array("code" => 200, "won" => $playerWon);
+	// calculate player rank!
+	$rank = $mysqli->query("select player_name, currentScore, won from games where currentScore >= (select currentScore from games where id = " .$gameId .") and state_id = " .$stateId ." order by currentScore desc")->num_rows + 1;
+	return array("code" => 200, "won" => $playerWon, "playerScore" => $response['player']['score'], "opponentScore" => $response['opponent']['score'], "rank" => $rank);
 }
 
 function highscore($mysqli, $gameId, $page) {
@@ -257,5 +257,64 @@ function highscore($mysqli, $gameId, $page) {
 	}
 	$response['page'] = (int) $page;
 	return $response;
+}
+
+function abortGame($gameId, $mysqli) {
+	$stateId = $mysqli->query("select id from state order by chronology desc limit 	1")->fetch_assoc()['id'];
+		if ($mysqli->query("select state_id from games where id = " .$gameId)->fetch_assoc()['state_id'] == $stateId) {
+			return array("code" => 101, "message" => "Game already finished");
+		}
+	if ($mysqli->query("delete from games where id = " .$gameId) && $mysqli->query("delete from choosenItems where game_id = " .$gameId) && $mysqli->query("delete from proposedItems where game_id = " .$gameId)) {
+		unset($_SESSION['gameId']);
+		return array("code" => 200);
+	} else {
+		return array("code" => 102, "message" => "Couldn't remove game from db");
+	}
+	
+}
+
+function getStats($gameId, $mysqli) {
+	$gameQuery = $mysqli->query("select opponentGame, opponentParticipantId from games where id =" .$gameId);
+		if ($gameQuery->num_rows == 0) {
+			return array("code" => 101, "message" => "Game does not exist.");
+		}
+
+	$game = $gameQuery->fetch_assoc();
+
+	$own = getChampionByDB($gameId, $mysqli); // level is one at the start
+	$opponent = getChampionByMatch("../matches/" .$game['opponentGame'], $game['opponentParticipantId'], $mysqli);
+
+	$response['opponent'] = generateChampResponse($opponent, $own, $mysqli);
+	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
+
+	// get info
+	$matchArr = json_decode(file_get_contents("../matches/" .$game['opponentGame']), true);
+	$response['version'] = $matchArr['matchVersion'];
+	$numberOfItems = count($opponent->getItems());
+	$response['numberOfItems'] = $numberOfItems;
+	$response['currentTurn'] = $mysqli->query("select max(turn) as maxTurn from proposedItems where game_id = " .$gameId)->fetch_assoc()['maxTurn'];
+	$lastSelected = $mysqli->query("select max(turn) as maxTurn from choosenItems where game_id = " .$gameId)->fetch_assoc()['maxTurn'];	
+	if ($lastSelected == $response['currentTurn'] - 1) {
+		$response["currentPhase"] = "selectItem";
+		// include selectable items
+		$response["selectableItems"] = array();
+		$itemsQuery = $mysqli->query("select item_id from proposedItems where game_id = " .$gameId ." and turn = " .$response['currentTurn']);
+		$selectableItems = array();
+		while ($item = $itemsQuery->fetch_assoc()) {
+			$selectableItems[] = $item['item_id'];
+		}
+	} 
+	if ($lastSelected == $response["currentTurn"]) {
+		$response["currentPhase"] = "requestItem";
+	}
+	return $response;
+}
+
+function isGameActive($gameId, $mysqli) {
+	if ($gameId == NULL || !is_int($gameId) || $mysqli->query("select id from games where id = " .$gameId)->num_rows == 0) {
+		return array("code" => 200, "active" => false);
+	} else {
+		return array("code" => 200, "active" => true);
+	}
 }
 ?>

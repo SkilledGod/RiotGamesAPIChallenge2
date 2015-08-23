@@ -182,7 +182,7 @@ body{
     margin-top: 80px;
 }
 .gradeitntext {
-    width: 55px;
+    width: 80px;
     font-size: 40px;
     float:right;
     text-align: center;
@@ -225,7 +225,6 @@ text-shadow: 0px 0.5px rgba(255, 255, 255, 0.9);
     color:white;
     text-shadow: 0px 0.5px rgba(0, 0, 0, 0.9); 
 }
-
 .boxbt{
     height:40px;
     background-color:white;
@@ -278,3 +277,4 @@ text-shadow: 0px 0.5px rgba(255, 255, 255, 0.9);
     text-align:center;
     border-bottom-right-radius:7px;       
 }
+

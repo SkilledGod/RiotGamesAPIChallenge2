@@ -21,6 +21,9 @@ abstract class Item {
 		$this->applySpecial($champion, $enemy);
 	}
 
+	public function getPicture() {
+		return $this->picture;
+	}
 	public function getId() {
 		return $this->id;
 	}
