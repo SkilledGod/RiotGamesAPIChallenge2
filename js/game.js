@@ -32,6 +32,7 @@ function startGame() {
 			info["numberOfTurns"] = response["numberOfTurns"];
 			$("#numberOfTurns").text(info["numberOfTurns"]);
 			updateStatistics(response["player"], response["opponent"]);
+			$("#topScore").text(response['topScore']);
 			$("#playerName").text(name);
 			requestRandomItems(); // request the items
 
@@ -179,6 +180,7 @@ function restoreGame() {
 		info["numberOfTurns"] = response["numberOfTurns"];
 		$("#numberOfTurns").text(info["numberOfTurns"]);
 		$("#currentTurn").text(response['currentTurn']);
+		$("#topScore").text(response['topScore']);
 		updateStatistics(response['player'], response['opponent']);
 		// set selectable items
 		currentSelectableItems = response['selectableItems'];

@@ -354,7 +354,7 @@
                         <div class="score">
                             <div class="yourscore"><span id="scorePlayer" class="gradeitntext">0</span></div>
                             <div class="vsicon hidden-md hidden-sm hidden-xs hidden-print"></div>
-                            <div class="topscore"><span id="scoreOpponent" class="gradeitntext2">51</span></div>
+                            <div class="topscore"><span id="topScore" class="gradeitntext2">51</span></div>
                         </div>
                         <div id="winScreen" style="display:none" class="randomitems">
                             <hr class="hrstyle">

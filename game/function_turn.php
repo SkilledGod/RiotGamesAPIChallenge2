@@ -3,6 +3,13 @@
 include_once("../champion/Champion.php");
 include_once("../items/Item.php"); // workarou
 include_once("function_game.php");
+
+function getHighestScore($mysqli) {
+	$stateId = $mysqli->query("select id, chronology from state order by chronology desc limit 1")->fetch_assoc()['id'];
+
+	$scoreQuery = $mysqli->query("select currentScore from games where state_id = " .$stateId . " order by currentScore desc limit 1");
+	return $scoreQuery->fetch_assoc()['currentScore'];
+}
 function startGame($name, $champId, $mysqli) {
 	// CHeck that no game was started yet
 	if (isset($_SESSION['gameId']) && $mysqli->query("select id from games where id = " .$_SESSION['gameId'])->num_rows != 0) {
@@ -65,7 +72,7 @@ function startGame($name, $champId, $mysqli) {
 	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
 	$numberOfItems = count($opponent->getItems());
 	$response['numberOfItems'] = $numberOfItems;
-
+	$response['topScore'] = getHighestScore($mysqli);
 	$dbVariables = array();
 	$dbVariables['player_name'] = $name;
 	$dbVariables['champId'] = $champId;
@@ -303,6 +310,7 @@ function getStats($gameId, $mysqli) {
 	$numberOfItems = count($opponent->getItems());
 	$response['numberOfItems'] = $numberOfItems;
 	$response['currentTurn'] = $mysqli->query("select max(turn) as maxTurn from proposedItems where game_id = " .$gameId)->fetch_assoc()['maxTurn'];
+	$response['topScore'] = getHighestScore($mysqli);
 	$lastSelected = $mysqli->query("select max(turn) as maxTurn from choosenItems where game_id = " .$gameId)->fetch_assoc()['maxTurn'];	
 	if ($lastSelected == $response['currentTurn'] - 1) {
 		$response["currentPhase"] = "selectItem";
