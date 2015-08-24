@@ -23,7 +23,7 @@ include('function_turn.php'); // turn functions
 		break;
 		case 'highscore':
 			// top
-			$return = highScore($mysqli, isset($_GET['top']) ? -1 : $_SESSION['lastGameId'], isset($_GET['page']) ? $_GET['page'] : 1);
+			$return = highScore($mysqli, isset($_GET['top']), $_SESSION['lastGameId'], isset($_GET['page']) ? $_GET['page'] : 1);
 			echo json_encode($return);
 		break;
 		case 'abortGame': 

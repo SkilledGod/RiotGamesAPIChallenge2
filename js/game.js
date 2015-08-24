@@ -226,6 +226,7 @@ function checkActiveGame() {
 			$("#startGameView").css("display", "");											
 			$("#continueGameView").css("display", "none");		
 		}
+		$("#footer").css("display", "");
 	});
 }
 
@@ -246,7 +247,71 @@ function getStats() {
 	});
 }
 
+function showHighscore(top, page) {
+	response = [];
+	function ajaxrequestHighscore(modifiers) {
+		return $.ajax({
+			url: "game/turn.php?action=highscore" + modifiers,
+			success: function(result) {
+				console.log(result);
+				response = JSON.parse(result);
+			}
+		});
+	}
+	
+	modifiers = "";
+	if (top) {
+		modifiers = "&top&page=" + page;
+	}
+	$.when(ajaxrequestHighscore(modifiers)).done(function() {
+		if (response['code'] === 200) {
+			$('#matchView').css("display", "none");
+			$('#highscore').css("display", "");
+			// fill highscore table
+			table = generateHighscoreTable(response['games']);
+			$('#highscoreBody').html(table);
+		} else {
+			// show error
+		}
 
+	});
+}
+
+function generateHighscoreTable(games) {
+	html = '<tr {mark}><td class="text-center {rankColor}">{rank}</td><td class="text-center {rankColor} hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/{champName}.png" alt=""/></td><td class="text-center {rankColor}">{player_name}</td><td class="text-center {rankColor}">{currentScore}</td></tr>';
+
+	response = "";
+	for (i = 0; i < games.length; i++) {
+		currentRow = html;
+		for (var key in games[i]) {
+			if (games[i].hasOwnProperty(key)) {
+				if (key == "mark") {
+					currentRow = currentRow.replace("{" + key + "}", games[i][key] ? "class=\"yourrank\"" : "");
+				} else if (key == "champName") {
+					currentRow = currentRow.replace("{" + key + "}", games[i][key].replace("'", "").replace(" ", ""));					
+				} else {
+					currentRow = currentRow.replace("{" + key + "}", games[i][key]);
+				}
+			}
+		}
+		if (games[i]["rank"] == 1) {
+			currentRow = currentRow.replace("{rankColor}", "firstrank");
+		}
+		if (games[i]["rank"] == 2) {
+			currentRow = currentRow.replace("{rankColor}", "secrank");
+		}
+		if (games[i]["rank"] == 3) {
+			currentRow = currentRow.replace("{rankColor}", "thirank");
+		}
+		if (games[i]["rank"] > 3) {
+			currentRow = currentRow.replace("{rankColor}", "otherrank");
+		}
+
+
+		response += currentRow;
+	}
+	return response;
+}
 function setStatisticsContinue(player, playerName) {
 	$("#playerNameContinue").text(playerName);
 	$("#playerLevelContinue").text(player['level']);

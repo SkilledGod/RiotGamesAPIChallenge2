@@ -232,30 +232,33 @@ function endGame($gameId, $mysqli) {
 	unset($_SESSION['gameId']);
 	// calculate player rank!
 	$rank = $mysqli->query("select player_name, currentScore, won from games where currentScore >= (select currentScore from games where id = " .$gameId .") and state_id = " .$stateId ." order by currentScore desc")->num_rows + 1;
-	return array("code" => 200, "won" => $playerWon, "playerScore" => $response['player']['score'], "opponentScore" => $response['opponent']['score'], "rank" => $rank);
+	$numberOfPlayers = $mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows;
+	return array("code" => 200, "won" => $playerWon, "playerScore" => $response['player']['score'], "opponentScore" => $response['opponent']['score'], "rank" => $rank, "numberOfPlayers" => $numberOfPlayers);
 }
 
-function highscore($mysqli, $gameId, $page) {
-	var_dump($gameId);
-	var_dump($page);
+function highscore($mysqli, $top, $gameId, $page) {
 	$entriesPerPage = 25;
 	$stateId = $mysqli->query("select id from state order by chronology desc limit 	1")->fetch_assoc()['id'];
-	if ($gameId != -1) {
+	if (!$top) {
 		$rowsInFront = $mysqli->query("select player_name, currentScore, won from games where currentScore >= (select currentScore from games where id = " .$gameId .") and state_id = " .$stateId ." order by currentScore desc")->num_rows;
 		$page = floor(($rowsInFront + 1) / 25) + 1;
 	}
 
 	// Show top 25 max
-	$topGames = $mysqli->query("select id, player_name, currentScore, won from games where state_id = " .$stateId ." order by currentScore desc limit " .$entriesPerPage * ($page-1) .", " .$entriesPerPage * $page);
+	$topGames = $mysqli->query("select games.id, champId, champs.name as champName, player_name, currentScore, won from games join champs on games.champId = champs.id where state_id = " .$stateId ." order by currentScore desc limit " .$entriesPerPage * ($page-1) .", " .$entriesPerPage);
 	$response = array();
-
+	
 	$response['code'] = 200;
 	$response['games'] = array();
+	$currentRank = 25 * ($page-1) + 1;
 	while ($game = $topGames->fetch_assoc()) {
 		$game['mark'] = $game['id'] == $gameId;
+		$game['rank'] = $currentRank;
+		$currentRank++;
 		$response['games'][] = $game;
 	}
 	$response['page'] = (int) $page;
+	$response['numberOfPages'] = floor($mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows / 25) + 1;
 	return $response;
 }
 

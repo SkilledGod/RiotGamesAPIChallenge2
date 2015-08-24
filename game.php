@@ -81,7 +81,7 @@
                     <h1>Game</h1>
                 </div>
             </div>
-            <div id="startGameView" class="row" style="background-color: #202126;">
+            <div style="display:none" id="startGameView" class="row" style="background-color: #202126;">
                 <div id="champSelect"  class="col-lg-12 backgroundimg col-centered">
                     <form method="get" class="form-horizontal" role="search" style="padding-top:100px;">
                         <div class="form-group">
@@ -106,7 +106,7 @@
                     </form>
                 </div>
             </div>
-            <div id="continueGameView" class="row">
+            <div id="continueGameView" style="display:none" class="row">
                 <div class="col-lg-6">
                     <div  id="playerNameContinue" class="opponentname"> Twisted Fate </div>
                     <div class="champpic">
@@ -356,7 +356,7 @@
                                     <img id="loseImage" style="margin:0 auto;" class="img-responsive" src="images/lose.png" alt=""/>
                                 </div>  
                                 <div class="col-sm-12 text-center" style="padding-top:20px;">
-                                    <div class="col-sm-6"><button style="width:150px;margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">High Score</button></div>
+                                    <div class="col-sm-6"><button onClick="showHighscore(false, 0)" style="width:150px;margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">High Score</button></div>
                                     <div class="col-sm-6"><button style="width:150px;margin:0 auto;font-size: 15px;" onClick="tryAgain()" type="button" class="btn btn-danger">Try Again ?</button></div>
                                 </div>                                
                             </div>
@@ -495,8 +495,7 @@
 
                 </div>            
             </div>
-            <hr />
-            <div class="row" style="background-color: #202126;">
+            <div id="highscore" style="display:none" class="row" style="background-color: #202126;">
                 <div class="col-sm-12 text-center" style="margin-top:50px;">
                     <table class="table">
                         <thead>
@@ -507,7 +506,7 @@
                                 <th class="text-center">Score</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="highscoreBody">
                             <tr>
                                 <td class="text-center firstrank">1</td>
                                 <td class="text-center firstrank hidden-xs"><img class="img-circle" width="50" height="50" src="images/chmpions/Zed.png" alt=""/></td>
@@ -563,7 +562,7 @@
                 </div>
             </div>   
             <!-- Footer -->
-            <footer>
+            <footer id="footer" style="display:none">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <hr>
