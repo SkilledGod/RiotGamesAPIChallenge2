@@ -101,7 +101,15 @@
                             </p>
                             <div class="col-sm-2">
                                 <select id="champion" style="width:200px;margin:0 auto;" class="form-control" required="">
-                                    <option value=1 style="background: url('images/chmpions/Zed.png') no-repeat;background-size: 25px 25px;" class="selectoptioon">Zed</option>
+					<?php
+						include_once('db.php');
+						$champs = $mysqli->query("select id, name, pic from champs order by name asc");
+						while ($champ = $champs->fetch_assoc()) {
+							?>
+			                                    <option value=<?php echo $champ['id']; ?> style="background: url('images/chmpions/<?php echo $champ['pic']; ?>') no-repeat;background-size: 25px 25px;" class="selectoptioon"><?php echo $champ['name']; ?></option>
+							<?php
+						}
+					?>
                                 </select>
                             </div>   
                             <div class="col-sm-12 text-center" style="padding-top:50px;">
