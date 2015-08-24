@@ -248,7 +248,7 @@ function getStats() {
 }
 
 function showHighscore(top, page) {
-	response = [];
+	var response = [];
 	function ajaxrequestHighscore(modifiers) {
 		return $.ajax({
 			url: "game/turn.php?action=highscore" + modifiers,
@@ -265,16 +265,52 @@ function showHighscore(top, page) {
 	}
 	$.when(ajaxrequestHighscore(modifiers)).done(function() {
 		if (response['code'] === 200) {
-			$('#matchView').css("display", "none");
-			$('#highscore').css("display", "");
 			// fill highscore table
 			table = generateHighscoreTable(response['games']);
 			$('#highscoreBody').html(table);
+			generateHighscorePagination(response['page'], response['numberOfPages']);		
+			$('#matchView').css("display", "none");
+			$('#highscore').css("display", "");
 		} else {
 			// show error
 		}
 
 	});
+}
+
+function generateHighscorePagination(currentPage, maxPage) {
+	previous = '<li {disabled}><a onClick="showHighscore(true, {page})" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+	next = '<li {disabled}><a onClick="showHighscore(true, {page})" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+	page = '<li {active}><a onClick="showHighscore(true, {page})">{page}</a></li>';
+	curPageHTML = '<li><a onClick="showHighscore(true, {page})">{page}</a></li>';
+
+	// TODO page == 1 oder page == maxPage
+	disabled = "";
+	if (currentPage -1 == 0) {
+		disabled = 'class="disabled"';
+	}
+	previous = previous.replace("{page}", currentPage-1).replace("{disabled}", disabled);
+	
+	disabled = "";
+	if (currentPage == maxPage) {
+		disabled = 'class="disabled"';
+	}
+	next = next.replace("{page}", currentPage+1).replace("{disabled}", disabled);
+
+
+	response = previous;
+	for (i = Math.max(1, currentPage-5); i <= Math.min(maxPage, currentPage+5);i++) {
+		className =  "";
+		if (i == currentPage) {
+			className = 'class="active"';
+		}
+		response += page.replace(/{page}/g, "" + i).replace("{active}", className);			
+	}
+	response += next;
+
+	$('#paginationBody').html(response);
+
+	
 }
 
 function generateHighscoreTable(games) {

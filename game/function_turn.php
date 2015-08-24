@@ -237,6 +237,9 @@ function endGame($gameId, $mysqli) {
 }
 
 function highscore($mysqli, $top, $gameId, $page) {
+	if ($page <= 0 ) {
+		return array("code" => 101, "message" => "Page has to be greater 0");
+	}
 	$entriesPerPage = 25;
 	$stateId = $mysqli->query("select id from state order by chronology desc limit 	1")->fetch_assoc()['id'];
 	if (!$top) {
@@ -259,6 +262,9 @@ function highscore($mysqli, $top, $gameId, $page) {
 	}
 	$response['page'] = (int) $page;
 	$response['numberOfPages'] = floor($mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows / 25) + 1;
+	if ($response['page'] > $response['numberOfPages']) {
+		return array("code" => 102, "message" => "Page number has to be lower");
+	}
 	return $response;
 }
 
