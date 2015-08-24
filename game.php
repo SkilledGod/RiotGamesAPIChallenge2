@@ -26,8 +26,13 @@
         <![endif]-->
 
     </head>
-
-    <body onload="checkActiveGame()" >
+<?php 
+	$loadFunction = "checkActiveGame()";
+	if (isset($_GET['showHighscore'])) {
+		$loadFunction = "showHighscore(true, 1)";
+	}
+?>
+    <body onload="<?php echo $loadFunction; ?>" >
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -59,7 +64,7 @@
                             <a href="game.php">Game</a>
                         </li>
                         <li>
-                            <a href="score.php">High Score</a>
+                            <a href="game.php?showHighscore">High Score</a>
                         </li>      
                         <li>
                             <a href="export.php">Export Data</a>
