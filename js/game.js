@@ -38,7 +38,7 @@ function startGame() {
 			$("#selectItemsTable").css("display", "");
 			$("#winScreen").css("display", "none");
 	
-			$("#champSelect").css("display", "none"); // hide champ select
+			$("#startGameView").css("display", "none"); // hide champ select
 			$("#matchView").css("display", "");							
 		} else {
 			console.log("sGmeMes" + response["message"]);
@@ -153,7 +153,8 @@ function abortGame() {
 	$.when(ajaxRequestAbortGame()).done(function() {
 		if (response['code'] === 200) {
 			$("#matchView").css("display", "none");							
-			$("#champSelect").css("display", ""); // hide champ select	
+			$("#continueGameView").css("display", "none");							
+			$("#startGameView").css("display", "");
 		} else {
 			// show error
 		}	
@@ -177,11 +178,19 @@ function restoreGame() {
 		info["version"] = response["version"];
 		info["numberOfTurns"] = response["numberOfTurns"];
 		$("#numberOfTurns").text(info["numberOfTurns"]);
-		$("#currentTurn").text(response['currentTurn']);		
+		$("#currentTurn").text(response['currentTurn']);
 		updateStatistics(response['player'], response['opponent']);
-
-		$("#champSelect").css("display", "none"); // hide champ select
-		$("#matchView").css("display", "");									
+		// set selectable items
+		currentSelectableItems = response['selectableItems'];
+		$("#item1").attr("src", "images/item/" + response['selectableItems'][0]+ ".png");
+		$("#item2").attr("src", "images/item/" + response['selectableItems'][1] + ".png");
+		$("#item3").attr("src", "images/item/" + response['selectableItems'][2] + ".png");
+		
+		// set name
+		$("#playerName").text(response['name']);
+		$("#startGameView").css("display", "none"); // hide champ select
+		$("#continueGameView").css("display", "none");							
+		$("#matchView").css("display", "");
 	});
 }
 
@@ -191,8 +200,75 @@ function showX(viewToShow) {
 }
 
 function tryAgain() {
-		$("#champSelect").css("display", ""); // hide champ select
+		$("#startGameView").css("display", ""); // hide champ select
 		$("#matchView").css("display", "none");										
+}
+
+function checkActiveGame() {
+	response = [];	
+	function ajaxRequestCheckActiveGame() {
+		return $.ajax({
+			url: "game/turn.php?action=isGameActive",
+			success: function(result) {
+				response = JSON.parse(result);
+				console.log(result);
+			}
+		});
+	}
+
+	$.when(ajaxRequestCheckActiveGame()).done(function () {
+		if (response['active']) {
+			$("#startGameView").css("display", "none");											
+			$("#continueGameView").css("display", "");											
+			// get Stats
+			getStats();									
+		} else {
+			$("#startGameView").css("display", "");											
+			$("#continueGameView").css("display", "none");		
+		}
+	});
+}
+
+function getStats() {
+	response = [];	
+	function ajaxRequestCheckGetStats() {
+		return $.ajax({
+			url: "game/turn.php?action=getStats",
+			success: function(result) {
+				response = JSON.parse(result);
+				console.log(result);
+			}
+		});
+	}
+
+	$.when(ajaxRequestCheckGetStats()).done(function() {
+		setStatisticsContinue(response['player'], response['name']);
+	});
+}
+
+
+function setStatisticsContinue(player, playerName) {
+	$("#playerNameContinue").text(playerName);
+	$("#playerLevelContinue").text(player['level']);
+	$("#playerChampNameContinue").text(player["name"]);
+	$("#playerChampPicContinue").attr("src", "images/chmpions/" + player["name"].replace("'", "").replace(" ", "") + ".png");
+	$("#healthPlayerContinue").text(Math.round(player["stats"]["HealthPool"]));
+	$("#adPlayerContinue").text(Math.round(player["stats"]["AttackDamage"]));
+	$("#apPlayerContinue").text(Math.round(player["stats"]["MagicDamage"]));
+	$("#mresPlayerContinue").text(Math.round(player["stats"]["Spellblock"]));
+	$("#armorPlayerContinue").text(Math.round(player["stats"]["Armor"]));
+	$("#asPlayerContinue").text(Math.round(player["stats"]["AttackSpeed"]*100) / 100);
+	$("#cdrPlayerContinue").text(Math.round(player["stats"]["CooldownReduction"]) + "%");
+	$("#movespeedPlayerContinue").text(Math.round(player["stats"]["MovementSpeed"]));
+	// update items
+	for (i = 1; i <= 6; i++) {
+		if (i <= player["items"].length)  {
+			$("#item" + i + "PlayerContinue").attr("src", "images/item/" + player['items'][i-1] + ".png");
+		} else {
+			$("#item" + i + "PlayerContinue").attr("src", "images/item/NoItem.png");
+		}
+	}
+
 }
 function updateStatistics(player, opponent) {
 	$("#opponentLevel").text(opponent['level']);
@@ -243,7 +319,7 @@ function updateStatistics(player, opponent) {
 		if (i <= opponent["items"].length) {
 			$("#item" + i + "Opponent").attr("src", "images/item/" + opponent['items'][i-1] + ".png");
 		} else {
-			$("#item" + i + "Player").attr("src", "images/item/NoItem.png");
+			$("#item" + i + "Opponent").attr("src", "images/item/NoItem.png");
 		}
 	}
 }

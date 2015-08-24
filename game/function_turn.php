@@ -274,7 +274,7 @@ function abortGame($gameId, $mysqli) {
 }
 
 function getStats($gameId, $mysqli) {
-	$gameQuery = $mysqli->query("select opponentGame, opponentParticipantId from games where id =" .$gameId);
+	$gameQuery = $mysqli->query("select * from games where id =" .$gameId);
 		if ($gameQuery->num_rows == 0) {
 			return array("code" => 101, "message" => "Game does not exist.");
 		}
@@ -284,6 +284,7 @@ function getStats($gameId, $mysqli) {
 	$own = getChampionByDB($gameId, $mysqli); // level is one at the start
 	$opponent = getChampionByMatch("../matches/" .$game['opponentGame'], $game['opponentParticipantId'], $mysqli);
 
+	$response['name'] = $game['player_name'];
 	$response['opponent'] = generateChampResponse($opponent, $own, $mysqli);
 	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
 
@@ -299,9 +300,8 @@ function getStats($gameId, $mysqli) {
 		// include selectable items
 		$response["selectableItems"] = array();
 		$itemsQuery = $mysqli->query("select item_id from proposedItems where game_id = " .$gameId ." and turn = " .$response['currentTurn']);
-		$selectableItems = array();
 		while ($item = $itemsQuery->fetch_assoc()) {
-			$selectableItems[] = $item['item_id'];
+			$response['selectableItems'][] = $item['item_id'];
 		}
 	} 
 	if ($lastSelected == $response["currentTurn"]) {
@@ -314,7 +314,7 @@ function isGameActive($gameId, $mysqli) {
 	if ($gameId == NULL || !is_int($gameId) || $mysqli->query("select id from games where id = " .$gameId)->num_rows == 0) {
 		return array("code" => 200, "active" => false);
 	} else {
-		return array("code" => 200, "active" => true);
+		return array("code" => 200, "active" => true, "gameId" => $gameId);
 	}
 }
 ?>
