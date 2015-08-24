@@ -261,7 +261,7 @@ function highscore($mysqli, $top, $gameId, $page) {
 		$response['games'][] = $game;
 	}
 	$response['page'] = (int) $page;
-	$response['numberOfPages'] = floor($mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows / 25) + 1;
+	$response['numberOfPages'] = ceil($mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows / 25);
 	if ($response['page'] > $response['numberOfPages']) {
 		return array("code" => 102, "message" => "Page number has to be lower");
 	}
