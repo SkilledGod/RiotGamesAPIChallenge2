@@ -26,12 +26,12 @@
         <![endif]-->
 
     </head>
-<?php 
-	$loadFunction = "checkActiveGame()";
-	if (isset($_GET['showHighscore'])) {
-		$loadFunction = "showHighscore(true, 1)";
-	}
-?>
+    <?php
+    $loadFunction = "checkActiveGame()";
+    if (isset($_GET['showHighscore'])) {
+        $loadFunction = "showHighscore(true, 1)";
+    }
+    ?>
     <body onload="<?php echo $loadFunction; ?>" >
 
         <!-- Navigation -->
@@ -84,6 +84,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h1>Game</h1>
+                    <div id="infor" class="alert alert-error">
+                        <a class="close" data-dismiss="alert">×</a>
+                        Error    
+                    </div>
                 </div>
             </div>
             <div style="display:none" id="startGameView" class="row" style="background-color: #202126;">
@@ -101,15 +105,15 @@
                             </p>
                             <div class="col-sm-2">
                                 <select id="champion" style="width:200px;margin:0 auto;" class="form-control" required="">
-					<?php
-						include_once('db.php');
-						$champs = $mysqli->query("select id, name, pic from champs order by name asc");
-						while ($champ = $champs->fetch_assoc()) {
-							?>
-			                                    <option value=<?php echo $champ['id']; ?> style="background: url('images/chmpions/<?php echo $champ['pic']; ?>') no-repeat;background-size: 25px 25px;" class="selectoptioon"><?php echo $champ['name']; ?></option>
-							<?php
-						}
-					?>
+                                    <?php
+                                    include_once('db.php');
+                                    $champs = $mysqli->query("select id, name, pic from champs order by name asc");
+                                    while ($champ = $champs->fetch_assoc()) {
+                                        ?>
+                                        <option value=<?php echo $champ['id']; ?> style="background: url('images/chmpions/<?php echo $champ['pic']; ?>') no-repeat;background-size: 25px 25px;" class="selectoptioon"><?php echo $champ['name']; ?></option>
+                                        <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>   
                             <div class="col-sm-12 text-center" style="padding-top:50px;">
@@ -238,6 +242,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="hidden-lg">
+                        <div class="col-sm-12 text-center" style="margin-top:10px;">
+                            <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button onClick="restoreGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-success">Continue</button>                                
+                        </div>
+                    </div>
+                </div>  
             </div>
 
             <div class="row" style="background-color: #202126;">                
@@ -381,20 +395,77 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-center">
-                                            <img id="item1" onClick="selectItem(0)" data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr></table> <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img id="item1" onClick="selectItem(0)" data-uk-tooltip title="" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                         <td class="text-center">
                                             <img id="item2"  onClick="selectItem(1)" data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>50%</td><td style='color:red;'><img style='margin-top:-2px;' src='images/arrowDown.png' width='8' height='8' alt=''/> 10%</td></tr></table>  <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                         <td class="text-center">
-                                            <img id="item3"  onClick="selectItem(2)" data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>60%</td><td style='color:gray;'>0%</td></tr></table> <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img id="item3"  onClick="selectItem(2)" data-uk-tooltip title="" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                     </tr> 
                                 </tbody>
                             </table> 
-                            <div class="col-sm-12 text-center">
+                            <div class="col-sm-12 text-center" style="margin-bottom:20px;">
                                 <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-danger">Abort</button>
-                            </div>                            
+                            </div>    
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Patch 5.11</th>
+                                        <th>Patch 5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td>50%</td>
+                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td>50%</td>
+                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Patch 5.11</th>
+                                        <th>Patch 5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td>50%</td>
+                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td>50%</td>
+                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Patch 5.11</th>
+                                        <th>Patch 5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td>50%</td>
+                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td>50%</td>
+                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -513,10 +584,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="text-center">Rank</th>
-                                <th class="text-center hidden-xs">Champion</th>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Score</th>
+                                <th class="text-center" style="width:10%">Rank</th>
+                                <th class="text-center hidden-xs" style="width:10%">Champion</th>
+                                <th class="text-center" style="width:50%">Name</th>
+                                <th class="text-center" style="width:30%">Score</th>
                             </tr>
                         </thead>
                         <tbody id="highscoreBody">
@@ -573,25 +644,25 @@
 
                     </table>
                 </div>
-<nav style="text-align: center">
-  <ul id="paginationBody" class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+                <nav style="text-align: center">
+                    <ul id="paginationBody" class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>   
             <!-- Footer -->
             <footer id="footer" style="display:none">
@@ -613,9 +684,13 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <script>
-                                                $('[data-toggle="popover"]').popover(
-                                                        {trigger: 'hover', 'placement': 'top'}
-                                                );
+                                    $('[data-toggle="popover"]').popover(
+                                            {trigger: 'hover', 'placement': 'top'}
+                                    );
+
+                                    $(document).ready(function () {
+                                        $("#infor").delay(3000).fadeOut("slow");
+                                    });
         </script>
 
 
