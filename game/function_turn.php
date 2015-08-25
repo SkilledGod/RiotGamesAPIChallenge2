@@ -127,7 +127,7 @@ function randomItem($gameId, $mysqli) {
 	}
 
 	// TODO choose boots on first turn! (iff the opponent has some (bootsTag in db?))
-	$possibleItemsQuery = $mysqli->query("select id, name from ap_items where id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
+	$possibleItemsQuery = $mysqli->query("select ap_items.id as id, ap_items.name as name, items.description as description from ap_items, items where ap_items.id = items.id and ap_items.id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
 	$possibleItems = array();
 	while ($item = $possibleItemsQuery->fetch_assoc()) {
 		$possibleItems[] = $item;
@@ -193,9 +193,8 @@ function selectItem($gameId, $choosenItemId, $mysqli) {
 	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
 	$response['code'] = 200;
 	$response['lastSelectionMade'] = $lastProposedTurn == $mysqli->query("select numberOfTurns from games where id = " .$gameId)->fetch_assoc()['numberOfTurns'];
-	
 	if (!$mysqli->query("update games set currentScore = " .$response['player']['score'] ." where id = " .$gameId)) {
-		return array("code" => 104, "message" => "Couldn't update scroe");
+		return array("code" => 104, "message" => "Couldn't update score");
 	}
 
 	// get data to get the champions
@@ -316,9 +315,10 @@ function getStats($gameId, $mysqli) {
 		$response["currentPhase"] = "selectItem";
 		// include selectable items
 		$response["selectableItems"] = array();
-		$itemsQuery = $mysqli->query("select item_id from proposedItems where game_id = " .$gameId ." and turn = " .$response['currentTurn']);
+		$itemsQuery = $mysqli->query("select item_id as id, items.name as name, items.description as description from proposedItems, items where items.id = proposedItems.item_id and game_id = " .$gameId ." and turn = " .$response['currentTurn']);
+		echo $mysqli->error;
 		while ($item = $itemsQuery->fetch_assoc()) {
-			$response['selectableItems'][] = $item['item_id'];
+			$response['selectableItems'][] = $item;
 		}
 	} 
 	if ($lastSelected == $response["currentTurn"]) {

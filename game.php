@@ -31,12 +31,14 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
         <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 
     </head>
-    <?php
-    $loadFunction = "checkActiveGame()";
-    if (isset($_GET['showHighscore'])) {
-    $loadFunction = "showHighscore(true, 1)";
-    }
-    ?>
+<?php 
+	include_once('db.php');
+		
+	$loadFunction = "checkActiveGame()";
+	if (isset($_GET['showHighscore'])) {
+		$loadFunction = "showHighscore(true, 1)";
+	}
+?>
     <body onload="<?php echo $loadFunction; ?>" >
 
         <!-- Navigation -->
@@ -230,25 +232,25 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                         <tbody>
                             <tr>
                                 <td class="text-center">
-                                    <img id="item1PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item1PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item2PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item2PlayerContinue" data-uk-tooltip title=""  class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item3PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item3PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                             </tr> 
 
                             <tr>
                                 <td class="text-center">
-                                    <img id="item4PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item4PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item5PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item5PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item6PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item6PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                             </tr>
                         </tbody>
@@ -362,25 +364,25 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <tbody>
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item1Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item1Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item2Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item2Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item3Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item3Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr> 
 
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item4Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item4Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item5Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item5Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item6Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item6Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr>
                             </tbody>
@@ -578,25 +580,25 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <tbody>
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item1Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item1Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item2Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item2Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item3Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item3Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr> 
 
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item4Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item4Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item5Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item5Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item6Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item6Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr>
                             </tbody>

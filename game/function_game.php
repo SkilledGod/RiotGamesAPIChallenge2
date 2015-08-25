@@ -67,7 +67,8 @@ function generateChampResponse($champion, $enemy, $mysqli) {
 	$response['level'] = $champion->getLevel();
 	$response['items'] = array();
 	foreach($champion->getItems() as $item) {
-		$response['items'][] = $item->getId();
+		$query = $mysqli->query("select id, name, description from items where id = " .$item->getId())->fetch_assoc();
+		$response['items'][] = $query;
 	}
 	$response['name'] = $champion->getName();
 	$champion->recalculateStats($enemy);
