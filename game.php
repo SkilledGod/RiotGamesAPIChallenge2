@@ -1,3 +1,7 @@
+<?php
+include 'db.php';
+$search = $mysqli->query("SELECT * FROM `ap_items`");
+?>
 <!DOCTYPE html>
 <html lang="en"><head>
         <meta charset="utf-8">
@@ -24,12 +28,13 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 
     </head>
     <?php
     $loadFunction = "checkActiveGame()";
     if (isset($_GET['showHighscore'])) {
-        $loadFunction = "showHighscore(true, 1)";
+    $loadFunction = "showHighscore(true, 1)";
     }
     ?>
     <body onload="<?php echo $loadFunction; ?>" >
@@ -48,9 +53,21 @@
                     <a class="navbar-brand" href="index.php">Riot Project v2</a>
                 </div>
                 <!-- Search -->
-                <form action="result.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
+                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
                     <div class="form-group">
-                        <input class="form-control" style="width:250px;" placeholder="Item Name ..." type="text">
+                        <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
+                            <?php
+                            $items = file_get_contents("item.json");
+                            while ($row2 = $search->fetch_assoc()) {
+                            $getItem = json_decode($items, true);
+                            foreach ($getItem['data'] as $key => $val) {
+                            if ($key == $row2['id']) {
+                            echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";
+                            }
+                            }
+                            }
+                            ?>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-danger">Search</button>
                 </form>
@@ -60,12 +77,17 @@
                         <li>
                             <a href="index.php">Home</a>
                         </li>
-                        <li>
-                            <a href="game.php">Game</a>
-                        </li>
-                        <li>
-                            <a href="game.php?showHighscore">High Score</a>
-                        </li>      
+                        <?php
+                        if (isset($_GET['showHighscore'])){
+                        echo "<li><a href=\"game.php\">Game</a></li>";
+                        echo "<li class=\"active\"><a href=\"game.php?showHighscore\">High Score</a></li>";
+                        }
+                        else{
+                        echo "<li class=\"active\"><a href=\"game.php\">Game</a></li>";
+
+                        echo "<li><a href=\"game.php?showHighscore\">High Score</a></li>";
+                        }
+                        ?>     
                         <li>
                             <a href="export.php">Export Data</a>
                         </li>
@@ -100,17 +122,17 @@
                             <div class="col-sm-3">
                                 <input id="name" style="width:200px;margin:0 auto;" placeholder="Enter Your Name" class="form-control" type="text" required="">
                             </div>
-                            <p class="col-sm-3 text-center" style="margin: 1px;">
+                            <p class="col-sm-3 text-center" style="margin-top:10px;">
                                 Champion
                             </p>
-                            <div class="col-sm-2">
-                                <select id="champion" style="width:200px;margin:0 auto;" class="form-control" required="">
+                            <div class="col-sm-2" style="text-align: center;">
+                                <select id="champion" data-live-search="true" data-size="5" data-width="200px" class="selectpicker form-control" required="">
                                     <?php
                                     include_once('db.php');
                                     $champs = $mysqli->query("select id, name, pic from champs order by name asc");
                                     while ($champ = $champs->fetch_assoc()) {
                                         ?>
-                                        <option value=<?php echo $champ['id']; ?> style="background: url('images/chmpions/<?php echo $champ['pic']; ?>') no-repeat;background-size: 25px 25px;" class="selectoptioon"><?php echo $champ['name']; ?></option>
+                                        <option value="<?php echo $champ['id']; ?>" data-content="<img class='img-circle' width='20' height='20' src='images/chmpions/<?php echo $champ['pic']; ?>' /> <?php echo $champ['name']; ?>"></option>
                                         <?php
                                     }
                                     ?>
@@ -366,6 +388,10 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="score">
+                    <div id="infor2" class="alert alert-error">
+                        <a class="close" data-dismiss="alert">×</a>
+                        Error    
+                    </div>
                             <div class="yourscore"><span id="scorePlayer" class="gradeitntext">0</span></div>
                             <div class="vsicon hidden-md hidden-sm hidden-xs hidden-print"></div>
                             <div class="topscore"><span id="topScore" class="gradeitntext2">51</span></div>
@@ -690,10 +716,16 @@
 
                                     $(document).ready(function () {
                                         $("#infor").delay(3000).fadeOut("slow");
+                                        $("#infor2").delay(3000).fadeOut("slow");
                                     });
         </script>
 
-
+        <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+        <script>
+                                    $(document).ready(function () {
+                                        $('select').selectpicker();
+                                    });
+        </script>
 
     </body>
 </html>

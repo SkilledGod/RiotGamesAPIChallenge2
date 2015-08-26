@@ -1,8 +1,34 @@
 <?php
 include 'db.php';
 $itemid = strip_tags(htmlspecialchars($_GET['id']));
-$result = $mysqli->query("SELECT * FROM `ap_items` WHERE `id` = $itemid ");
-$row = $result->fetch_assoc();
+if (isset($_GET['id'])) {
+    if (ctype_digit($_GET['id'])) {
+        $id_raw = trim(htmlentities($_GET["id"]));
+        $id_secure = $mysqli->real_escape_string($id_raw);
+        $result = $mysqli->query("SELECT * FROM `ap_items` WHERE `id` = $id_secure ");
+        $row = $result->fetch_assoc();
+        $search = $mysqli->query("SELECT * FROM `ap_items`");
+    } else {
+        header('Location: index.php');
+    }
+}
+
+if (isset($_POST['selecteditem'])) {
+    if (ctype_digit($_GET['id'])) {
+        $id_raw = trim(htmlentities($_GET["id"]));
+        $id_secure = $mysqli->real_escape_string($id_raw);
+        $result = $mysqli->query("SELECT * FROM `ap_items` WHERE `id` = $id_secure ");
+        $row = $result->fetch_assoc();
+        $search = $mysqli->query("SELECT * FROM `ap_items`");
+    } else {
+        header('Location: index.php');
+    }
+}
+
+
+if (is_null($id_raw)) {
+    header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +48,7 @@ $row = $result->fetch_assoc();
         <!-- Custom CSS -->
         <link href="css/custom.css" rel="stylesheet">
         <link href="css/game.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,9 +75,21 @@ $row = $result->fetch_assoc();
                     <a class="navbar-brand" href="index.php">Riot Project v2</a>
                 </div>
                 <!-- Search -->
-                <form action="result.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
+                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
                     <div class="form-group">
-                        <input class="form-control" style="width:250px;" placeholder="Item Name ..." type="text">
+                        <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
+                            <?php
+                            $items = file_get_contents("item.json");
+                            while ($row2 = $search->fetch_assoc()) {
+                            $getItem = json_decode($items, true);
+                            foreach ($getItem['data'] as $key => $val) {
+                            if ($key == $row2['id']) {
+                            echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";
+                            }
+                            }
+                            }
+                            ?>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-danger">Search</button>
                 </form>
@@ -64,7 +103,7 @@ $row = $result->fetch_assoc();
                             <a href="game.php">Game</a>
                         </li>
                         <li>
-                            <a href="score.php">High Score</a>
+                            <a href="game.php?showHighscore">High Score</a>
                         </li>      
                         <li>
                             <a href="export.php">Export Data</a>
@@ -85,17 +124,17 @@ $row = $result->fetch_assoc();
                 <div class="col-lg-12 text-center">
                     <h1><?php echo $row['name']; ?></h1>
                     <p><?php
-                    $items = file_get_contents("item.json");
-                    $getItem = json_decode($items, true);
-                    foreach ($getItem['data'] as $key => $val) {
-                    if ($key == $itemid) {
-                        echo $val['plaintext'];
-                    }
-                    }
-                    ?></p>
+$items = file_get_contents("item.json");
+$getItem = json_decode($items, true);
+foreach ($getItem['data'] as $key => $val) {
+    if ($key == $itemid) {
+        echo $val['plaintext'];
+    }
+}
+?></p>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-lg-3 text-center">
                     <div class="patchtitle"></div>
@@ -131,22 +170,6 @@ $row = $result->fetch_assoc();
                             </div>                                    
                         </div>
                     </div>   
-                    <div class="box">
-                        <div class="pickrate">Cost</div>
-                        <div class="threerate">
-                            <div class="normalpick">
-                                <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal">3500</div>
-                            </div>
-                            <div class="arrowpick">
-                                <div class="arrowdown"></div>
-                            </div>
-                            <div class="rankedpick">
-                                <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked">3400</div>
-                            </div>                                    
-                        </div>
-                    </div>                    
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="requireitems">
@@ -169,25 +192,25 @@ $row = $result->fetch_assoc();
                         }
                     }
                     ?> 
-                    <div class="table-responsive" style="margin-top:10px;">
+                    <div class="table-striped" style="margin-top:10px;">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th class="text-center">Patch/Type</th>
                                     <th class="text-center">Ability Power</th>
-                                    <th class="text-center">Picrate Normal/Ranked</th>
+                                    <th class="text-center hidden-xs">Cost</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="text-center">Patch 5.11</td>
                                     <td class="text-center">100%/100%</td>
-                                    <td class="text-center">100%/100%</td>
+                                    <td class="text-center hidden-xs">100%/100%</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">Patch 5.14</td>
                                     <td class="text-center">100%/100%</td>
-                                    <td class="text-center">100%/100%</td>
+                                    <td class="text-center hidden-xs">100%/100%</td>
                                 </tr>                            
                             </tbody>
                         </table>
@@ -195,7 +218,7 @@ $row = $result->fetch_assoc();
                 </div>
                 <div class="col-lg-3 text-center">
                     <div class="patchtitle2"></div>
-                                        <div class="box">
+                    <div class="box">
                         <div class="pickrate">Pick Rate</div>
                         <div class="threerate">
                             <div class="normalpick">
@@ -227,22 +250,7 @@ $row = $result->fetch_assoc();
                             </div>                                    
                         </div>
                     </div>   
-                    <div class="box">
-                        <div class="pickrate">Cost</div>
-                        <div class="threerate">
-                            <div class="normalpick">
-                                <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal">3500</div>
-                            </div>
-                            <div class="arrowpick">
-                                <div class="arrowdown"></div>
-                            </div>
-                            <div class="rankedpick">
-                                <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked">3400</div>
-                            </div>                                    
-                        </div>
-                    </div>                      
+                     
                 </div>
             </div>
         </div>
@@ -266,6 +274,12 @@ $row = $result->fetch_assoc();
         <script src="js/bootstrap.min.js"></script>
         <script>
             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top'});
+        </script>
+                <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function () {
+                $('select').selectpicker();
+            });
         </script>
     </body>
 

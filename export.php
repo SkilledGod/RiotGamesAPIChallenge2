@@ -1,3 +1,7 @@
+<?php
+include 'db.php';
+$search = $mysqli->query("SELECT * FROM `ap_items`");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +19,7 @@
         <!-- Custom CSS -->
         <link href="css/custom.css" rel="stylesheet">
         <link href="css/about.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,9 +48,21 @@
                     <a class="navbar-brand" href="index.php">Riot Project v2</a>
                 </div>
                 <!-- Search -->
-                <form action="result.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
+                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
                     <div class="form-group">
-                        <input class="form-control" style="width:250px;" placeholder="Item Name ..." type="text">
+                        <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
+                            <?php
+                            $items = file_get_contents("item.json");
+                            while ($row2 = $search->fetch_assoc()) {
+                            $getItem = json_decode($items, true);
+                            foreach ($getItem['data'] as $key => $val) {
+                            if ($key == $row2['id']) {
+                            echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";
+                            }
+                            }
+                            }
+                            ?>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-danger">Search</button>
                 </form>
@@ -59,9 +76,9 @@
                             <a href="game.php">Game</a>
                         </li>
                         <li>
-                            <a href="score.php">High Score</a>
+                            <a href="game.php?showHighscore">High Score</a>
                         </li>      
-                        <li>
+                        <li class="active">
                             <a href="export.php">Export Data</a>
                         </li>
                         <li>
@@ -164,6 +181,12 @@
         <script src="js/bootstrap.min.js"></script>
         <script>
             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top'});
+        </script>
+                <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+        <script>
+                                    $(document).ready(function () {
+                                        $('select').selectpicker();
+                                    });
         </script>
     </body>
 

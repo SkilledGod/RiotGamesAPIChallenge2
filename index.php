@@ -26,11 +26,10 @@ $result = $mysqli->query("SELECT * FROM `ap_items`");
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
-    </head>
+        <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+    </head>     
 
     <body>
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -45,23 +44,36 @@ $result = $mysqli->query("SELECT * FROM `ap_items`");
                     <a class="navbar-brand" href="index.php">Riot Project v2</a>
                 </div>
                 <!-- Search -->
-                <form action="result.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
+                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
                     <div class="form-group">
-                        <input class="form-control" style="width:250px;" placeholder="Item Name ..." type="text">
+                        <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
+                            <?php
+                            $search = $mysqli->query("SELECT * FROM `ap_items`");
+                            $items = file_get_contents("item.json");
+                            while ($row2 = $search->fetch_assoc()) {
+                                $getItem = json_decode($items, true);
+                                foreach ($getItem['data'] as $key => $val) {
+                                    if ($key == $row2['id']) {
+                                    echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";                                       
+                                    }
+                                }
+                            }
+                            ?>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-danger">Search</button>
                 </form>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                  
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <li class="active">
                             <a href="index.php">Home</a>
                         </li>
                         <li>
                             <a href="game.php">Game</a>
                         </li>
                         <li>
-                            <a href="score.php">High Score</a>
+                            <a href="game.php?showHighscore">High Score</a>
                         </li>      
                         <li>
                             <a href="export.php">Export Data</a>
@@ -122,7 +134,13 @@ $result = $mysqli->query("SELECT * FROM `ap_items`");
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <script>
-        $('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
+            $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top'});
+        </script>
+        <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function () {
+                $('select').selectpicker();
+            });
         </script>
     </body>
 
