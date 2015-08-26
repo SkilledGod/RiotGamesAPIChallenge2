@@ -434,66 +434,67 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     </tr> 
                                 </tbody>
                             </table> 
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Patch</th>
+                                        <th>5.11</th>
+                                        <th>5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td id="pickrate511Item1" >50%</td>
+                                        <td id="pickrate514Item1" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Winrate</td>
+                                        <td id="winrate511Item1" >50%</td>
+                                        <td id="winrate514Item1" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Patch</th>
+                                        <th>5.11</th>
+                                        <th>5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td id="pickrate511Item2" >50%</td>
+                                        <td id="pickrate514Item2" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Winrate</td>
+                                        <td id="winrate511Item2" >50%</td>
+                                        <td id="winrate514Item2" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Patch</th>
+                                        <th>5.11</th>
+                                        <th>5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td id="pickrate511Item3" >50%</td>
+                                        <td id="pickrate514Item3" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Winrate</td>
+                                        <td id="winrate511Item3" >50%</td>
+                                        <td id="winrate514Item3" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
                             <div class="col-sm-12 text-center" style="margin-bottom:20px;">
                                 <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-danger">Abort</button>
                             </div>    
-                            <div class="col-sm-4 text-center">
-                                <table class='table table-full-width custum-table2 '>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Patch 5.11</th>
-                                        <th>Patch 5.14</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
-                                    </tr>
-                                </table> 
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <table class='table table-full-width custum-table2 '>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Patch 5.11</th>
-                                        <th>Patch 5.14</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
-                                    </tr>
-                                </table> 
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <table class='table table-full-width custum-table2 '>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Patch 5.11</th>
-                                        <th>Patch 5.14</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
-                                    </tr>
-                                </table> 
-                            </div>
+
                         </div>
                     </div>
                     <div class="col-lg-3">

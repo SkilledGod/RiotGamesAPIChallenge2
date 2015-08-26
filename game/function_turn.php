@@ -126,8 +126,9 @@ function randomItem($gameId, $mysqli) {
 		return array("code" => 103, "message" => "Maximum number of turns already made");
 	}
 
-	// TODO choose boots on first turn! (iff the opponent has some (bootsTag in db?))
-	$possibleItemsQuery = $mysqli->query("select ap_items.id as id, ap_items.name as name, items.description as description from ap_items, items where ap_items.id = items.id and ap_items.id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
+	// TODO choose boots on first turn! (iff the opponent has some (bootsTag in db?)) (iff the opponent has boots)
+	// TODO calculate winrate correctly
+	$possibleItemsQuery = $mysqli->query("select ap_items.id as id, ap_items.name as name, items.description as description, ap_items.pickrate511, ap_items.winrate511, ap_items.pickrate514, ap_items.winrate514 from ap_items, items where ap_items.id = items.id and ap_items.id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
 	$possibleItems = array();
 	while ($item = $possibleItemsQuery->fetch_assoc()) {
 		$possibleItems[] = $item;
@@ -315,7 +316,7 @@ function getStats($gameId, $mysqli) {
 		$response["currentPhase"] = "selectItem";
 		// include selectable items
 		$response["selectableItems"] = array();
-		$itemsQuery = $mysqli->query("select item_id as id, items.name as name, items.description as description from proposedItems, items where items.id = proposedItems.item_id and game_id = " .$gameId ." and turn = " .$response['currentTurn']);
+		$itemsQuery = $mysqli->query("select item_id as id, items.name as name, items.description as description, ap_items.pickrate511, ap_items.winrate511, ap_items.winrate514, ap_items.pickrate514 from proposedItems, items, ap_items where items.id = proposedItems.item_id and items.id = ap_items.id and game_id = " .$gameId ." and turn = " .$response['currentTurn']);
 		echo $mysqli->error;
 		while ($item = $itemsQuery->fetch_assoc()) {
 			$response['selectableItems'][] = $item;
