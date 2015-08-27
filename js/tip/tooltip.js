@@ -35,7 +35,11 @@
             // init code
             UI.$html.on("mouseenter.tooltip.uikit focus.tooltip.uikit", "[data-uk-tooltip]", function(e) {
                 var ele = UI.$(this);
-
+                if (ele.data("tooltip") 
+                    && (!(ele.attr("data-cached-title") === ele.data("cached-title")))) {
+                   ele.removeData("tooltip");
+                   ele.removeData("cached-title");
+                }
                 if (!ele.data("tooltip")) {
                     var obj = UI.tooltip(ele, UI.Utils.options(ele.attr("data-uk-tooltip")));
                     ele.trigger("mouseenter");

@@ -31,13 +31,15 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
         <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 
     </head>
-    <?php
-    $loadFunction = "checkActiveGame()";
-    if (isset($_GET['showHighscore'])) {
-    $loadFunction = "showHighscore(true, 1)";
-    }
-    ?>
-    <body class="full" onload="<?php echo $loadFunction; ?>" >
+<?php 
+	include_once('db.php');
+		
+	$loadFunction = "checkActiveGame()";
+	if (isset($_GET['showHighscore'])) {
+		$loadFunction = "showHighscore(true, 1)";
+	}
+?>
+    <body onload="<?php echo $loadFunction; ?>" >
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -232,25 +234,25 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                         <tbody>
                             <tr>
                                 <td class="text-center">
-                                    <img id="item1PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item1PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item2PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item2PlayerContinue" data-uk-tooltip title=""  class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item3PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item3PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                             </tr> 
 
                             <tr>
                                 <td class="text-center">
-                                    <img id="item4PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item4PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item5PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item5PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                                 <td class="text-center">
-                                    <img id="item6PlayerContinue" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                    <img id="item6PlayerContinue" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                 </td>
                             </tr>
                         </tbody>
@@ -364,25 +366,25 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <tbody>
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item1Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item1Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item2Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item2Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item3Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item3Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr> 
 
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item4Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item4Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item5Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item5Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item6Player" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item6Player" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr>
                             </tbody>
@@ -435,66 +437,67 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     </tr> 
                                 </tbody>
                             </table> 
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Patch</th>
+                                        <th>5.11</th>
+                                        <th>5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td id="pickrate511Item1" >50%</td>
+                                        <td id="pickrate514Item1" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Winrate</td>
+                                        <td id="winrate511Item1" >50%</td>
+                                        <td id="winrate514Item1" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Patch</th>
+                                        <th>5.11</th>
+                                        <th>5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td id="pickrate511Item2" >50%</td>
+                                        <td id="pickrate514Item2" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Winrate</td>
+                                        <td id="winrate511Item2" >50%</td>
+                                        <td id="winrate514Item2" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <table class='table table-full-width custum-table2 '>
+                                    <tr>
+                                        <th>Patch</th>
+                                        <th>5.11</th>
+                                        <th>5.14</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Pickrate</td>
+                                        <td id="pickrate511Item3" >50%</td>
+                                        <td id="pickrate514Item3" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Winrate</td>
+                                        <td id="winrate511Item3" >50%</td>
+                                        <td id="winrate514Item3" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
+                                    </tr>
+                                </table> 
+                            </div>
                             <div class="col-sm-12 text-center" style="margin-bottom:20px;">
                                 <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-danger">Abort</button>
                             </div>    
-                            <div class="col-sm-4 text-center">
-                                <table class='table table-full-width custum-table2 '>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Patch 5.11</th>
-                                        <th>Patch 5.14</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
-                                    </tr>
-                                </table> 
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <table class='table table-full-width custum-table2 '>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Patch 5.11</th>
-                                        <th>Patch 5.14</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
-                                    </tr>
-                                </table> 
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <table class='table table-full-width custum-table2 '>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Patch 5.11</th>
-                                        <th>Patch 5.14</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pickrate</td>
-                                        <td>50%</td>
-                                        <td style="white-space: nowrap">60%<span style="color:green"> | 10% <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
-                                    </tr>
-                                </table> 
-                            </div>
+
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -581,25 +584,25 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <tbody>
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item1Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item1Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item2Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item2Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item3Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item3Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr> 
 
                                 <tr>
                                     <td class="text-center">
-                                        <img id="item4Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item4Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item5Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item5Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <img id="item6Opponent" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
+                                        <img id="item6Opponent" data-uk-tooltip title="" class="img-responsive img-rounded" src="images/item/NoItem.png" alt="">
                                     </td>
                                 </tr>
                             </tbody>

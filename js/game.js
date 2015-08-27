@@ -1,5 +1,4 @@
 var info = [];
-var currentSelectableItems = [0, 0, 0];
 var turnCounter = 0;
 
 function startGame() {
@@ -32,7 +31,7 @@ function startGame() {
 			info["numberOfTurns"] = response["numberOfTurns"];
 			$("#numberOfTurns").text(info["numberOfTurns"]);
 			updateStatistics(response["player"], response["opponent"]);
-			$("#topScore").text(response['topScore']);
+			$("#topScore").text(Math.round(response['topScore']));
 			$("#playerName").text(name);
 			requestRandomItems(); // request the items
 
@@ -54,8 +53,8 @@ function requestRandomItems() {
 		return $.ajax({
 			url: "game/turn.php?action=randomItem",
 			success: function(result) {
-				response = JSON.parse(result);
 				console.log("rditemres" + result);
+				response = JSON.parse(result);
 			}
 		});
 	}
@@ -63,20 +62,37 @@ function requestRandomItems() {
 	$.when(ajaxRequestRandomItems()).done(function() {
 		if (response["code"] === 200) {
 			// set the pictures of the items
-			currentSelectableItems[0] = response['items'][0]['id'];
-			currentSelectableItems[1] = response['items'][1]['id'];
-			currentSelectableItems[2] = response['items'][2]['id'];
 			$("#currentTurn").text(response['turn']);
-			$("#item1").attr("src", "images/item/" + response['items'][0]['id'] + ".png");
-			$("#item2").attr("src", "images/item/" + response['items'][1]['id'] + ".png");
-			$("#item3").attr("src", "images/item/" + response['items'][2]['id'] + ".png");
+			setItem(response['items'][0], "item1");
+			setItem(response['items'][1], "item2");
+			setItem(response['items'][2], "item3");
+			// set the onClick action
+			$("#item1").attr("onClick", "selectItem(" + response['items'][0]['id'] + ")");
+			$("#item2").attr("onClick", "selectItem(" + response['items'][1]['id'] + ")");
+			$("#item3").attr("onClick", "selectItem(" + response['items'][2]['id'] + ")");
+
+			// set items table
+			$("#pickrate511Item1").html(response['items'][0]['pickrate511']);
+			$("#pickrate514Item1").html(response['items'][0]['pickrate514'] + (response['items'][0]['pickrate511'] < response['items'][0]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item1").html(response['items'][0]['winrate511']);
+			$("#winrate514Item1").html(response['items'][0]['winrate514'] + (response['items'][0]['winrate511'] < response['items'][0]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+			$("#pickrate511Item2").html(response['items'][1]['pickrate511']);
+			$("#pickrate514Item2").html(response['items'][1]['pickrate514'] + (response['items'][1]['pickrate511'] < response['items'][1]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item2").html(response['items'][1]['winrate511']);
+			$("#winrate514Item2").html(response['items'][1]['winrate514'] + (response['items'][1]['winrate511'] < response['items'][1]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+			$("#pickrate511Item3").html(response['items'][2]['pickrate511']);
+			$("#pickrate514Item3").html(response['items'][2]['pickrate514'] + (response['items'][2]['pickrate511'] < response['items'][2]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item3").html(response['items'][2]['winrate511']);
+			$("#winrate514Item3").html(response['items'][2]['winrate514'] + (response['items'][2]['winrate511'] < response['items'][2]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
 		} else {
 			console.log("rditem: " + response['message']);
 		}
 	});
 }
 
-function selectItem(index) {
+function selectItem(id) {
 	response = [];
 	function ajaxRequestSelectItem() {
 		return $.ajax({
@@ -88,7 +104,7 @@ function selectItem(index) {
 			}
 		});
 	}
-	selectedItem = currentSelectableItems[index];
+	selectedItem = id;
 	$.when(ajaxRequestSelectItem()).done(function() {
 		// do stuff
 		if (response["code"] === 200) {
@@ -104,6 +120,15 @@ function selectItem(index) {
 	});
 }
 
+function setItem(item, id) {
+	console.log(item);
+	// Set image
+	$("#" + id).attr("src", "images/item/" + item['id'] + ".png");
+	// Set tooltip
+	$("#" + id).attr("title", "<b>" + item['name'] + "</b><br>" +item['description']);
+	$("#" + id).attr("data-cached-title", "");
+	// TODO set table if wanted	
+}
 function endGame() {
 	response = [];	
 	function ajaxRequestEndGame() {
@@ -168,8 +193,8 @@ function restoreGame() {
 		return $.ajax({
 			url: "game/turn.php?action=getStats",
 			success: function(result) {
-				response = JSON.parse(result);
 				console.log(result);
+				response = JSON.parse(result);
 			}
 		});
 	}
@@ -180,14 +205,36 @@ function restoreGame() {
 		info["numberOfTurns"] = response["numberOfTurns"];
 		$("#numberOfTurns").text(info["numberOfTurns"]);
 		$("#currentTurn").text(response['currentTurn']);
-		$("#topScore").text(response['topScore']);
+		$("#topScore").text(Math.round(response['topScore']));
 		updateStatistics(response['player'], response['opponent']);
-		// set selectable items
-		currentSelectableItems = response['selectableItems'];
-		$("#item1").attr("src", "images/item/" + response['selectableItems'][0]+ ".png");
-		$("#item2").attr("src", "images/item/" + response['selectableItems'][1] + ".png");
-		$("#item3").attr("src", "images/item/" + response['selectableItems'][2] + ".png");
-		
+		if (response['currentPhase'] == 'requestItem') {
+			requestRandomItems();
+		} else {
+			// set selectable items
+			setItem(response['selectableItems'][0], "item1");
+			setItem(response['selectableItems'][1], "item2");
+			setItem(response['selectableItems'][2], "item3");
+			// set the onClick action
+			$("#item1").attr("onClick", "selectItem(" + response['selectableItems'][0]['id'] + ")");
+			$("#item2").attr("onClick", "selectItem(" + response['selectableItems'][1]['id'] + ")");
+			$("#item3").attr("onClick", "selectItem(" + response['selectableItems'][2]['id'] + ")");
+			// set items table
+			$("#pickrate511Item1").html(response['selectableItems'][0]['pickrate511']);
+			$("#pickrate514Item1").html(response['selectableItems'][0]['pickrate514'] + (response['selectableItems'][0]['pickrate511'] < response['selectableItems'][0]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item1").html(response['selectableItems'][0]['winrate511']);
+			$("#winrate514Item1").html(response['selectableItems'][0]['winrate514'] + (response['selectableItems'][0]['winrate511'] < response['selectableItems'][0]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+			$("#pickrate511Item2").html(response['selectableItems'][1]['pickrate511']);
+			$("#pickrate514Item2").html(response['selectableItems'][1]['pickrate514'] + (response['selectableItems'][1]['pickrate511'] < response['selectableItems'][1]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item2").html(response['selectableItems'][1]['winrate511']);
+			$("#winrate514Item2").html(response['selectableItems'][1]['winrate514'] + (response['selectableItems'][1]['winrate511'] < response['selectableItems'][1]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+			$("#pickrate511Item3").html(response['selectableItems'][2]['pickrate511']);
+			$("#pickrate514Item3").html(response['selectableItems'][2]['pickrate514'] + (response['selectableItems'][2]['pickrate511'] < response['selectableItems'][2]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item3").html(response['selectableItems'][2]['winrate511']);
+			$("#winrate514Item3").html(response['selectableItems'][2]['winrate514'] + (response['selectableItems'][2]['winrate511'] < response['selectableItems'][2]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+		}		
 		// set name
 		$("#playerName").text(response['name']);
 		$("#startGameView").css("display", "none"); // hide champ select
@@ -239,7 +286,7 @@ function getStats() {
 			url: "game/turn.php?action=getStats",
 			success: function(result) {
 				response = JSON.parse(result);
-				console.log(result);
+				console.log(response);
 			}
 		});
 	}
@@ -323,6 +370,9 @@ function generateHighscoreTable(games) {
 		currentRow = html;
 		for (var key in games[i]) {
 			if (games[i].hasOwnProperty(key)) {
+				if (key == "currentScore") {
+					games[i][key] = Math.round(games[i][key]);
+				}	
 				if (key == "mark") {
 					currentRow = currentRow.replace("{" + key + "}", games[i][key] ? "class=\"yourrank\"" : "");
 				} else if (key == "champName") {
@@ -365,11 +415,12 @@ function setStatisticsContinue(player, playerName) {
 	$("#movespeedPlayerContinue").text(Math.round(player["stats"]["MovementSpeed"]));
 	// update items
 	for (i = 1; i <= 6; i++) {
-		if (i <= player["items"].length)  {
-			$("#item" + i + "PlayerContinue").attr("src", "images/item/" + player['items'][i-1] + ".png");
+		if (i <= player["items"].length)  {	
+			setItem(player['items'][i-1], "item" + i + "PlayerContinue");
 		} else {
 			$("#item" + i + "PlayerContinue").attr("src", "images/item/NoItem.png");
-		}
+			$("#item" + i + "PlayerContinue").attr("title", "");
+		}	
 	}
 
 }
@@ -414,15 +465,17 @@ function updateStatistics(player, opponent) {
 	
 	// update items
 	for (i = 1; i <= 6; i++) {
-		if (i <= player["items"].length)  {
-			$("#item" + i + "Player").attr("src", "images/item/" + player['items'][i-1] + ".png");
+		if (i <= player["items"].length)  {	
+			setItem(player['items'][i-1], "item" + i + "Player");
 		} else {
 			$("#item" + i + "Player").attr("src", "images/item/NoItem.png");
+			$("#item" + i + "Player").attr("title", "");
 		}
 		if (i <= opponent["items"].length) {
-			$("#item" + i + "Opponent").attr("src", "images/item/" + opponent['items'][i-1] + ".png");
+			setItem(opponent['items'][i-1], "item" + i + "Opponent");
 		} else {
 			$("#item" + i + "Opponent").attr("src", "images/item/NoItem.png");
+			$("#item" + i + "Opponent").attr("title", "");
 		}
 	}
 }
