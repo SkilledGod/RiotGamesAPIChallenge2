@@ -9,12 +9,14 @@ function getArrayAsString($array) {
 }
 
 $template = '<?php
+include("../Item.php");
 class {className} extends Item {
 	function __construct() {
 		parent::__construct({id}, "{name}", {stats}, "{picture}", "{description}");
 	}
 
-	function applySpecial($champion, $enemy) {}
+	function applyEffect($champion) {}
+	function applyEffectEnemy($enemy) {}
 }
 ?>';
 

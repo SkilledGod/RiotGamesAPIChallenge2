@@ -1,7 +1,7 @@
 <?php
 
-include_once("../champion/Champion.php");
-include_once("../items/Item.php"); // workarou
+include_once("../items/Champion.php");
+// include_once("../items/Item.php"); // workarou
 include_once("function_game.php");
 
 function getHighestScore($mysqli) {

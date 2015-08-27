@@ -1,6 +1,8 @@
 <?php
+
 abstract class Item {
-	private $stats;
+	private $effect = array();
+	private $stats = array();
 	private $name;
 	private $picture;
 	private $description;
@@ -14,11 +16,16 @@ abstract class Item {
 		$this->description = $description;
 	}
 
-	final function apply($champion, $enemy) {
+
+	final function applyChampion($champion) {
 		foreach ($this->stats as $statName => $statValue) {
-			$champion->increaseStat(strtolower(str_replace("Mod", "", $statName)), $statValue);
+                    $champion->increaseStat(strtolower(str_replace("Mod", "", $statName)), $statValue);
 		}
-		$this->applySpecial($champion, $enemy);
+		$this->applyEffect($champion);
+	}
+
+	final function applyEnemy($enemy) {
+		$this->applyEffectEnemy($enemy);
 	}
 
 	public function getPicture() {
@@ -31,7 +38,8 @@ abstract class Item {
 	public function getName() {
 		return $this->name;
 	}
-	// Implemented by child class (see below. depends on the api implementation)
-	abstract function applySpecial($champion, $enemy); // e. g. set apModifier to 1.35 (rabadons)
+	
+	abstract protected function applyEffect($champion);
+	abstract protected function applyEffectEnemy($enemy);
 }
 ?>

@@ -75,10 +75,22 @@ class Champion {
 		$this->stats = array();
 		$this->stats['percentmovementspeed'] = array();
 		foreach($this->itemInventory as $item) {
-			$item->apply($this, $enemy);
+			$item->apply($this, $enemy); // apply stats and effects
 		}
+		// stats is an array (key == passive name and contanis an array)
+		/*
+			effect[effectName] = array()
+			effect[effectName][statName] = incrValue;
+			
+		*/
+		$enemy->applyEffectsEnemy($this;
 	}
 
+	function applyEffectsEnemy($enemy) {
+		foreach($this->itemInventory as $item) {
+			$item->applyEnemy($enemy);
+		}
+	}
 	function getStatByName($name) {
 		$value = 0;
 		switch ($name) {
@@ -156,7 +168,6 @@ class Champion {
 	}
 
 	function getAttackDamage() {
-		echo $this->baseStats['attackdamage'] .'<br>';
 		return $this->baseStats['attackdamage'] + ($this->level - 1) * $this->baseStats['attackdamageperlevel'] + $this->stats['flatphysicaldamage'];
 	}
 

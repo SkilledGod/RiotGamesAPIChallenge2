@@ -1,9 +1,11 @@
 <?php
+
 class Champion {
 	private $id;
 	private $name; // Champion name
 	private $stats = array();	// additional stats (items etc)
 	private $baseStats = array(); // baseStats of this champion
+	private $effects = array();
 	private $itemInventory = array();
 	private $picture;
 	private $level;
@@ -19,11 +21,8 @@ class Champion {
 		$this->stats['percentmovementspeed'] = array();
 	}	
 
-	function getId() {
-		return $this->id;
-	}
 	function increaseStat($statName, $statValue) {
-		if ($statName == "percentmovementspeed") {
+		if ($statName == "percentmovementspeed" || $statName == "asSlow") {
 			if (!is_array($this->stats[$statName])) { // movespeed bonuses are multiplicative...
 				$this->stats[$statName] = array();
 			}
@@ -36,22 +35,6 @@ class Champion {
 		}
 	}
 	
-	function getItems() {
-		return $this->itemInventory;
-	}
-
-	function getLevel() {
-		return $this->level;
-	}
-
-	function getPicture() {
-		return $this->picture;	
-	}
-
-	function getName() {
-		return $this->name;
-	}
-	// does not recalculate stats
 	function addItem($item) {
 		if (is_a($item, "Item")) {
 			$this->itemInventory[] = $item; // addItem at the end
@@ -59,6 +42,51 @@ class Champion {
 		} else {
 			return false;
 		}
+	}	
+
+	function applyEffect($effectName, $statNames, $statValue, $unique) {
+		if (!isset($this->effects[$effectName])) {
+			$this->effects[$effectName] = array();
+		}
+		
+		// if non arrays are supplied
+                if (!is_array($statNames)) {
+                    $statNames = array($statNames);
+                }
+                
+                if (!is_array($statValue)) {
+                    $statValue = array($statValue);
+                }
+                
+		foreach($statNames as $stat) {
+			if (!isset($this->effects[$effectName][$stat])) {
+				$this->effects[$effectName][$stat] = array();	
+				$this->effects[$effectName][$stat][0] = $statValue[0];
+			} else {
+				if ($unique) { // array has only 1 value
+					$this->effects[$effectName][$stat][0] = max($statValue[0], $this->effects[$effectName][$stat][0]);
+				} else { // add at the end of the array
+					$this->effects[$effectName][$stat][] = $statValue[0];
+				}
+			}
+		}
+	}
+	
+	function getId() {
+		return $this->id;
+	}
+	
+	function getItems() {
+		return $this->itemInventory;
+	}
+	function getLevel() {
+		return $this->level;
+	}
+	function getPicture() {
+		return $this->picture;	
+	}
+	function getName() {
+		return $this->name;
 	}
 	
 	function evaluateChampion($mysqli) {
@@ -71,14 +99,30 @@ class Champion {
 		return $score;
 	}
 
-	function recalculateStats($enemy) {
-		$this->stats = array();
-		$this->stats['percentmovementspeed'] = array();
+	function applyEffectsEnemy($enemy) {
 		foreach($this->itemInventory as $item) {
-			$item->apply($this, $enemy);
+			$item->applyEnemy($enemy);
 		}
 	}
 
+	function recalculateStats($enemy) {
+		$this->stats = array();
+		foreach($this->itemInventory as $item) {
+			$item->applyChampion($this); // own stats & effects
+		}
+		// enemy effects (e. g. Abyssal)
+		$enemy->applyEffectsEnemy($this);
+		// calculate effects
+		foreach($this->effects as $effect) {
+			foreach($effect as $statName => $statValues) {
+				foreach($statValues as $statValue) {
+					$this->increaseStat($statName, $statValue);
+				}
+			}
+		}	
+	}
+
+	// TODO $this->get$value()??
 	function getStatByName($name) {
 		$value = 0;
 		switch ($name) {
@@ -148,7 +192,13 @@ class Champion {
 	}
 
 	function getAttackSpeed() {
-		return min(2.5, 0.625 / (1-$this->baseStats["attackspeedoffset"]) * (1 + $this->stats["percentattackspeed"] + $this->baseStats['attackspeedperlevel'] * $this->level));
+                $slowFactor = 1;
+                if (isset($this->stats['asSlow'])) {
+                    foreach ($this->stats["asSlow"] as $slow) {
+                        $slowFactor *= (1 - $slow);
+                    }
+                }
+		return min(2.5, 0.625 / (1-$this->baseStats["attackspeedoffset"]) * (1 + $this->stats["percentattackspeed"] + $this->baseStats['attackspeedperlevel'] * $this->level)*$slowFactor);
 	}
 
 	function getMagicDamage() {
@@ -156,7 +206,7 @@ class Champion {
 	}
 
 	function getAttackDamage() {
-		return $this->baseStats['attackdamage'] + ($this->level - 1) * $this->baseStats['attackdamageperlevel'] + $this->stats['flatphysicaldamage'];
+		return ($this->baseStats['attackdamage'] + ($this->level - 1) * $this->baseStats['attackdamageperlevel'] + $this->stats['flatphysicaldamage']) * (1 + $this->stats['adperpercentmaxmana'] * $this->getManaPool());
 	}
 
 	function getSpellblockPenetration() {
@@ -180,7 +230,7 @@ class Champion {
 	}
 
 	function getPercentSpellblockPenetration() {
-		return $this->stats['percentspellblock'];
+		return $this->stats['percentspellblockpenetration'];
 	}
 
 	function getPercentArmorPenetration() {
@@ -189,8 +239,10 @@ class Champion {
 	function getMovementSpeed() {
 		// todo soft cap!!!!
 		$movementspeed = $this->baseStats['movespeed'] + $this->stats['flatmovementspeed'];
-		foreach ($this->stats['percentmovementspeed'] as $mult) {
-			$movementspeed *= (1+$mult);
+                if (isset($this->stats['percentmovementspeed'])) {
+                    foreach ($this->stats['percentmovementspeed'] as $mult) {
+                            $movementspeed *= (1+$mult);
+                    }
 		}
 		if ($movementspeed > 490) {
 			$movementspeed = ($movementspeed - 490) * 0.5 + 0.8 * ($movementspeed - 415) + 415; 
@@ -236,5 +288,4 @@ class Champion {
 		return $this->stats['flattenacity'];
 	}
 }
-	
 ?>

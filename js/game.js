@@ -53,7 +53,7 @@ function requestRandomItems() {
 		return $.ajax({
 			url: "game/turn.php?action=randomItem",
 			success: function(result) {
-				console.log("rditemres" + result);
+				console.log(result);
 				response = JSON.parse(result);
 			}
 		});
@@ -126,7 +126,7 @@ function setItem(item, id) {
 	$("#" + id).attr("src", "images/item/" + item['id'] + ".png");
 	// Set tooltip
 	$("#" + id).attr("title", "<b>" + item['name'] + "</b><br>" +item['description']);
-	$("#" + id).attr("data-cached-title", "");
+	$("#" + id).attr("data-cached-title", "<b>" + item['name'] + "</b><br>" +item['description']);
 	// TODO set table if wanted	
 }
 function endGame() {
@@ -170,8 +170,8 @@ function abortGame() {
 		return $.ajax({
 			url: "game/turn.php?action=abortGame",
 			success: function(result) {
-				response = JSON.parse(result);
 				console.log(result);
+				response = JSON.parse(result);
 			}
 		});
 	}
@@ -259,8 +259,8 @@ function checkActiveGame() {
 		return $.ajax({
 			url: "game/turn.php?action=isGameActive",
 			success: function(result) {
-				response = JSON.parse(result);
 				console.log(result);
+				response = JSON.parse(result);
 			}
 		});
 	}
@@ -285,8 +285,8 @@ function getStats() {
 		return $.ajax({
 			url: "game/turn.php?action=getStats",
 			success: function(result) {
-				response = JSON.parse(result);
 				console.log(response);
+				response = JSON.parse(result);
 			}
 		});
 	}

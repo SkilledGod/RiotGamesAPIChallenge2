@@ -1,9 +1,13 @@
 <?php
+include_once(dirname(__DIR__) ."/Item.php");
 class Ardent_Censer extends Item {
 	function __construct() {
-		parent::__construct(3504, "Ardent Censer", array("FlatMagicDamageMod"=> 40, "FlatCooldownReduction" => 10, "PercentBaseManaRegen" => 1, "PercentMovementSpeed" => 0.08,), "3504.png", "+40 Ability Power<br>+10% Cooldown Reduction<br><mana>+100% Base Mana Regen </mana><br><br><unique>UNIQUE Passive:</unique> +8% Movement Speed<br><unique>UNIQUE Passive:</unique> Your heals and shields on another allied champion grant them 15% Attack Speed and 30 magic damage on-hit for 6 seconds.<br><br><i>(This does not include regeneration effects or effects on yourself.)");
+		parent::__construct(3504, "Ardent Censer", array("FlatMagicDamageMod"=> 40,), "3504.png", "+40 Ability Power<br>+10% Cooldown Reduction<br><mana>+100% Base Mana Regen </mana><br><br><unique>UNIQUE Passive:</unique> +8% Movement Speed<br><unique>UNIQUE Passive:</unique> Your heals and shields on another allied champion grant them 15% Attack Speed and 30 magic damage on-hit for 6 seconds.<br><br><i>(This does not include regeneration effects or effects on yourself.)");
 	}
 
-	function applySpecial($champion, $enemy) {}
+	function applyEffect($champion) {
+		$champion->applyEffect("ardent censer", "percentmovementspeed", 0.08, true);		
+	}
+	function applyEffectEnemy($enemy) {}
 }
 ?>

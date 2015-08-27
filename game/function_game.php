@@ -1,5 +1,5 @@
 <?php
-include_once("../champion/Champion.php");
+include_once("../items/Champion.php");
 function getChampionByMatch($matchFile, $participantId, $mysqli) {
 	$matchArray = json_decode(file_get_contents($matchFile), true);
 	$participant = NULL;	
@@ -28,6 +28,7 @@ function getChampionByMatch($matchFile, $participantId, $mysqli) {
 		$className = str_replace("'", "", $className);
 		$className = str_replace(":", "", $className);
 		$className = str_replace("-", "_", $className);
+		$className = str_replace(".", "", $className);
 		include_once("../items/generated/" .$className .".php");
 		$item = new $className();
 		$champion->addItem($item);
@@ -52,6 +53,7 @@ function getChampionByDB($matchId, $mysqli) {
 		$className = str_replace("'", "", $className);
 		$className = str_replace(":", "", $className);
 		$className = str_replace("-", "_", $className);
+		$className = str_replace(".", "", $className);
 		
 		include_once("../items/generated/" .$className .".php");
 		$item = new $className();

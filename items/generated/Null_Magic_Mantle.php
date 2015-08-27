@@ -1,8 +1,8 @@
 <?php
 include_once(dirname(__DIR__) ."/Item.php");
-class Cloth_Armor extends Item {
+class Null_Magic_Mantle extends Item {
 	function __construct() {
-		parent::__construct(1029, "Cloth Armor", array("FlatArmorMod"=> 15,), "1029.png", "+15 Armor");
+		parent::__construct(1033, "Null-Magic Mantle", array("FlatSpellBlockMod"=> 25,), "1033.png", "+25 Magic Resist");
 	}
 
 	function applyEffect($champion) {}
