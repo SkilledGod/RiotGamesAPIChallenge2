@@ -402,9 +402,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <div class="vsicon hidden-md hidden-sm hidden-xs hidden-print"></div>
                             <div class="topscore"><span id="topScore" class="gradeitntext2">51</span></div>
                         </div>
-                        <div id="winScreen" style="display:none" class="randomitems">
-                            <hr class="hrstyle">
+                        <div id="winScreen" style="display:none;margin-top: 70px;" class="randomitems">
                             <span>Result</span>
+                            <hr class="hrstyle">
                             <div class="row">
                                 <div class="col-sm-12 text-center" style="padding-top:20px;">
                                     <div class="col-sm-6"><div class="boxbt"><span id="playerEndscore" class="leftbox" style="padding-top:7px;">15000</span><span class="rightbox" style="padding-top:7px;">Your Score</span></div></div>
@@ -722,7 +722,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
 
                                     $(document).ready(function () {
                                         $("#infor").delay(3000).fadeOut("slow");
-                                        //$("#infor2").delay(3000).fadeOut("slow");
+                                        $("#infor2").delay(3000).fadeOut("slow");
                                     });
         </script>
 
