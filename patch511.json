@@ -1,0 +1,770 @@
+[
+    {
+        "id": "1026",
+        "name": "Blasting Wand",
+        "cost": "860",
+        "ap": "40",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "61",
+            "112",
+            "99",
+            "1"
+        ]
+    }, {
+        "id": "1052",
+        "name": "Amplifying Tome",
+        "cost": "435",
+        "ap": "20",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "4",
+            "105",
+            "245",
+            "131",
+            "112"
+        ]
+    }, {
+        "id": "1056",
+        "name": "Doran's Ring",
+        "cost": "400",
+        "ap": "15",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "1",
+            "112",
+            "268",
+            "61"
+        ]
+    }, {
+        "id": "1058",
+        "name": "Needlessly Large Rod",
+        "cost": "1600",
+        "ap": "80",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "1",
+            "25",
+            "99",
+            "131"
+        ]
+    }, {
+        "id": "3001",
+        "name": "Abyssal Scepter",
+        "cost": "730",
+        "ap": "70",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "131",
+            "103",
+            "54",
+            "60",
+            "245"
+        ]
+    }, {
+        "id": "3003",
+        "name": "Archangel's Staff",
+        "cost": "1120",
+        "ap": "60",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "34",
+            "61",
+            "54",
+            "69",
+            "13"
+        ]
+    }, {
+        "id": "3023",
+        "name": "Twin Shadows",
+        "cost": "730",
+        "ap": "80",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "40",
+            "25",
+            "267",
+            "432",
+            "117"
+        ]
+    }, {
+        "id": "3025",
+        "name": "Iceborn Gauntlet",
+        "cost": "750",
+        "ap": "30",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "53",
+            "81",
+            "54",
+            "75",
+            "72"
+        ]
+    }, {
+        "id": "3027",
+        "name": "Rod of Ages",
+        "cost": "740",
+        "ap": "60",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "1",
+            "31",
+            "90",
+            "50",
+            "34"
+        ]
+    }, {
+        "id": "3041",
+        "name": "Mejai's Soulstealer",
+        "cost": "965",
+        "ap": "20",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "40",
+            "99",
+            "55",
+            "7",
+            "16"
+        ]
+    }, {
+        "id": "3050",
+        "name": "Zeke's Harbinger",
+        "cost": "800",
+        "ap": "0",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "40",
+            "412",
+            "53",
+            "201",
+            "16"
+        ]
+    }, {
+        "id": "3057",
+        "name": "Sheen",
+        "cost": "365",
+        "ap": "25",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "75",
+            "105",
+            "53",
+            "81",
+            "131"
+        ]
+    }, {
+        "id": "3060",
+        "name": "Banner of Command",
+        "cost": "280",
+        "ap": "60",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "40",
+            "201",
+            "16",
+            "25",
+            "432"
+        ]
+    }, {
+        "id": "3078",
+        "name": "Trinity Force",
+        "cost": "78",
+        "ap": "30",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "40",
+            "201",
+            "16",
+            "25",
+            "432"
+        ]
+    }, {
+        "id": "3089",
+        "name": "Rabadon's Deathcap",
+        "cost": "840",
+        "ap": "120",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "1",
+            "131",
+            "99",
+            "112"
+        ]
+    }, {
+        "id": "3092",
+        "name": "Frost Queen's Claim",
+        "cost": "515",
+        "ap": "50",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "1",
+            "131",
+            "99",
+            "112"
+        ]
+    }, {
+        "id": "3098",
+        "name": "Frostfang",
+        "cost": "500",
+        "ap": "10",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "25",
+            "267",
+            "37",
+            "117",
+            "1"
+        ]
+    }, {
+        "id": "3100",
+        "name": "Lich Bane",
+        "cost": "350",
+        "ap": "80",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "25",
+            "267",
+            "37",
+            "117",
+            "1"
+        ]
+    }, {
+        "id": "3108",
+        "name": "Fiendish Codex",
+        "cost": "385",
+        "ap": "30",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "25",
+            "131",
+            "1",
+            "40",
+            "99"
+        ]
+    }, {
+        "id": "3113",
+        "name": "Aether Wisp",
+        "cost": "415",
+        "ap": "30",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "1",
+            "245",
+            "99",
+            "112"
+        ]
+    }, {
+        "id": "3115",
+        "name": "Nashor's Tooth",
+        "cost": "850",
+        "ap": "60",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "268",
+            "131",
+            "10",
+            "17",
+            "105"
+        ]
+    }, {
+        "id": "3116",
+        "name": "Rylai's Crystal Scepter",
+        "cost": "605",
+        "ap": "100",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "268",
+            "60",
+            "8",
+            "82",
+            "28"
+        ]
+    }, {
+        "id": "3124",
+        "name": "Guinsoo's Rageblade",
+        "cost": "865",
+        "ap": "40",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "24",
+            "10",
+            "82",
+            "5",
+            "84"
+        ]
+    }, {
+        "id": "3135",
+        "name": "Void Staff",
+        "cost": "1000",
+        "ap": "70",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "1",
+            "61",
+            "131",
+            "99"
+        ]
+    }, {
+        "id": "3136",
+        "name": "Haunting Guise",
+        "cost": "650",
+        "ap": "25",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "60",
+            "85",
+            "68",
+            "55",
+            "32"
+        ]
+    }, {
+        "id": "3145",
+        "name": "Hextech Revolver",
+        "cost": "330",
+        "ap": "40",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "8",
+            "82",
+            "84",
+            "55",
+            "28"
+        ]
+    }, {
+        "id": "3146",
+        "name": "Hextech Gunblade",
+        "cost": "800",
+        "ap": "80",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "84",
+            "82",
+            "28",
+            "55",
+            "24"
+        ]
+    }, {
+        "id": "3151",
+        "name": "Liandry's Torment",
+        "cost": "980",
+        "ap": "50",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "60",
+            "63",
+            "68",
+            "17",
+            "32"
+        ]
+    }, {
+        "id": "3152",
+        "name": "Will of the Ancients",
+        "cost": "480",
+        "ap": "80",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "8",
+            "82",
+            "85",
+            "1",
+            "55"
+        ]
+    }, {
+        "id": "3157",
+        "name": "Zhonya's Hourglass",
+        "cost": "500",
+        "ap": "120",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "25",
+            "131",
+            "105",
+            "103",
+            "1"
+        ]
+    }, {
+        "id": "3165",
+        "name": "Morellonomicon",
+        "cost": "880",
+        "ap": "80",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "7",
+            "99",
+            "117",
+            "1"
+        ]
+    }, {
+        "id": "3174",
+        "name": "Athene's Unholy Grail",
+        "cost": "980",
+        "ap": "60",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "61",
+            "99",
+            "117",
+            "115",
+            "103"
+        ]
+    }, {
+        "id": "3191",
+        "name": "Seeker's Armguard",
+        "cost": "465",
+        "ap": "25",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "25",
+            "103",
+            "1",
+            "131",
+            "105"
+        ]
+    }, {
+        "id": "3196",
+        "name": "The Hex Core mk-1",
+        "cost": "1000",
+        "ap": "20",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "112"
+        ]
+    }, {
+        "id": "3197",
+        "name": "The Hex Core mk-2",
+        "cost": "1000",
+        "ap": "40",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "112"
+        ]
+    }, {
+        "id": "3198",
+        "name": "Perfect Hex Core",
+        "cost": "1000",
+        "ap": "60",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "112"
+        ]
+    }, {
+        "id": "3285",
+        "name": "Luden's Echo",
+        "cost": "650",
+        "ap": "120",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "103",
+            "1",
+            "99",
+            "55",
+            "112"
+        ]
+    }, {
+        "id": "3303",
+        "name": "Spellthief's Edge",
+        "cost": "365",
+        "ap": "5",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "25",
+            "37",
+            "267",
+            "1",
+            "117"
+        ]
+    }, {
+        "id": "3504",
+        "name": "Ardent Censer",
+        "cost": "650",
+        "ap": "40",
+        "pickrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "winrate": {
+            "normal": "000",
+            "ranked": "000"
+        },
+        "picked": [
+            "40",
+            "16",
+            "37",
+            "117",
+            "267"
+        ]
+    }]

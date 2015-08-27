@@ -29,7 +29,7 @@ $result = $mysqli->query("SELECT * FROM `ap_items`");
         <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
     </head>     
 
-    <body>
+    <body class="full">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">

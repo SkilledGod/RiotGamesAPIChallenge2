@@ -37,7 +37,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
     $loadFunction = "showHighscore(true, 1)";
     }
     ?>
-    <body onload="<?php echo $loadFunction; ?>" >
+    <body class="full" onload="<?php echo $loadFunction; ?>" >
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -106,9 +106,11 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h1>Game</h1>
+                    <div class="errorbox">
                     <div id="infor" class="alert alert-error">
                         <a class="close" data-dismiss="alert">×</a>
                         Error    
+                    </div>
                     </div>
                 </div>
             </div>
@@ -388,9 +390,11 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     </div>
                     <div class="col-lg-6">
                         <div class="score">
+                    <div class="errorbox2">
                     <div id="infor2" class="alert alert-error">
                         <a class="close" data-dismiss="alert">×</a>
                         Error    
+                    </div>
                     </div>
                             <div class="yourscore"><span id="scorePlayer" class="gradeitntext">0</span></div>
                             <div class="vsicon hidden-md hidden-sm hidden-xs hidden-print"></div>
@@ -414,8 +418,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                 </div>                                
                             </div>
                         </div>                        
-                        <div id="selectItemsTable" class="randomitems">
-                            <hr class="hrstyle">
+                        <div id="selectItemsTable" class="randomitems" style="margin-top: 100px;">
                             Click On One Item To Move It To Your Inventory <span style="float:right;"><span id="currentTurn">1</span>/<span id="numberOfTurns">6</span></span>
                             <table class="table table-full-width custum-table">
                                 <tbody>
@@ -716,7 +719,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
 
                                     $(document).ready(function () {
                                         $("#infor").delay(3000).fadeOut("slow");
-                                        $("#infor2").delay(3000).fadeOut("slow");
+                                        //$("#infor2").delay(3000).fadeOut("slow");
                                     });
         </script>
 

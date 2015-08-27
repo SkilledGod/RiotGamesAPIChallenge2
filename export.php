@@ -32,7 +32,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
-    <body>
+    <body class="full">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

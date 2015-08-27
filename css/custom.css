@@ -294,3 +294,26 @@ body{
 .alert-error .alert-heading {
   color: #b94a48;
 }
+
+body {
+    margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
+
+.full {
+    background: url('../images/bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.errorbox{
+    height:80px;
+}
+
+.errorbox2{
+    height:80px;
+    margin-top: 20px;
+}

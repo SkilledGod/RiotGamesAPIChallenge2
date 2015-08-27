@@ -59,7 +59,7 @@ if (is_null($id_raw)) {
 
     </head>
 
-    <body>
+    <body class="full">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -81,12 +81,12 @@ if (is_null($id_raw)) {
                             <?php
                             $items = file_get_contents("item.json");
                             while ($row2 = $search->fetch_assoc()) {
-                            $getItem = json_decode($items, true);
-                            foreach ($getItem['data'] as $key => $val) {
-                            if ($key == $row2['id']) {
-                            echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";
-                            }
-                            }
+                                $getItem = json_decode($items, true);
+                                foreach ($getItem['data'] as $key => $val) {
+                                    if ($key == $row2['id']) {
+                                        echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";
+                                    }
+                                }
                             }
                             ?>
                         </select>
@@ -124,14 +124,14 @@ if (is_null($id_raw)) {
                 <div class="col-lg-12 text-center">
                     <h1><?php echo $row['name']; ?></h1>
                     <p><?php
-$items = file_get_contents("item.json");
-$getItem = json_decode($items, true);
-foreach ($getItem['data'] as $key => $val) {
-    if ($key == $itemid) {
-        echo $val['plaintext'];
-    }
-}
-?></p>
+                        $items = file_get_contents("item.json");
+                        $getItem = json_decode($items, true);
+                        foreach ($getItem['data'] as $key => $val) {
+                            if ($key == $itemid) {
+                                echo $val['plaintext'];
+                            }
+                        }
+                        ?></p>
                 </div>
             </div>
 
@@ -169,7 +169,7 @@ foreach ($getItem['data'] as $key => $val) {
                                 <div class="percentgeranked">2.22%</div>
                             </div>                                    
                         </div>
-                    </div>   
+                    </div>                      
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="requireitems">
@@ -202,19 +202,73 @@ foreach ($getItem['data'] as $key => $val) {
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $patch511a = file_get_contents("patch511.json");
+                                $getpatch511a = json_decode($patch511a, true);
+                                foreach ($getpatch511a as $key => $val) {
+                                    if ($getpatch511a[$key]['id'] == $id_secure) { 
+                                        ?>
                                 <tr>
                                     <td class="text-center">Patch 5.11</td>
-                                    <td class="text-center">100%/100%</td>
-                                    <td class="text-center hidden-xs">100%/100%</td>
-                                </tr>
+                                    <td class="text-center"><?php echo $getpatch511a[$key]['ap']; ?></td>
+                                    <td class="text-center hidden-xs"><?php echo $getpatch511a[$key]['cost']; ?></td>
+                                </tr>                                      
+                                <?php
+                                    }
+                                }
+                                ?>
+                                <?php
+                                $patch514a = file_get_contents("patch514.json");
+                                $getpatch514a = json_decode($patch514a, true);
+                                foreach ($getpatch514a as $key => $val) {
+                                    if ($getpatch514a[$key]['id'] == $id_secure) { 
+                                        ?>
                                 <tr>
                                     <td class="text-center">Patch 5.14</td>
-                                    <td class="text-center">100%/100%</td>
-                                    <td class="text-center hidden-xs">100%/100%</td>
-                                </tr>                            
+                                    <td class="text-center"><?php echo $getpatch514a[$key]['ap']; ?></td>
+                                    <td class="text-center hidden-xs"><?php echo $getpatch514a[$key]['cost']; ?></td>
+                                </tr>                                      
+                                <?php
+                                    }
+                                }
+                                ?>                            
                             </tbody>
                         </table>
-                    </div>                    
+                    </div>  
+                    <hr class="hrstyle">
+                    Popular Champion
+                    <table class="table table-full-width custum-table">
+                        <tbody>
+                            <tr>
+                                <?php
+                                $patch514 = file_get_contents("patch514.json");
+                                $getpatch514 = json_decode($patch514, true);
+                                foreach ($getpatch514 as $key => $val) {
+                                    if ($getpatch514[$key]['id'] == $id_secure) {
+                                        foreach ($getpatch514[$key]['picked'] as $key => $val) {
+                                            $chmpions = json_decode(file_get_contents("champions.json"), true);
+                                            if ($key == 3 || $key == 4) {
+                                                ?>
+                                                <td class="text-center hidden-xs">
+
+                                                    <img id="item1Opponent"  title="<?php echo $chmpions['data'][$val]['name']; ?>" data-toggle="popover" data-placement="top" data-content="<?php echo $chmpions['data'][$val]['title']; ?>" class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $chmpions['data'][$val]['name']; ?>.png" alt="">
+
+                                                </td>  
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <td class="text-center">
+                                                    <img id="item1Opponent"  title="<?php echo $chmpions['data'][$val]['name']; ?>" data-toggle="popover" data-placement="top" data-content="<?php echo $chmpions['data'][$val]['title']; ?>" class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $chmpions['data'][$val]['name']; ?>.png" alt="">
+                                                </td>                                     
+                <?php
+            }
+        }
+    }
+}
+?>                             
+                            </tr> 
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-lg-3 text-center">
                     <div class="patchtitle2"></div>
@@ -249,8 +303,7 @@ foreach ($getItem['data'] as $key => $val) {
                                 <div class="percentgeranked">2.22%</div>
                             </div>                                    
                         </div>
-                    </div>   
-                     
+                    </div>                      
                 </div>
             </div>
         </div>
@@ -261,7 +314,9 @@ foreach ($getItem['data'] as $key => $val) {
             <footer>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Riot Project v2</p>
+                        <p>
+                            Riot Project 2 isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.                         
+                        </p>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -275,7 +330,7 @@ foreach ($getItem['data'] as $key => $val) {
         <script>
             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top'});
         </script>
-                <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
         <script>
             $(document).ready(function () {
                 $('select').selectpicker();
