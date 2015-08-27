@@ -39,7 +39,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
 		$loadFunction = "showHighscore(true, 1)";
 	}
 ?>
-    <body onload="<?php echo $loadFunction; ?>" >
+    <body class="full" onload="<?php echo $loadFunction; ?>" >
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
