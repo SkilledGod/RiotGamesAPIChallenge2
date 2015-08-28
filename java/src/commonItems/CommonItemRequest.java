@@ -21,7 +21,7 @@ public class CommonItemRequest extends Thread {
 			URL url;
 			try {
 				url = new URL(
-						"http://localhost/apichallenge/calculateCommonItems.php?match=file:///"
+						"http://localhost/riotchallange2/514/newscript.php?match=file:///"
 								+ f.getAbsolutePath());
 			} catch (MalformedURLException e) {
 				System.out.println("MalformedURLException");
@@ -41,6 +41,9 @@ public class CommonItemRequest extends Thread {
 				if (!result.equals("")) {
 					System.out.println(result);
 					System.exit(1);
+				}
+				if (!f.delete()) {
+					System.out.println("Couldn't delete " + f);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
