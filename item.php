@@ -73,6 +73,10 @@ if (is_null($id_raw)) {
         <link href="css/custom.css" rel="stylesheet">
         <link href="css/game.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+        <link id="data-uikit-theme" rel="stylesheet" href="js/tip/uikit.docs.min.css">
+        <script src="js/tip/jquery.js"></script>
+        <script src="js/tip/uikit.min.js"></script>
+        <script src="js/tip/tooltip.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -148,7 +152,6 @@ if (is_null($id_raw)) {
                 <div class="col-lg-12 text-center">
                     <h1><?php echo $row['name']; ?></h1>
                     <p><?php
-                        $items = file_get_contents("item.json");
                         $getItem = json_decode($items, true);
                         foreach ($getItem['data'] as $key => $val) {
                             if ($key == $itemid) {
@@ -197,7 +200,7 @@ if (is_null($id_raw)) {
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="requireitems">
-                        <a href="#"><img class="img-circle" src="images/item/<?php echo $itemid; ?>.png" alt=""/></a>
+                        <a href="#"><img class="img-circle" title="<?php echo $row['name']; ?>" data-uk-tooltip src="images/item/<?php echo $itemid; ?>.png" alt=""/></a>
                     </div>
                     <?php
                     foreach ($getItem['data'] as $key => $val) {
@@ -207,7 +210,7 @@ if (is_null($id_raw)) {
                                 foreach ($val['from'] as $ky) {
                                     foreach ($getItem['data'] as $keyy => $vall) {
                                         if ($keyy == $ky) {
-                                            echo "<a class=\"mainitems\" href=\"#\" title=\"{$vall['name']}\" data-toggle=\"popover\" data-placement=\"top\" data-content=\"{$vall['plaintext']}\"><img class=\"img-circle\" src=\"images/item/$ky.png\" alt=\"\"/></a>";
+                                            echo "<a class=\"mainitems\" href=\"?id={$keyy}\"><img class=\"img-circle\" title=\"{$vall['name']}\" data-uk-tooltip  src=\"images/item/$ky.png\" alt=\"\"/></a>";
                                         }
                                     }
                                 }
@@ -269,7 +272,7 @@ if (is_null($id_raw)) {
                                     while ($row = $query->fetch_assoc()) {
                                 ?>
                                         <td class="text-center">
-                                                    <img id="item1Opponent"  title="<?php echo $row['name']; ?>" data-toggle="popover" data-placement="top" data-content="" class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $row['pic']; ?>" alt="">
+                                                    <img id="item1Opponent"  title="<?php echo $row['name']; ?>" data-uk-tooltip class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $row['pic']; ?>" alt="">
                                                 </td>     
                                 <?php
                                     }
