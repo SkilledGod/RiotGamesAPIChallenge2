@@ -200,7 +200,7 @@ if (is_null($id_raw)) {
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="requireitems">
-                        <a href="#"><img class="img-circle" title="<?php echo $row['name']; ?>" data-uk-tooltip src="images/item/<?php echo $itemid; ?>.png" alt=""/></a>
+                       <img class="img-circle" title="<?php echo $row['name']; ?>" data-uk-tooltip src="images/item/<?php echo $itemid; ?>.png" alt=""/>
                     </div>
                     <?php
                     foreach ($getItem['data'] as $key => $val) {
@@ -208,11 +208,9 @@ if (is_null($id_raw)) {
                             echo "<div class=\"requireitems\">";
                             if (isset($val['from'])) {
                                 foreach ($val['from'] as $ky) {
-                                    foreach ($getItem['data'] as $keyy => $vall) {
-                                        if ($keyy == $ky) {
-                                            echo "<a class=\"mainitems\" href=\"?id={$keyy}\"><img class=\"img-circle\" title=\"{$vall['name']}\" data-uk-tooltip  src=\"images/item/$ky.png\" alt=\"\"/></a>";
-                                        }
-                                    }
+                                    $vall = $getItem['data'][$ky];
+                                    $keyy = $ky;
+                                    echo "<a class=\"mainitems\" href=\"?id={$keyy}\"><img class=\"img-circle\" title=\"{$vall['name']}\" data-uk-tooltip  src=\"images/item/$ky.png\" alt=\"\"/></a>";
                                 }
                             }
                             echo "</div>";
@@ -263,7 +261,7 @@ if (is_null($id_raw)) {
                         </table>
                     </div>  
                     <hr class="hrstyle">
-                    Popular Champion
+                    Popular on
                     <table class="table table-full-width custum-table">
                         <tbody>
                             <tr>
