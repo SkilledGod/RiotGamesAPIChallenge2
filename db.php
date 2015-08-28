@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "riotchallenger2");
+$mysqli = new mysqli("127.0.0.1", "root", "", "riotchallenger2");
 
 /* check connection */
 if (mysqli_connect_errno()) {
