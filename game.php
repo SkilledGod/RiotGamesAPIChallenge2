@@ -612,6 +612,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                 </div>            
             </div>
             <div id="highscore" style="display:none" class="row" style="background-color: #202126;">
+                <center><button type="button" style="width:200px;margin:0 auto;font-size: 30px;" onClick="checkActiveGame()" class="btn btn-success">Play</button></center>
                 <div class="col-sm-12 text-center" style="margin-top:50px;">
                     <table class="table">
                         <thead>

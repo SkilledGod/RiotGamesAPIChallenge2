@@ -151,7 +151,6 @@ function randomItem($gameId, $mysqli) {
             $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patch['511']));
             $item['winrate514'] = $item['winrate514'] / max(1, $item['pickrate514']);
             $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patch['514']));
-            var_dump($item);
             $possibleItems[] = $item;
 	}
 	

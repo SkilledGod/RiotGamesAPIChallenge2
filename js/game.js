@@ -268,11 +268,13 @@ function checkActiveGame() {
 	$.when(ajaxRequestCheckActiveGame()).done(function () {
 		if (response['active']) {
 			$("#startGameView").css("display", "none");											
+			$('#highscore').css("display", "none");
 			$("#continueGameView").css("display", "");											
 			// get Stats
 			getStats();									
 		} else {
 			$("#startGameView").css("display", "");											
+			$('#highscore').css("display", "none");
 			$("#continueGameView").css("display", "none");		
 		}
 		$("#footer").css("display", "");

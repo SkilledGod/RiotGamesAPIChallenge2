@@ -6,7 +6,7 @@ class Liandrys_Torment extends Item {
 	}
 
 	function applyEffect($champion) {
-            $champion->apply("eyes of pain", "flatspellblockpenetration", 15, true);
+            $champion->applyEffect("eyes of pain", "flatspellblockpenetration", 15, true);
 	}
 	function applyEffectEnemy($enemy) {}
 }
