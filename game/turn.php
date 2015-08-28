@@ -12,7 +12,10 @@ function e($number, $msg, $file, $line, $vars) {
 set_error_handler('e', E_ALL^ E_NOTICE );
 include('../db.php');
 include('function_turn.php'); // turn functions
-// TODO: sanitize user input
+foreach($_GET as $key => $value) {
+	$_GET[$key] = $mysqli->real_escape_string($value);
+}
+
 	switch($_GET['action']) {
 		case 'startGame':
 			$return = startGame($_GET['name'], $_GET['champId'], $mysqli);
