@@ -241,31 +241,15 @@ if (is_null($id_raw)) {
                         <tbody>
                             <tr>
                                 <?php
-                                $patch514 = file_get_contents("patch514.json");
-                                $getpatch514 = json_decode($patch514, true);
-                                foreach ($getpatch514 as $key => $val) {
-                                    if ($getpatch514[$key]['id'] == $id_secure) {
-                                        foreach ($getpatch514[$key]['picked'] as $key => $val) {
-                                            $chmpions = json_decode(file_get_contents("champions.json"), true);
-                                            if ($key == 3 || $key == 4) {
-                                                ?>
-                                                <td class="text-center hidden-xs">
-
-                                                    <img id="item1Opponent"  title="<?php echo $chmpions['data'][$val]['name']; ?>" data-toggle="popover" data-placement="top" data-content="<?php echo $chmpions['data'][$val]['title']; ?>" class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $chmpions['data'][$val]['name']; ?>.png" alt="">
-
-                                                </td>  
-                                                <?php
-                                            } else {
-                                                ?>
-                                                <td class="text-center">
-                                                    <img id="item1Opponent"  title="<?php echo $chmpions['data'][$val]['name']; ?>" data-toggle="popover" data-placement="top" data-content="<?php echo $chmpions['data'][$val]['title']; ?>" class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $chmpions['data'][$val]['name']; ?>.png" alt="">
-                                                </td>                                     
-                <?php
-            }
-        }
-    }
-}
-?>                             
+                                    $query = $mysqli->query("SELECT champs.pic, champs.name from commonItems, ap_items, champs where commonItems.item_id = ap_items.id and champs.id = commonItems.champ_id and commonItems.item_id = " .(int)$_GET['id'] ."  order by commonItems.count desc limit 5");
+                                    while ($row = $query->fetch_assoc()) {
+                                ?>
+                                        <td class="text-center">
+                                                    <img id="item1Opponent"  title="<?php echo $row['name']; ?>" data-toggle="popover" data-placement="top" data-content="" class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $row['pic']; ?>" alt="">
+                                                </td>     
+                                <?php
+                                    }
+                                ?>                             
                             </tr> 
                         </tbody>
                     </table>
