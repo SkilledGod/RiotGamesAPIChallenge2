@@ -108,6 +108,13 @@ yourscore.matchinfo{
     margin-top:-18px
 }
 
+.arrowup{
+    background: url('../images/up.png') no-repeat;
+    width:14px;
+    height: 8px; 
+    margin-top:-18px
+}
+
 .rankedpick{
     width:60px;
     height: 40px;

@@ -126,12 +126,33 @@ function randomItem($gameId, $mysqli) {
 		return array("code" => 103, "message" => "Maximum number of turns already made");
 	}
 
+	// NumberOfGames
+	$numberOfGames = $mysqli->query("select * from matches");
+        echo $mysqli->error;
+	$patchMatches = array();
+	$patchMatches['511'] = 0;
+	$patchMatches['514'] = 0;
+	while ($patch = $numberOfGames->fetch_assoc()) {
+            if ($patch['patch'] == "patch511" || $patch['patch'] == "patch511ranked") {
+                $patchMatches['511'] = $patchMatches['511'] + $patch['numberOfGames'];
+            }
+            
+            if ($patch['patch'] == "patch514" || $patch['patch'] == "patch514ranked") {
+                $patchMatches['514'] = $patchMatches['514'] + $patch['numberOfGames'];
+            }
+            
+	}
 	// TODO choose boots on first turn! (iff the opponent has some (bootsTag in db?)) (iff the opponent has boots)
 	// TODO calculate winrate correctly
-	$possibleItemsQuery = $mysqli->query("select ap_items.id as id, ap_items.name as name, items.description as description, ap_items.pickrate511, ap_items.winrate511, ap_items.pickrate514, ap_items.winrate514 from ap_items, items where ap_items.id = items.id and ap_items.id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
+	$possibleItemsQuery = $mysqli->query("select ap_items.id as id, ap_items.name as name, items.description as description, (ap_items.pickrate511 + ap_items.pickraten511) as pickrate511, (ap_items.winrate511 + ap_items.winraten511) as winrate511, (ap_items.pickrate514 + ap_items.pickraten514) as pickrate514, (ap_items.winrate514 + ap_items.winraten514) as winrate514 from ap_items, items where ap_items.id = items.id and ap_items.id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
 	$possibleItems = array();
 	while ($item = $possibleItemsQuery->fetch_assoc()) {
-		$possibleItems[] = $item;
+            $item['winrate511'] = $item['winrate511'] / max($item['pickrate511'], 1);
+            $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patch['511']));
+            $item['winrate514'] = $item['winrate514'] / max(1, $item['pickrate514']);
+            $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patch['514']));
+            var_dump($item);
+            $possibleItems[] = $item;
 	}
 	
 	// Choose 3 distinct values
@@ -313,12 +334,31 @@ function getStats($gameId, $mysqli) {
 	$response['topScore'] = getHighestScore($mysqli);
 	$lastSelected = $mysqli->query("select max(turn) as maxTurn from choosenItems where game_id = " .$gameId)->fetch_assoc()['maxTurn'];	
 	if ($lastSelected == $response['currentTurn'] - 1) {
-		$response["currentPhase"] = "selectItem";
-		// include selectable items
+                $response["currentPhase"] = "selectItem";
+                // NumberOfGames
+                $numberOfGames = $mysqli->query("select * from matches");
+                $patchMatches = array();
+                $patchMatches['511'] = 0;
+                $patchMatches['514'] = 0;
+                while ($patch = $numberOfGames->fetch_assoc()) {
+                    if ($patch['patch'] == "patch511" || $patch['patch'] == "patch511ranked") {
+                        $patchMatches['511'] = $patchMatches['511'] + $patch['numberOfGames'];
+                    }
+            
+                    if ($patch['patch'] == "patch514" || $patch['patch'] == "patch514ranked") {
+                        $patchMatches['514'] = $patchMatches['514'] + $patch['numberOfGames'];
+                    }
+            
+                }
+
+                // include selectable items
 		$response["selectableItems"] = array();
-		$itemsQuery = $mysqli->query("select item_id as id, items.name as name, items.description as description, ap_items.pickrate511, ap_items.winrate511, ap_items.winrate514, ap_items.pickrate514 from proposedItems, items, ap_items where items.id = proposedItems.item_id and items.id = ap_items.id and game_id = " .$gameId ." and turn = " .$response['currentTurn']);
-		echo $mysqli->error;
+		$itemsQuery = $mysqli->query("select item_id as id, items.name as name, items.description as description, (ap_items.pickrate511 + ap_items.pickraten511) as pickrate511, (ap_items.winrate511 + ap_items.winraten511) as winrate511, (ap_items.pickrate514 + ap_items.pickraten514) as pickrate514, (ap_items.winrate514 + ap_items.winraten514) as winrate514 from proposedItems, items, ap_items where items.id = proposedItems.item_id and items.id = ap_items.id and game_id = " .$gameId ." and turn = " .$response['currentTurn']);
 		while ($item = $itemsQuery->fetch_assoc()) {
+                        $item['winrate511'] = $item['winrate511'] / max($item['pickrate511'], 1);
+                        $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patch['511']));
+                        $item['winrate514'] = $item['winrate514'] / max(1, $item['pickrate514']);
+                        $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patch['514']));
 			$response['selectableItems'][] = $item;
 		}
 	} 

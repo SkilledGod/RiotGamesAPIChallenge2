@@ -29,6 +29,30 @@ if (isset($_POST['selecteditem'])) {
 if (is_null($id_raw)) {
     header('Location: index.php');
 }
+
+// calculate winrate/pickrates
+	// NumberOfGames
+	$numberOfGames = $mysqli->query("select * from matches");
+        echo $mysqli->error;
+	$patchMatches = array();
+	$patchMatches['511'] = 0;
+	$patchMatches['514'] = 0;
+	while ($patch = $numberOfGames->fetch_assoc()) {
+		$patchMatches[$patch['patch']] = max($patch['numberOfGames'], 1);
+	}
+	
+// rates
+	$query = $mysqli->query("select * from ap_items where id = " .$id_secure)->fetch_assoc();
+	//
+	$rates['pickrate511Normal'] = $query['pickraten511'] / $patchMatches['patch511'];
+	$rates['pickrate511Ranked'] = $query['pickrate511'] / $patchMatches['patch511ranked'];
+	$rates['pickrate514Normal'] = $query['pickraten514'] / $patchMatches['patch514'];
+	$rates['pickrate514Ranked'] = $query['pickrate514'] / $patchMatches['patch514ranked'];
+	
+	$rates['winrate511Normal'] = $query['winraten511'] / $patchMatches['patch511'];
+	$rates['winrate511Ranked'] = $query['winrate511'] / $patchMatches['patch511ranked'];
+	$rates['winrate514Normal'] = $query['winraten514'] / $patchMatches['patch514'];
+	$rates['winrate514Ranked'] = $query['winrate514'] / $patchMatches['patch514ranked'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -143,14 +167,14 @@ if (is_null($id_raw)) {
                         <div class="threerate">
                             <div class="normalpick">
                                 <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal">99.22%</div>
+                                <div class="percentgenormal"><?php echo round($rates['pickrate511Ranked']*100, 2); ?>%</div>
                             </div>
                             <div class="arrowpick">
-                                <div class="arrowdown"></div>
+                                <div class="arrow<?php echo ($rates['pickrate511Ranked'] < $rates['pickrate514Ranked'] ? "up" : "down"); ?>"> </div>
                             </div>
                             <div class="rankedpick">
-                                <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked">2.22%</div>
+                                <div class="rankedtitle">Patch 	5.14</div>
+                                <div class="percentgeranked"><?php echo round($rates['pickrate514Ranked']*100,2); ?>%</div>
                             </div>                                    
                         </div>
                     </div> 
@@ -159,14 +183,14 @@ if (is_null($id_raw)) {
                         <div class="threerate">
                             <div class="normalpick">
                                 <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal">99.22%</div>
+                                <div class="percentgenormal"><?php echo round($rates['winrate511Ranked']*100, 2); ?>%</div>
                             </div>
                             <div class="arrowpick">
-                                <div class="arrowdown"></div>
+                                <div class="arrow<?php echo ($rates['winrate511Ranked'] < $rates['winrate514Ranked'] ? "up" : "down"); ?>"></div>
                             </div>
                             <div class="rankedpick">
                                 <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked">2.22%</div>
+                                <div class="percentgeranked"><?php echo round($rates['winrate514Ranked']*100, 2); ?>%</div>
                             </div>                                    
                         </div>
                     </div>                      
@@ -261,14 +285,14 @@ if (is_null($id_raw)) {
                         <div class="threerate">
                             <div class="normalpick">
                                 <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal">99.22%</div>
+                                <div class="percentgenormal"><?php echo $rates['pickrate511Normal']; ?>%</div>
                             </div>
                             <div class="arrowpick">
-                                <div class="arrowdown"></div>
+                                <div class="arrow<?php echo ($rates['pickrate511Normal'] < $rates['pickrate514Normal'] ? "up" : "down"); ?>"></div>
                             </div>
                             <div class="rankedpick">
                                 <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked">2.22%</div>
+                                <div class="percentgeranked"><?php echo $rates['pickrate514Normal']; ?>%</div>
                             </div>                                    
                         </div>
                     </div> 
@@ -277,14 +301,14 @@ if (is_null($id_raw)) {
                         <div class="threerate">
                             <div class="normalpick">
                                 <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal">99.22%</div>
+                                <div class="percentgenormal"><?php echo $rates['winrate511Normal']; ?>%</div>
                             </div>
                             <div class="arrowpick">
-                                <div class="arrowdown"></div>
+                                <div class="arrow<?php echo ($rates['winrate511Normal'] < $rates['winrate514Normal'] ? "up" : "down"); ?>"></div>
                             </div>
                             <div class="rankedpick">
                                 <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked">2.22%</div>
+                                <div class="percentgeranked"><?php echo $rates['winrate514Normal']; ?>%</div>
                             </div>                                    
                         </div>
                     </div>                      
