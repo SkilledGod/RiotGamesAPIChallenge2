@@ -302,7 +302,7 @@ if (is_null($id_raw)) {
                         <div class="threerate">
                             <div class="normalpick">
                                 <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal"><?php round(echo $rates['winrate511Normal'],2); ?>%</div>
+                                <div class="percentgenormal"><?php echo round($rates['winrate511Normal'],2); ?>%</div>
                             </div>
                             <div class="arrowpick">
                                 <div class="arrow<?php echo ($rates['winrate511Normal'] < $rates['winrate514Normal'] ? "up" : "down"); ?>"></div>
