@@ -324,6 +324,14 @@ body {
 .pagination > .active a {
 	border-color:grey;
 }
+
+.pagination > .active a:hover{
+	border-color:grey;
+}
+.pagination li a:hover{
+	color:black;
+	border-color:grey;
+}
 .pagination li a{
 	color:white;
     background-color: black;
