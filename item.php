@@ -220,7 +220,7 @@ if (is_null($id_raw)) {
                                 <tr>
                                     <th class="text-center">Patch/Type</th>
                                     <th class="text-center">Ability Power</th>
-                                    <th class="text-center hidden-xs">Cost</th>
+                                    <th class="text-center hidden-xs">Combination Cost</th>
                                 </tr>
                             </thead>
                             <tbody>
