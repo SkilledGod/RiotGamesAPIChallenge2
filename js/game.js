@@ -18,11 +18,11 @@ function startGame() {
 
 	name = $("#name").val();
 	champ = $("#champion").val();
-	if (name == "" || champ % 1 !== 0) {
+/*	if (name == "" || champ % 1 !== 0) {
 		// todo show error
 		console.log("invalid name or champ");	
 		return;
-	}
+	}*/
 	// ajax request and answer :)
 	$.when(ajaxRequestStartGame()).done(function() {
 		// hide champ select
@@ -41,10 +41,30 @@ function startGame() {
 			$("#startGameView").css("display", "none"); // hide champ select
 			$("#matchView").css("display", "");							
 		} else {
-			console.log("sGmeMes" + response["message"]);
-			// show error message
+			showError(response);
 		}
 	});
+}
+
+var showErrorTimeout = null;
+function showError(response) {
+	if (showErrorTimeout != null) {
+		console.log("cleared timeout");
+		window.clearTimeout(showErrorTimeout);
+	}
+	console.log("Show error");
+	console.log(response);
+	$("#errormessage").text(response['message']);
+	$("#errorbox").css("display", "");
+	$("#errorbox").css("opacity", "");
+
+	// remove after 3 seconds
+	showErrorTimeout = window.setTimeout(function() {
+	  $("#errorbox").fadeTo(500, 0).slideUp(500, function(){
+		showErrorTimeout = null;
+	      	$(this).css("display", "none");
+	  });
+	}, 3000);
 }
 
 function requestRandomItems() {
@@ -87,7 +107,7 @@ function requestRandomItems() {
 			$("#winrate511Item3").html(Math.round(response['items'][2]['winrate511']*100)/100);
 			$("#winrate514Item3").html(Math.round(response['items'][2]['winrate514']*100)/100 + (response['items'][2]['winrate511'] < response['items'][2]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
 		} else {
-			console.log("rditem: " + response['message']);
+			showError(response);
 		}
 	});
 }
@@ -115,7 +135,7 @@ function selectItem(id) {
 				requestRandomItems();
 			}
 		} else {
-			// show error
+			showError(response);
 		}
 	});
 }
@@ -157,7 +177,7 @@ function endGame() {
 			$("#opponentEndscore").text(Math.round(response['opponentScore']));
 			console.log("game ended");
 		} else {
-			console.log(response['message']);
+			showError(response);
 		}
 		// TODO win screen!		
 		// uhm dunno? --> who won!!! --> buttons for everything else
@@ -182,7 +202,7 @@ function abortGame() {
 			$("#continueGameView").css("display", "none");							
 			$("#startGameView").css("display", "");
 		} else {
-			// show error
+			showError(response);
 		}	
 	});
 }
@@ -200,46 +220,50 @@ function restoreGame() {
 	}
 
 	$.when(ajaxRequestGetStats()).done(function() {
-		// update stats
-		info["version"] = response["version"];
-		info["numberOfTurns"] = response["numberOfTurns"];
-		$("#numberOfTurns").text(info["numberOfTurns"]);
-		$("#currentTurn").text(response['currentTurn']);
-		$("#topScore").text(Math.round(response['topScore']));
-		updateStatistics(response['player'], response['opponent']);
-		if (response['currentPhase'] == 'requestItem') {
-			requestRandomItems();
+		if (response['code'] == 200) {
+			// update stats
+			info["version"] = response["version"];
+			info["numberOfTurns"] = response["numberOfTurns"];
+			$("#numberOfTurns").text(info["numberOfTurns"]);
+			$("#currentTurn").text(response['currentTurn']);
+			$("#topScore").text(Math.round(response['topScore']));
+			updateStatistics(response['player'], response['opponent']);
+			if (response['currentPhase'] == 'requestItem') {
+				requestRandomItems();
+			} else {
+				// set selectable items
+				setItem(response['selectableItems'][0], "item1");
+				setItem(response['selectableItems'][1], "item2");
+				setItem(response['selectableItems'][2], "item3");
+				// set the onClick action
+				$("#item1").attr("onClick", "selectItem(" + response['selectableItems'][0]['id'] + ")");
+				$("#item2").attr("onClick", "selectItem(" + response['selectableItems'][1]['id'] + ")");
+				$("#item3").attr("onClick", "selectItem(" + response['selectableItems'][2]['id'] + ")");
+				// set items table
+				$("#pickrate511Item1").html(Math.round(response['selectableItems'][0]['pickrate511']*100)/100);
+				$("#pickrate514Item1").html(Math.round(response['selectableItems'][0]['pickrate514']*100)/100 + (response['selectableItems'][0]['pickrate511'] < response['selectableItems'][0]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+				$("#winrate511Item1").html(Math.round(response['selectableItems'][0]['winrate511']*100)/100);
+				$("#winrate514Item1").html(Math.round(response['selectableItems'][0]['winrate514']*100)/100 + (response['selectableItems'][0]['winrate511'] < response['selectableItems'][0]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+				$("#pickrate511Item2").html(Math.round(response['selectableItems'][1]['pickrate511']*100)/100);
+				$("#pickrate514Item2").html(Math.round(response['selectableItems'][1]['pickrate514']*100)/100 + (response['selectableItems'][1]['pickrate511'] < response['selectableItems'][1]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+				$("#winrate511Item2").html(Math.round(response['selectableItems'][1]['winrate511']*100)/100);
+				$("#winrate514Item2").html(Math.round(response['selectableItems'][1]['winrate514']*100)/100 + (response['selectableItems'][1]['winrate511'] < response['selectableItems'][1]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+				$("#pickrate511Item3").html(Math.round(response['selectableItems'][2]['pickrate511']*100)/100);
+				$("#pickrate514Item3").html(Math.round(response['selectableItems'][2]['pickrate514']*100)/100 + (response['selectableItems'][2]['pickrate511'] < response['selectableItems'][2]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+				$("#winrate511Item3").html(Math.round(response['selectableItems'][2]['winrate511']*100)/100);
+				$("#winrate514Item3").html(Math.round(response['selectableItems'][2]['winrate514']*100)/100 + (response['selectableItems'][2]['winrate511'] < response['selectableItems'][2]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+
+			}		
+			// set name
+			$("#playerName").text(response['name']);
+			$("#startGameView").css("display", "none"); // hide champ select
+			$("#continueGameView").css("display", "none");							
+			$("#matchView").css("display", "");
 		} else {
-			// set selectable items
-			setItem(response['selectableItems'][0], "item1");
-			setItem(response['selectableItems'][1], "item2");
-			setItem(response['selectableItems'][2], "item3");
-			// set the onClick action
-			$("#item1").attr("onClick", "selectItem(" + response['selectableItems'][0]['id'] + ")");
-			$("#item2").attr("onClick", "selectItem(" + response['selectableItems'][1]['id'] + ")");
-			$("#item3").attr("onClick", "selectItem(" + response['selectableItems'][2]['id'] + ")");
-			// set items table
-			$("#pickrate511Item1").html(Math.round(response['selectableItems'][0]['pickrate511']*100)/100);
-			$("#pickrate514Item1").html(Math.round(response['selectableItems'][0]['pickrate514']*100)/100 + (response['selectableItems'][0]['pickrate511'] < response['selectableItems'][0]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-			$("#winrate511Item1").html(Math.round(response['selectableItems'][0]['winrate511']*100)/100);
-			$("#winrate514Item1").html(Math.round(response['selectableItems'][0]['winrate514']*100)/100 + (response['selectableItems'][0]['winrate511'] < response['selectableItems'][0]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-
-			$("#pickrate511Item2").html(Math.round(response['selectableItems'][1]['pickrate511']*100)/100);
-			$("#pickrate514Item2").html(Math.round(response['selectableItems'][1]['pickrate514']*100)/100 + (response['selectableItems'][1]['pickrate511'] < response['selectableItems'][1]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-			$("#winrate511Item2").html(Math.round(response['selectableItems'][1]['winrate511']*100)/100);
-			$("#winrate514Item2").html(Math.round(response['selectableItems'][1]['winrate514']*100)/100 + (response['selectableItems'][1]['winrate511'] < response['selectableItems'][1]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-
-			$("#pickrate511Item3").html(Math.round(response['selectableItems'][2]['pickrate511']*100)/100);
-			$("#pickrate514Item3").html(Math.round(response['selectableItems'][2]['pickrate514']*100)/100 + (response['selectableItems'][2]['pickrate511'] < response['selectableItems'][2]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-			$("#winrate511Item3").html(Math.round(response['selectableItems'][2]['winrate511']*100)/100);
-			$("#winrate514Item3").html(Math.round(response['selectableItems'][2]['winrate514']*100)/100 + (response['selectableItems'][2]['winrate511'] < response['selectableItems'][2]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-
-		}		
-		// set name
-		$("#playerName").text(response['name']);
-		$("#startGameView").css("display", "none"); // hide champ select
-		$("#continueGameView").css("display", "none");							
-		$("#matchView").css("display", "");
+			showError(response);
+		}
 	});
 }
 
@@ -294,7 +318,11 @@ function getStats() {
 	}
 
 	$.when(ajaxRequestCheckGetStats()).done(function() {
+		if (response['code'] == 200) {
 		setStatisticsContinue(response['player'], response['name']);
+		} else {
+			showError(response);
+		}
 	});
 }
 
@@ -323,7 +351,7 @@ function showHighscore(top, page) {
 			$('#matchView').css("display", "none");
 			$('#highscore').css("display", "");
 		} else {
-			// show error
+			showError(response);
 		}
 
 	});

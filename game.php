@@ -29,8 +29,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <link href="css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
-
-    </head>
+	</head>
 <?php 
 	include_once('db.php');
 		
@@ -108,12 +107,11 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h1>Game</h1>
-                    <div class="errorbox">
-                    <div id="infor" class="alert alert-error">
-                        <a class="close" data-dismiss="alert">×</a>
-                        Error    
-                    </div>
-                    </div>
+			<div id="errorbox" style="display:none" class="alert alert-danger fade in">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				<span id="errormessage">A problem has been occurred while submitting your data.</span>
+			</div>
                 </div>
             </div>
             <div style="display:none" id="startGameView" class="row" style="background-color: #202126;">
@@ -392,12 +390,6 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     </div>
                     <div class="col-lg-6">
                         <div class="score">
-                    <div class="errorbox2">
-                    <div id="infor2" class="alert alert-error">
-                        <a class="close" data-dismiss="alert">×</a>
-                        Error    
-                    </div>
-                    </div>
                             <div class="yourscore"><span id="scorePlayer" class="gradeitntext">0</span></div>
                             <div class="vsicon hidden-md hidden-sm hidden-xs hidden-print"></div>
                             <div class="topscore"><span id="topScore" class="gradeitntext2">51</span></div>

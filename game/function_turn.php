@@ -17,9 +17,12 @@ function startGame($name, $champId, $mysqli) {
 	} else { // given game id is not valid
 		unset($_SESSION['gameId']);
 	}
+	if ($name == "") {
+		return array("code" => 122, "message" => "Please select a valid name.");
+	}
 	// check champ id
 	if ($mysqli->query("select name from champs where id = " .$champId)->num_rows != 1) {
-		return array("code" => 103, "message" => "Champ not found");
+		return array("code" => 102, "message" => "Please choose a valid champion.");
 	}
 
 	// choose a random match
@@ -59,7 +62,7 @@ function startGame($name, $champId, $mysqli) {
 	}
 
 	if ($choosenChamp == "nope") {
-		return array("code" => 104, "message" => "No champion could be choosen as an opponent");
+		return array("code" => 103, "message" => "No champion could be choosen as an opponent");
 	}
 	
 	$response = array();
@@ -99,7 +102,7 @@ function startGame($name, $champId, $mysqli) {
 
 	$query .= ") values (" .$values .")";
 	if ($mysqli->query($query) == false) {
-		return array("code" => 102, "message" => "Database query failed");
+		return array("code" => 104, "message" => "Database failure.");
 	} else {
 		$_SESSION['gameId'] = $mysqli->insert_id;
 		$response['code'] = 200;
@@ -110,7 +113,7 @@ function startGame($name, $champId, $mysqli) {
 function randomItem($gameId, $mysqli) {
 	$query = $mysqli->query("select id from games where id = " .$gameId);
 	if ($gameId == NULL || !is_int($gameId) || !$query || $query->num_rows == 0) {
-		return array("code" => 104, "message" => "No valid gameId found");
+		return array("code" => 105, "message" => "No valid gameId found");
 	}
 
 	// check if last turn was over
@@ -118,12 +121,12 @@ function randomItem($gameId, $mysqli) {
 	if ($lastTurnMade == NULL) $lastTurnMade = 0;
 	$lastProposed = $mysqli->query("select max(turn) as lastTurn from proposedItems where game_id = " .$gameId)->fetch_assoc()['lastTurn'];
 	if ($lastTurnMade != $lastProposed) {
-		return array("code" => 101, "message" => "Your last turn isn't over yet");
+		return array("code" => 106, "message" => "Your last turn isn't over yet");
 	}
 
 	$currentTurn = $lastTurnMade+1;
 	if ($mysqli->query("select id from games where id = " .$gameId ." and " .$currentTurn ." <= numberOfTurns")->num_rows == 0) { // too many turns
-		return array("code" => 103, "message" => "Maximum number of turns already made");
+		return array("code" => 107, "message" => "Maximum number of turns already made");
 	}
 
 	// NumberOfGames
@@ -176,32 +179,32 @@ function randomItem($gameId, $mysqli) {
 	}
 	$response['turn'] = $currentTurn;
 	if ($mysqli->query($query) == false) {
-		return array("code" => 102, "message" => "Couldn't execute db query");
+		return array("code" => 108, "message" => "Database failure.");
 	}
 	return $response;
 }
 
 function selectItem($gameId, $choosenItemId, $mysqli) {
 	if ($gameId == NULL || !is_int($gameId) || $mysqli->query("select id from games where id = " .$gameId)->num_rows == 0) {
-		return array("code" => 105, "message" => "Game Id not valid");
+		return array("code" => 109, "message" => "No valid gameId found");
 	}	
 	$lastProposedTurn = $mysqli->query("select max(turn) as lastTurn from proposedItems where game_id = " .$gameId)->fetch_assoc()['lastTurn'];
 	$lastPickedTurn = $mysqli->query("select max(turn) as lastTurn from choosenItems where game_id = " .$gameId)->fetch_assoc()['lastTurn']; 
 	// turn isn't over yet (so we got items proposed)	
 	if ($lastProposedTurn - 1 != $lastPickedTurn) {
-		return array("code" => 101, "message" => "You need to request new items first");
+		return array("code" => 110, "message" => "You need to request new items first");
 	}
 	
 	$isItemValid = $mysqli->query("select item_id, turn from proposedItems where game_id = " .$gameId ." and item_id = " .$choosenItemId ." having turn = max(turn)")->num_rows == 1;
 	
 	if (!$isItemValid) {
-		return array("code" => 102, "message" => "You need to choose one of the three proposed items");
+		return array("code" => 111, "message" => "You need to choose one of the three proposed items");
 	}
 
 	// it's valid --> to the db
 	$query = $mysqli->query("insert into choosenItems (game_id, item_id, turn) values (" .$gameId .", " .$choosenItemId .", " .$lastProposedTurn .")");
 	if (!$query) {
-		return array("code" => 103, "message" => "Couldn't enter item into db");
+		return array("code" => 112, "message" => "Database failure.");
 	}
 
 	$game = $mysqli->query("select opponentGame, opponentParticipantId from games where id =" .$gameId)->fetch_assoc();
@@ -214,7 +217,7 @@ function selectItem($gameId, $choosenItemId, $mysqli) {
 	$response['code'] = 200;
 	$response['lastSelectionMade'] = $lastProposedTurn == $mysqli->query("select numberOfTurns from games where id = " .$gameId)->fetch_assoc()['numberOfTurns'];
 	if (!$mysqli->query("update games set currentScore = " .$response['player']['score'] ." where id = " .$gameId)) {
-		return array("code" => 104, "message" => "Couldn't update score");
+		return array("code" => 113, "message" => "Couldn't update score");
 	}
 
 	// get data to get the champions
@@ -227,12 +230,12 @@ function endGame($gameId, $mysqli) {
 	$stateId = $mysqli->query("select id from state order by chronology desc limit 1")->fetch_assoc()['id'];
 
 	if ($gameId == NULL || !is_int($gameId) || !$query || $query->num_rows == 0 || $query->fetch_assoc()['state_id'] == $stateId) {
-		return array("code" => 105, "message" => "Game Id not valid");
+		return array("code" => 114, "message" => "No valid gameId found");
 	}	
 	// check for number of turns
 	$query = $mysqli->query("select games.numberOfTurns, choosenItems.turn from games, choosenItems where games.id = " .$gameId ." and games.id = choosenItems.game_id and games.numberOfTurns = choosenItems.turn having choosenItems.turn = max(choosenItems.turn)");
 	if (!$query || $query->num_rows != 1) {
-		return array("code" => 101, "message" => "Last turn not yet made");
+		return array("code" => 115, "message" => "Last turn not yet made");
 	}
 	
 	// okay we are finished. that means 1. you already got the updated scores. 2. we need to determine the winner. --> 
@@ -252,7 +255,7 @@ function endGame($gameId, $mysqli) {
 	$query = $mysqli->query("update games set state_id = " .$stateId .", won = " .($playerWon ? "true" : "false") ." where id = " .$gameId);
 
 	if (!$query) {
-		return array("code" => 102, "message" => "Couldn't update db");
+		return array("code" => 116, "message" => "Couldn't update db");
 	} 
 	$_SESSION['lastGameId'] = $_SESSION['gameId'];
 	unset($_SESSION['gameId']);
@@ -264,7 +267,7 @@ function endGame($gameId, $mysqli) {
 
 function highscore($mysqli, $top, $gameId, $page) {
 	if ($page <= 0 ) {
-		return array("code" => 101, "message" => "Page has to be greater 0");
+		return array("code" => 117, "message" => "Page has to be greater 0");
 	}
 	$entriesPerPage = 25;
 	$stateId = $mysqli->query("select id from state order by chronology desc limit 	1")->fetch_assoc()['id'];
@@ -289,7 +292,7 @@ function highscore($mysqli, $top, $gameId, $page) {
 	$response['page'] = (int) $page;
 	$response['numberOfPages'] = ceil($mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows / 25);
 	if ($response['page'] > $response['numberOfPages']) {
-		return array("code" => 102, "message" => "Page number has to be lower");
+		return array("code" => 118, "message" => "Page number has to be lower than " .$response['numberOfPages']);
 	}
 	return $response;
 }
@@ -297,13 +300,13 @@ function highscore($mysqli, $top, $gameId, $page) {
 function abortGame($gameId, $mysqli) {
 	$stateId = $mysqli->query("select id from state order by chronology desc limit 	1")->fetch_assoc()['id'];
 		if ($mysqli->query("select state_id from games where id = " .$gameId)->fetch_assoc()['state_id'] == $stateId) {
-			return array("code" => 101, "message" => "Game already finished");
+			return array("code" => 119, "message" => "Game already finished");
 		}
 	if ($mysqli->query("delete from games where id = " .$gameId) && $mysqli->query("delete from choosenItems where game_id = " .$gameId) && $mysqli->query("delete from proposedItems where game_id = " .$gameId)) {
 		unset($_SESSION['gameId']);
 		return array("code" => 200);
 	} else {
-		return array("code" => 102, "message" => "Couldn't remove game from db");
+		return array("code" => 120, "message" => "Database failure");
 	}
 	
 }
@@ -311,7 +314,7 @@ function abortGame($gameId, $mysqli) {
 function getStats($gameId, $mysqli) {
 	$gameQuery = $mysqli->query("select * from games where id =" .$gameId);
 		if ($gameQuery->num_rows == 0) {
-			return array("code" => 101, "message" => "Game does not exist.");
+			return array("code" => 121, "message" => "Game does not exist.");
 		}
 
 	$game = $gameQuery->fetch_assoc();
@@ -363,6 +366,7 @@ function getStats($gameId, $mysqli) {
 	if ($lastSelected == $response["currentTurn"]) {
 		$response["currentPhase"] = "requestItem";
 	}
+	$response['code'] = 200;
 	return $response;
 }
 
