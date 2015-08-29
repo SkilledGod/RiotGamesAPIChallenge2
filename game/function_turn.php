@@ -145,7 +145,6 @@ function randomItem($gameId, $mysqli) {
             }
             
 	}
-	$debug = $patchMatches['511'] ."\n" .$patchMatches['514'] ."\n";
 	// TODO choose boots on first turn! (iff the opponent has some (bootsTag in db?)) (iff the opponent has boots)
 	$possibleItemsQuery = $mysqli->query("select ap_items.id as id, ap_items.name as name, items.description as description, (ap_items.pickrate511 + ap_items.pickraten511) as pickrate511, (ap_items.winrate511 + ap_items.winraten511) as winrate511, (ap_items.pickrate514 + ap_items.pickraten514) as pickrate514, (ap_items.winrate514 + ap_items.winraten514) as winrate514 from ap_items, items where ap_items.id = items.id and ap_items.id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
 	$possibleItems = array();
@@ -156,7 +155,6 @@ function randomItem($gameId, $mysqli) {
             $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patchMatches['514']));
             $possibleItems[] = $item;
 	}
-	file_put_contents("debug.txt", $debug);
 	// Choose 3 distinct values
 	$values = array_rand($possibleItems, min(3, sizeof($possibleItems)));
 
@@ -360,7 +358,7 @@ function getStats($gameId, $mysqli) {
                         $item['winrate511'] = $item['winrate511'] / max($item['pickrate511'], 1);
                         $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patchMatches['511']));
                         $item['winrate514'] = $item['winrate514'] / max(1, $item['pickrate514']);
-                        $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patchMatches['514']));
+                        $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patchMatches	['514']));
 			$response['selectableItems'][] = $item;
 		}
 	} 
