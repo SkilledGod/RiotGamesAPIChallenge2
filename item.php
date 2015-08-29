@@ -44,10 +44,10 @@ if (is_null($id_raw)) {
 // rates
 	$query = $mysqli->query("select * from ap_items where id = " .$id_secure)->fetch_assoc();
 	//
-	$rates['pickrate511Normal'] = $query['pickraten511'] / $patchMatches['patch511'];
-	$rates['pickrate511Ranked'] = $query['pickrate511'] / $patchMatches['patch511ranked'];
-	$rates['pickrate514Normal'] = $query['pickraten514'] / $patchMatches['patch514'];
-	$rates['pickrate514Ranked'] = $query['pickrate514'] / $patchMatches['patch514ranked'];
+	$rates['pickrate511Normal'] = $query['pickraten511'] / (10*$patchMatches['patch511']);
+	$rates['pickrate511Ranked'] = $query['pickrate511'] / (10*$patchMatches['patch511ranked']);
+	$rates['pickrate514Normal'] = $query['pickraten514'] / (10*$patchMatches['patch514']);
+	$rates['pickrate514Ranked'] = $query['pickrate514'] / (10*$patchMatches['patch514ranked']);
 	
 	$rates['winrate511Normal'] = $query['winraten511'] / $patchMatches['patch511'];
 	$rates['winrate511Ranked'] = $query['winrate511'] / $patchMatches['patch511ranked'];
