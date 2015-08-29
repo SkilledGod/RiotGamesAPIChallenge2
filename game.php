@@ -115,7 +115,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                 </div>
             </div>
             <div style="display:none" id="startGameView" class="row" style="background-color: #202126;">
-                <div id="champSelect"  class="col-lg-12 backgroundimg col-centered">
+                <div id="champSelect"  class="col-lg-12 col-centered">
                     <form method="get" class="form-horizontal" role="search" style="padding-top:100px;">
                         <div class="form-group">
                             <p class="col-sm-2 text-center">
@@ -278,8 +278,8 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                 </div>  
             </div>
 
-            <div class="row" style="background-color: #202126;">                
-                <div id="matchView" style="display:none;" class="col-lg-12 backgroundimg2 col-centered">
+            <div class="row">                
+                <div id="matchView" style="display:none;" class="col-lg-12 col-centered">
                     <div class="col-lg-3">
                         <div id="playerName" class="your">Summoner Name</div>
                         <div class="champpic">
