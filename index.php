@@ -11,7 +11,7 @@ include 'db.php';
         <meta name="description" content="">
         <meta name="author" content="">
         <link href="css/fonts.css" rel="stylesheet" type="text/css"/>
-        <title>Riot Project v2</title>
+        <title>AP Arena</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@ include 'db.php';
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">Riot Project v2</a>
+                    <a class="navbar-brand" href="index.php">AP Arena</a>
                 </div>
                 <!-- Search -->
                 <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
@@ -116,7 +116,7 @@ include 'db.php';
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <hr />
-                        <p>Project Name isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.</p>
+                        <p>AP Arena isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.</p>
                     </div>
                 </div>
                 <!-- /.row -->

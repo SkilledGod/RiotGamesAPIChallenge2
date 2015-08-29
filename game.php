@@ -10,7 +10,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
         <meta name="description" content="">
         <meta name="author" content="">
         <link href="css/fonts.css" rel="stylesheet" type="text/css">
-        <title>Riot Project v2 -  Start the game</title>
+        <title>AP Arena -  Start the game</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">Riot Project v2</a>
+                    <a class="navbar-brand" href="index.php">AP Arena</a>
                 </div>
                 <!-- Search -->
                 <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
@@ -426,12 +426,13 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     </tr> 
                                 </tbody>
                             </table> 
+                            <div class="row">
                             <div class="col-sm-4 text-center">
                                 <table class='table table-full-width custum-table2 '>
                                     <tr>
-                                        <th>Patch</th>
-                                        <th>5.11</th>
-                                        <th>5.14</th>
+                                        <th class="text-center">Patch</th>
+                                        <th class="text-center">5.11</th>
+                                        <th class="text-center">5.14</th>
                                     </tr>
                                     <tr>
                                         <td>Pickrate</td>
@@ -448,9 +449,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <div class="col-sm-4 text-center">
                                 <table class='table table-full-width custum-table2 '>
                                     <tr>
-                                        <th>Patch</th>
-                                        <th>5.11</th>
-                                        <th>5.14</th>
+                                        <th class="text-center">Patch</th>
+                                        <th class="text-center">5.11</th>
+                                        <th class="text-center">5.14</th>
                                     </tr>
                                     <tr>
                                         <td>Pickrate</td>
@@ -467,9 +468,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <div class="col-sm-4 text-center">
                                 <table class='table table-full-width custum-table2 '>
                                     <tr>
-                                        <th>Patch</th>
-                                        <th>5.11</th>
-                                        <th>5.14</th>
+                                        <th class="text-center">Patch</th>
+                                        <th class="text-center">5.11</th>
+                                        <th class="text-center">5.14</th>
                                     </tr>
                                     <tr>
                                         <td>Pickrate</td>
@@ -486,7 +487,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <div class="col-sm-12 text-center" style="margin-bottom:20px;">
                                 <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-danger">Abort</button>
                             </div>    
-
+                        </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -691,7 +692,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <hr />
-                        <p>Project Name isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.<br><a href="http://glyphicons.com/">Glyphicons</a></p>
+                        <p>AP Arena isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.<br><a href="http://glyphicons.com/">Glyphicons</a></p>
                     </div>
                 </div>
                 <!-- /.row -->
