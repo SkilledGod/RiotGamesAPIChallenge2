@@ -286,14 +286,14 @@ if (is_null($id_raw)) {
                         <div class="threerate">
                             <div class="normalpick">
                                 <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal"><?php echo round($rates['pickrate511Normal'],2); ?>%</div>
+                                <div class="percentgenormal"><?php echo round($rates['pickrate511Normal']*100,2); ?>%</div>
                             </div>
                             <div class="arrowpick">
                                 <div class="arrow<?php echo ($rates['pickrate511Normal'] < $rates['pickrate514Normal'] ? "up" : "down"); ?>"></div>
                             </div>
                             <div class="rankedpick">
                                 <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked"><?php echo round($rates['pickrate514Normal'],2); ?>%</div>
+                                <div class="percentgeranked"><?php echo round($rates['pickrate514Normal']*100,2); ?>%</div>
                             </div>                                    
                         </div>
                     </div> 
@@ -302,14 +302,14 @@ if (is_null($id_raw)) {
                         <div class="threerate">
                             <div class="normalpick">
                                 <div class="normaltitle">Patch 5.11</div>
-                                <div class="percentgenormal"><?php echo round($rates['winrate511Normal'],2); ?>%</div>
+                                <div class="percentgenormal"><?php echo round($rates['winrate511Normal']*100,2); ?>%</div>
                             </div>
                             <div class="arrowpick">
                                 <div class="arrow<?php echo ($rates['winrate511Normal'] < $rates['winrate514Normal'] ? "up" : "down"); ?>"></div>
                             </div>
                             <div class="rankedpick">
                                 <div class="rankedtitle">Patch 5.14</div>
-                                <div class="percentgeranked"><?php echo round($rates['winrate514Normal'],2); ?>%</div>
+                                <div class="percentgeranked"><?php echo round($rates['winrate514Normal']*100,2); ?>%</div>
                             </div>                                    
                         </div>
                     </div>                      
