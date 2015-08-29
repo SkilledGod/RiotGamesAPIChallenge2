@@ -317,3 +317,9 @@ body {
     height:80px;
     margin-top: 20px;
 }
+
+
+.pagination{
+    color:red;
+    background-color: red;
+}
