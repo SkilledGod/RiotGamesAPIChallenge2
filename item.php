@@ -266,15 +266,27 @@ if (is_null($id_raw)) {
                         <tbody>
                             <tr>
                                 <?php
+                                $chmp3 = 0;
                                     $query = $mysqli->query("SELECT champs.pic, champs.name from commonItems, ap_items, champs where commonItems.item_id = ap_items.id and champs.id = commonItems.champ_id and commonItems.item_id = " .(int)$_GET['id'] ."  order by commonItems.count desc limit 5");
                                     while ($row = $query->fetch_assoc()) {
-                                ?>
+                                        if ($chmp3 == 3 || $chmp3 == 4){
+                                       ?>                                
+                                        <td class="text-center hidden-xs">
+                                        <img id="item1Opponent"  title="<?php echo $row['name']; ?>" data-uk-tooltip class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $row['pic']; ?>" alt="">
+                                        </td>
+                                    <?php
+                                        }
+                                    else{
+                                        ?>
                                         <td class="text-center">
-                                                    <img id="item1Opponent"  title="<?php echo $row['name']; ?>" data-uk-tooltip class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $row['pic']; ?>" alt="">
-                                                </td>     
-                                <?php
+                                        <img id="item1Opponent"  title="<?php echo $row['name']; ?>" data-uk-tooltip class="img-responsive img-rounded" width="70" height="70" src="images/chmpions/<?php echo $row['pic']; ?>" alt="">
+                                        </td> 
+                                    <?php
+                                    
                                     }
-                                ?>                             
+                                    $chmp3++;
+                                    }
+                                    ?>
                             </tr> 
                         </tbody>
                     </table>
