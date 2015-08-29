@@ -19,6 +19,10 @@ $result = $mysqli->query("SELECT * FROM `ap_items`");
 
         <!-- Custom CSS -->
         <link href="css/custom.css" rel="stylesheet">
+       <link id="data-uikit-theme" rel="stylesheet" href="js/tip/uikit.docs.min.css">
+        <script src="js/tip/jquery.js"></script>
+        <script src="js/tip/uikit.min.js"></script>
+        <script src="js/tip/tooltip.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -99,16 +103,11 @@ $result = $mysqli->query("SELECT * FROM `ap_items`");
                     <?php
                     while ($row = $result->fetch_assoc()) {
                         $items = file_get_contents("item.json");
-                        $getItem = json_decode($items, true);
-                        foreach ($getItem['data'] as $key => $val) {
-                            if ($key == $row['id']) {
                                 ?>
-                                <a href="item.php?id=<?php echo $row['id']; ?>" title="<?php echo $row['name']; ?>" data-toggle="popover" data-placement="top" data-content="<?php echo $val['plaintext']; ?>">
-                                    <img class="img-circle" style="padding:9px;" src="images/item/<?php echo $row['id'] ?>.png" alt="" />
+                                <a href="item.php?id=<?php echo $row['id']; ?>">
+                                    <img class="img-circle" style="padding:9px;" data-uk-tooltip  title="<?php echo $row['name']; ?>" src="images/item/<?php echo $row['id'] ?>.png" alt="" />
                                 </a>
                                 <?php
-                            }
-                        }
                     }
                     ?> 
                 </div>
