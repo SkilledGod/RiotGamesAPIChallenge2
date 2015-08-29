@@ -145,7 +145,7 @@ body{
 }
 
 .custum-table2{
-    font-size: 9px;
+    font-size: 12px;
     position: relative;
 }
 
@@ -320,6 +320,7 @@ body {
 
 .pagination > .disabled a {
 	background-color:black;
+	border-color:grey;	
 }
 .pagination > .active a {
 	border-color:grey;

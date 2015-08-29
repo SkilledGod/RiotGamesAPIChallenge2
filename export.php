@@ -81,9 +81,6 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                         <li class="active">
                             <a href="export.php">Export Data</a>
                         </li>
-                        <li>
-                            <a href="about.php">About</a>
-                        </li>                       
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -106,13 +103,12 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
             </div>   
             <div class="row">
                 <div class="col-lg-12" style="margin-top:50px;">
-                    <h3 class="text-left" style="color:#D9534F;">Data analyst</h3>
-                    <p>This analyst was take from more than 300,000 match given from Riot Developer , You can download this matches by <code><a style="color:red;" href="https://s3-us-west-1.amazonaws.com/riot-api/api_challenge/AP_ITEM_DATASET.zip">Clicking Here</a></code> below information about the analyst matches</p>
+                    <h3 class="text-left" style="color:#D9534F;">Data Analysis</h3>
+                    <p>This analysis was taken from more than 300,000 match given by Riot. You can download the match ids <code><a style="color:red;" href="https://s3-us-west-1.amazonaws.com/riot-api/api_challenge/AP_ITEM_DATASET.zip">here</a></code>.</p>
                     <div class="table-condensed" style="margin-top:10px;">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
                                     <th class="text-center">Patch</th>
                                     <th class="text-center">Number of Matches</th>
                                     <th class="text-center">Matches Type</th>
@@ -120,31 +116,31 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-center">1</td>
                                     <td class="text-center">Patch 5.11</td>
-                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">92.631</td>
                                     <td class="text-center">Normal</td>
-                                </tr>                                 <tr>
-                                    <td class="text-center">1</td>
+                                </tr>                                
+                                <tr>
                                     <td class="text-center">Patch 5.11</td>
-                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">94.170</td>
                                     <td class="text-center">Ranked</td>
-                                </tr>                                 <tr>
-                                    <td class="text-center">1</td>
+                                </tr>                          
+                                <tr>
                                     <td class="text-center">Patch 5.14</td>
-                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">92.908</td>
                                     <td class="text-center">Normal</td>
-                                </tr>                                 <tr>
-                                    <td class="text-center">1</td>
+                                </tr>
+                                <tr>
                                     <td class="text-center">Patch 5.14</td>
-                                    <td class="text-center">10,000</td>
+                                    <td class="text-center">84.289</td>
                                     <td class="text-center">Ranked</td>
                                 </tr>                                   
                             </tbody>
                             <tfoot>
                                  <tr>
-                                    <td class="text-center" colspan="3">Total</td>
-                                    <td class="text-center">97,427</td>
+				    <td class="text-center">Total</td>
+                                    <td class="text-center">363.998</td>
+				    <td></td>
                                 </tr>                                 
                             </tfoot>
                         </table>
@@ -154,11 +150,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-left" style="color:#D9534F;">Download Data</h3>
-                    <p><a href="#">Download Items Cost For Patch 5.11 and Patch 5.14 as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.11 (Normal) as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.11 (Ranked) as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.14 (Normal) as JSON</a></p>
-                    <p><a href="#">Download Winrate/Picrate For Patch 5.14 (Ranked) as JSON</a></p>  
+                    <p><a href="patch511.json">Patch 5.11 as JSON</a></p>
+                    <p><a href="patch514.json">Patch 5.14 as JSON</a></p>
+                    <p><a href="popularPicks.json">Most popular champion by item as JSON</a></p>
                 </div>
             </div>            
             <!-- Footer -->
@@ -166,7 +160,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <hr />
-                        <p>Copyright &copy; Riot Project v2</p>
+                        <p>Project Name isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.</p>
                     </div>
                 </div>
                 <!-- /.row -->

@@ -49,10 +49,10 @@ if (is_null($id_raw)) {
 	$rates['pickrate514Normal'] = $query['pickraten514'] / (10*$patchMatches['patch514']);
 	$rates['pickrate514Ranked'] = $query['pickrate514'] / (10*$patchMatches['patch514ranked']);
 	
-	$rates['winrate511Normal'] = $query['winraten511'] / $patchMatches['patch511'];
-	$rates['winrate511Ranked'] = $query['winrate511'] / $patchMatches['patch511ranked'];
-	$rates['winrate514Normal'] = $query['winraten514'] / $patchMatches['patch514'];
-	$rates['winrate514Ranked'] = $query['winrate514'] / $patchMatches['patch514ranked'];
+	$rates['winrate511Normal'] = $query['winraten511'] / max(1, $query['pickraten511']);
+	$rates['winrate511Ranked'] = $query['winrate511'] / max(1, $query['pickrate511']);
+	$rates['winrate514Normal'] = $query['winraten514'] / max(1, $query['pickraten514']);
+	$rates['winrate514Ranked'] = $query['winrate514'] / max(1, $query['pickrate514']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,9 +136,6 @@ if (is_null($id_raw)) {
                         <li>
                             <a href="export.php">Export Data</a>
                         </li>
-                        <li>
-                            <a href="about.php">About</a>
-                        </li>                       
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -260,7 +257,6 @@ if (is_null($id_raw)) {
                             </tbody>
                         </table>
                     </div>  
-                    <hr class="hrstyle">
                     Popular on
                     <table class="table table-full-width custum-table">
                         <tbody>
@@ -330,14 +326,12 @@ if (is_null($id_raw)) {
         </div>
         <!-- /.footer -->
         <div class="container">
-            <hr>
             <!-- Footer -->
             <footer>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <p>
-                            Riot Project 2 isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.                         
-                        </p>
+                        <hr />
+                        <p>Project Name isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.</p>
                     </div>
                 </div>
                 <!-- /.row -->

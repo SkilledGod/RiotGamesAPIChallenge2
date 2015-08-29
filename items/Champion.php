@@ -198,7 +198,13 @@ class Champion {
                         $slowFactor *= (1 - $slow);
                     }
                 }
-		return min(2.5, 0.625 / (1-$this->baseStats["attackspeedoffset"]) * (1 + $this->stats["percentattackspeed"] + $this->baseStats['attackspeedperlevel'] * $this->level)*$slowFactor);
+		$content = "BaseStats:" .$this->baseStats["attackspeedoffset"] ."\n";
+		$content .= "Percent Attackspeed:" .$this->stats['percentattackspeed'] ."\n";
+		$content .= "AS/level:" .$this->baseStats['attackspeedperlevel'] ."\n";
+		$content .= "Slow:" .$slowFactor ."\n";
+		
+                file_put_contents("debug.txt", $content);
+		return min(2.5, 0.625 / (1+$this->baseStats["attackspeedoffset"]) * (1 + $this->stats["percentattackspeed"] + $this->baseStats['attackspeedperlevel'] * $this->level/100))*$slowFactor;
 	}
 
 	function getMagicDamage() {

@@ -68,8 +68,8 @@ function startGame($name, $champId, $mysqli) {
 	$response = array();
 	$response['version'] = $matchArray['matchVersion'];
 
-	$own = new Champion($champId, 1, $mysqli); // level is one at the start
 	$opponent = getChampionByMatch($matchDir .$match, $choosenChamp['participantId'], $mysqli);
+	$own = new Champion($champId, $opponent->getLevel(), $mysqli); // level is one at the start
 
 	$response['opponent'] = generateChampResponse($opponent, $own, $mysqli);
 	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
@@ -145,17 +145,18 @@ function randomItem($gameId, $mysqli) {
             }
             
 	}
+	$debug = $patchMatches['511'] ."\n" .$patchMatches['514'] ."\n";
 	// TODO choose boots on first turn! (iff the opponent has some (bootsTag in db?)) (iff the opponent has boots)
 	$possibleItemsQuery = $mysqli->query("select ap_items.id as id, ap_items.name as name, items.description as description, (ap_items.pickrate511 + ap_items.pickraten511) as pickrate511, (ap_items.winrate511 + ap_items.winraten511) as winrate511, (ap_items.pickrate514 + ap_items.pickraten514) as pickrate514, (ap_items.winrate514 + ap_items.winraten514) as winrate514 from ap_items, items where ap_items.id = items.id and ap_items.id not in (select item_id from choosenItems where game_id = " .$gameId ." union select item_id from proposedItems where game_id = " .$gameId .")");
 	$possibleItems = array();
 	while ($item = $possibleItemsQuery->fetch_assoc()) {
             $item['winrate511'] = $item['winrate511'] / max($item['pickrate511'], 1);
-            $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patch['511']));
+            $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patchMatches['511']));
             $item['winrate514'] = $item['winrate514'] / max(1, $item['pickrate514']);
-            $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patch['514']));
+            $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patchMatches['514']));
             $possibleItems[] = $item;
 	}
-	
+	file_put_contents("debug.txt", $debug);
 	// Choose 3 distinct values
 	$values = array_rand($possibleItems, min(3, sizeof($possibleItems)));
 
@@ -163,7 +164,7 @@ function randomItem($gameId, $mysqli) {
 	$response['code'] = 200;
 	$response['items'] = array();
 	for ($i = 0; $i < 3; $i++) {
-		$response['items'][$i] = $possibleItems[$values[$i]];
+			$response['items'][$i] = $possibleItems[$values[$i]];
 	}
 
 	// push items into db
@@ -209,8 +210,8 @@ function selectItem($gameId, $choosenItemId, $mysqli) {
 
 	$game = $mysqli->query("select opponentGame, opponentParticipantId from games where id =" .$gameId)->fetch_assoc();
 
-	$own = getChampionByDB($gameId, $mysqli); // level is one at the start
 	$opponent = getChampionByMatch("../matches/" .$game['opponentGame'], $game['opponentParticipantId'], $mysqli);
+	$own = getChampionByDB($gameId, $mysqli, $opponent->getLevel()); // level is one at the start
 
 	$response['opponent'] = generateChampResponse($opponent, $own, $mysqli);
 	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
@@ -241,8 +242,8 @@ function endGame($gameId, $mysqli) {
 	// okay we are finished. that means 1. you already got the updated scores. 2. we need to determine the winner. --> 
 	$game = $mysqli->query("select opponentGame, opponentParticipantId from games where id =" .$gameId)->fetch_assoc();
 
-	$own = getChampionByDB($gameId, $mysqli); // level is one at the start
 	$opponent = getChampionByMatch("../matches/" .$game['opponentGame'], $game['opponentParticipantId'], $mysqli);
+	$own = getChampionByDB($gameId, $mysqli, $opponent->getLevel()); // level is one at the start
 
 	$response['opponent'] = generateChampResponse($opponent, $own, $mysqli);
 	$response['player'] = generateChampResponse($own, $opponent, $mysqli);
@@ -319,8 +320,8 @@ function getStats($gameId, $mysqli) {
 
 	$game = $gameQuery->fetch_assoc();
 
-	$own = getChampionByDB($gameId, $mysqli); // level is one at the start
 	$opponent = getChampionByMatch("../matches/" .$game['opponentGame'], $game['opponentParticipantId'], $mysqli);
+	$own = getChampionByDB($gameId, $mysqli, $opponent->getLevel()); // level is one at the start
 
 	$response['name'] = $game['player_name'];
 	$response['opponent'] = generateChampResponse($opponent, $own, $mysqli);
@@ -357,9 +358,9 @@ function getStats($gameId, $mysqli) {
 		$itemsQuery = $mysqli->query("select item_id as id, items.name as name, items.description as description, (ap_items.pickrate511 + ap_items.pickraten511) as pickrate511, (ap_items.winrate511 + ap_items.winraten511) as winrate511, (ap_items.pickrate514 + ap_items.pickraten514) as pickrate514, (ap_items.winrate514 + ap_items.winraten514) as winrate514 from proposedItems, items, ap_items where items.id = proposedItems.item_id and items.id = ap_items.id and game_id = " .$gameId ." and turn = " .$response['currentTurn']);
 		while ($item = $itemsQuery->fetch_assoc()) {
                         $item['winrate511'] = $item['winrate511'] / max($item['pickrate511'], 1);
-                        $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patch['511']));
+                        $item['pickrate511'] = $item['pickrate511'] / max(10, (10*$patchMatches['511']));
                         $item['winrate514'] = $item['winrate514'] / max(1, $item['pickrate514']);
-                        $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patch['514']));
+                        $item['pickrate514'] = $item['pickrate514'] / max(10, (10*$patchMatches['514']));
 			$response['selectableItems'][] = $item;
 		}
 	} 

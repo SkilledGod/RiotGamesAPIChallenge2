@@ -38,10 +38,10 @@ function getChampionByMatch($matchFile, $participantId, $mysqli) {
 	return $champion;
 }
 
-function getChampionByDB($matchId, $mysqli) {
+function getChampionByDB($matchId, $mysqli, $level) {
 	$champId = $mysqli->query("select champId from games where id = " .$matchId)->fetch_assoc()['champId'];
 
-	$champion = new Champion($champId, 1, $mysqli);
+	$champion = new Champion($champId, $level, $mysqli);
 	// Fetch the items
 	$itemQuery = $mysqli->query("select items.name as name from choosenItems, items WHERE items.id = choosenItems.item_id and game_id = " .$matchId);
 

@@ -92,9 +92,6 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                         <li>
                             <a href="export.php">Export Data</a>
                         </li>
-                        <li>
-                            <a href="about.php">About</a>
-                        </li>                       
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -690,12 +687,11 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                 </nav>
             </div>   
             <!-- Footer -->
-            <footer id="footer" style="display:none">
+            <footer>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <hr>
-
-                        <p>Copyright © Riot Project v2</p>
+                        <hr />
+                        <p>Project Name isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends &copy; Riot Games, Inc.</p>
                     </div>
                 </div>
                 <!-- /.row -->
