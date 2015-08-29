@@ -1,6 +1,5 @@
 <?php
 include 'db.php';
-$result = $mysqli->query("SELECT * FROM `ap_items`");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +100,8 @@ $result = $mysqli->query("SELECT * FROM `ap_items`");
                 </div>
                 <div class="col-lg-12">
                     <?php
-                    while ($row = $result->fetch_assoc()) {
+		$result = $mysqli->query("SELECT * FROM `ap_items`");
+		while ($row = $result->fetch_assoc()) {
                         $items = file_get_contents("item.json");
                                 ?>
                                 <a href="item.php?id=<?php echo $row['id']; ?>">
