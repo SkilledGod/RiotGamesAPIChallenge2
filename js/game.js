@@ -358,24 +358,26 @@ function showHighscore(top, page) {
 }
 
 function generateHighscorePagination(currentPage, maxPage) {
-	previous = '<li {disabled}><a onClick="showHighscore(true, {page})" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+	previous = '<li><a onClick="showHighscore(true, {page})" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+	previousDisabled = '<li class="disabled"><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
 	next = '<li {disabled}><a onClick="showHighscore(true, {page})" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+	nextDisabled = '<li class="disabled"><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
 	page = '<li {active}><a onClick="showHighscore(true, {page})">{page}</a></li>';
 	curPageHTML = '<li><a onClick="showHighscore(true, {page})">{page}</a></li>';
 
-	// TODO page == 1 oder page == maxPage
-	disabled = "";
-	if (currentPage -1 == 0) {
-		disabled = 'class="disabled"';
-	}
-	previous = previous.replace("{page}", currentPage-1).replace("{disabled}", disabled);
-	
-	disabled = "";
-	if (currentPage == maxPage) {
-		disabled = 'class="disabled"';
-	}
-	next = next.replace("{page}", currentPage+1).replace("{disabled}", disabled);
 
+
+	if (currentPage -1 == 0) {
+		previous = previousDisabled;
+	} else {
+		previous = previous.replace("{page}", currentPage-1);
+	}	
+
+	if (currentPage == maxPage) {
+		next = nextDisabled;
+	} else {
+		next = next.replace("{page}", currentPage+1);
+	}
 
 	response = previous;
 	for (i = Math.max(1, currentPage-5); i <= Math.min(maxPage, currentPage+5);i++) {

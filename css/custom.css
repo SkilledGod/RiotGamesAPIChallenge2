@@ -318,8 +318,14 @@ body {
     margin-top: 20px;
 }
 
-
-.pagination{
-    color:red;
-    background-color: red;
+.pagination > .disabled a {
+	background-color:black;
+}
+.pagination > .active a {
+	border-color:grey;
+}
+.pagination li a{
+	color:white;
+    background-color: black;
+	border-color:grey;
 }
