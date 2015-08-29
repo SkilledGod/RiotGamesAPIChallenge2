@@ -39,62 +39,48 @@ CREATE TABLE IF NOT EXISTS `ap_items` (
   `pickraten514` int(255) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `ap_items`
---
+INSERT INTO `ap_items` (`id`, `name`, `pickrate511`, `winrate511`, `pickrate514`, `winrate514`, `pickraten511`, `winraten511`, `pickraten514`, `winraten514`) VALUES
+(1026, 'Blasting Wand', 53465, 25242, 44057, 21224, 55098, 25683, 48709, 23077),
+(1052, 'Amplifying Tome', 34748, 16290, 46946, 20946, 37764, 17389, 59311, 26462),
+(1056, 'Doran''s Ring', 88084, 40646, 76139, 35327, 80864, 37411, 84132, 39354),
+(1058, 'Needlessly Large Rod', 48598, 27230, 59332, 32026, 50135, 27598, 65445, 35242),
+(3001, 'Abyssal Scepter', 32274, 17928, 24829, 13961, 24997, 13715, 20440, 11547),
+(3003, 'Archangel''s Staff', 2421, 1160, 2010, 996, 3025, 1465, 3538, 1826),
+(3023, 'Twin Shadows', 2630, 1545, 2108, 1258, 2837, 1542, 3539, 1985),
+(3025, 'Iceborn Gauntlet', 20988, 11915, 15443, 8569, 19537, 10895, 19252, 10494),
+(3027, 'Rod of Ages', 55792, 29145, 44219, 22908, 40866, 21489, 40010, 20438),
+(3041, 'Mejai''s Soulstealer', 7467, 5087, 6486, 4416, 8456, 5445, 5713, 3786),
+(3050, 'Zeke''s Harbinger', 1100, 757, 6835, 4205, 843, 541, 5171, 3081),
+(3057, 'Sheen', 13969, 6602, 11794, 5557, 17953, 8442, 17980, 8170),
+(3060, 'Banner of Command', 1494, 985, 1841, 1165, 1210, 773, 1358, 794),
+(3078, 'Trinity Force', 61440, 34749, 58576, 33273, 55328, 31641, 64239, 36266),
+(3089, 'Rabadon''s Deathcap', 92203, 54654, 84453, 49585, 103710, 59685, 101634, 57710),
+(3092, 'Frost Queen''s Claim', 25817, 13687, 19348, 10167, 20713, 11056, 24579, 12530),
+(3098, 'Frostfang', 7166, 3238, 5356, 2424, 5547, 2529, 5341, 2457),
+(3100, 'Lich Bane', 33164, 17667, 27885, 14863, 60037, 31512, 46441, 24757),
+(3108, 'Fiendish Codex', 10038, 4205, 7538, 3148, 13117, 5358, 11995, 5189),
+(3113, 'Aether Wisp', 18970, 7685, 14112, 5837, 26881, 10730, 21113, 8770),
+(3115, 'Nashor''s Tooth', 8397, 4533, 11851, 6591, 14090, 7599, 21698, 12144),
+(3116, 'Rylai''s Crystal Scepter', 23662, 13617, 31310, 18384, 22039, 12330, 30291, 17351),
+(3124, 'Guinsoo''s Rageblade', 500, 304, 629, 389, 929, 513, 1117, 663),
+(3135, 'Void Staff', 45958, 26336, 31502, 18636, 44823, 24633, 32909, 18777),
+(3136, 'Haunting Guise', 8272, 4262, 8366, 4175, 6928, 3427, 8053, 4036),
+(3145, 'Hextech Revolver', 2454, 1171, 1813, 828, 3126, 1490, 2689, 1207),
+(3146, 'Hextech Gunblade', 6033, 3195, 5260, 2716, 8525, 4599, 8392, 4531),
+(3151, 'Liandry''s Torment', 25875, 14875, 29209, 17011, 25354, 14152, 32201, 18421),
+(3152, 'Will of the Ancients', 15619, 8226, 10284, 5292, 10206, 5317, 6897, 3562),
+(3157, 'Zhonya''s Hourglass', 105302, 58881, 93782, 51518, 93561, 51962, 87260, 47978),
+(3165, 'Morellonomicon', 56525, 29512, 47256, 25273, 61094, 31963, 50773, 26717),
+(3174, 'Athene''s Unholy Grail', 25581, 12915, 21964, 11214, 26015, 13351, 21726, 11458),
+(3191, 'Seeker''s Armguard', 22410, 9143, 13686, 5309, 23079, 9859, 15035, 6429),
+(3196, 'The Hex Core mk-1', 643, 282, 950, 343, 339, 137, 1178, 381),
+(3197, 'The Hex Core mk-2', 949, 421, 2001, 988, 475, 241, 1725, 744),
+(3198, 'Perfect Hex Core', 2512, 1299, 4879, 2628, 1829, 992, 9223, 4690),
+(3285, 'Luden''s Echo', 101898, 57209, 76608, 42938, 125515, 69119, 89614, 49716),
+(3303, 'Spellthief''s Edge', 7616, 3481, 5918, 2731, 7045, 3267, 7459, 3532),
+(3504, 'Ardent Censer', 4465, 2767, 3926, 2352, 3747, 2263, 4190, 2461);
 
-INSERT INTO `ap_items` (`id`, `name`, `pickrate511`, `winrate511`, `pickrate514`, `winrate514`, `winraten511`, `pickraten511`, `winraten514`, `pickraten514`) VALUES
-(1026, 'Blasting Wand', 0, 0, 0, 0, 0, 0, 0, 0),
-(1052, 'Amplifying Tome', 0, 0, 0, 0, 0, 0, 0, 0),
-(1056, 'Doran''s Ring', 0, 0, 0, 0, 0, 0, 0, 0),
-(1058, 'Needlessly Large Rod', 0, 0, 0, 0, 0, 0, 0, 0),
-(1063, 'Prospector''s Ring', 0, 0, 0, 0, 0, 0, 0, 0),
-(3001, 'Abyssal Scepter', 0, 0, 0, 0, 0, 0, 0, 0),
-(3003, 'Archangel''s Staff', 0, 0, 0, 0, 0, 0, 0, 0),
-(3023, 'Twin Shadows', 0, 0, 0, 0, 0, 0, 0, 0),
-(3025, 'Iceborn Gauntlet', 0, 0, 0, 0, 0, 0, 0, 0),
-(3027, 'Rod of Ages', 0, 0, 0, 0, 0, 0, 0, 0),
-(3041, 'Mejai''s Soulstealer', 0, 0, 0, 0, 0, 0, 0, 0),
-(3048, 'Seraph''s Embrace', 0, 0, 0, 0, 0, 0, 0, 0),
-(3050, 'Zeke''s Harbinger', 0, 0, 0, 0, 0, 0, 0, 0),
-(3057, 'Sheen', 0, 0, 0, 0, 0, 0, 0, 0),
-(3060, 'Banner of Command', 0, 0, 0, 0, 0, 0, 0, 0),
-(3078, 'Trinity Force', 0, 0, 0, 0, 0, 0, 0, 0),
-(3089, 'Rabadon''s Deathcap', 0, 0, 0, 0, 0, 0, 0, 0),
-(3090, 'Wooglet''s Witchcap', 0, 0, 0, 0, 0, 0, 0, 0),
-(3092, 'Frost Queen''s Claim', 0, 0, 0, 0, 0, 0, 0, 0),
-(3098, 'Frostfang', 0, 0, 0, 0, 0, 0, 0, 0),
-(3100, 'Lich Bane', 0, 0, 0, 0, 0, 0, 0, 0),
-(3108, 'Fiendish Codex', 0, 0, 0, 0, 0, 0, 0, 0),
-(3113, 'Aether Wisp', 0, 0, 0, 0, 0, 0, 0, 0),
-(3115, 'Nashor''s Tooth', 0, 0, 0, 0, 0, 0, 0, 0),
-(3116, 'Rylai''s Crystal Scepter', 0, 0, 0, 0, 0, 0, 0, 0),
-(3124, 'Guinsoo''s Rageblade', 0, 0, 0, 0, 0, 0, 0, 0),
-(3135, 'Void Staff', 8, 4, 5, 4, 2, 2, 2, 4),
-(3136, 'Haunting Guise', 0, 0, 0, 0, 0, 0, 0, 0),
-(3145, 'Hextech Revolver', 0, 0, 0, 0, 0, 0, 0, 0),
-(3146, 'Hextech Gunblade', 0, 0, 0, 0, 0, 0, 0, 0),
-(3151, 'Liandry''s Torment', 0, 0, 0, 0, 0, 0, 0, 0),
-(3152, 'Will of the Ancients', 0, 0, 0, 0, 0, 0, 0, 0),
-(3157, 'Zhonya''s Hourglass', 0, 1, 0, 0, 0, 0, 0, 0),
-(3165, 'Morellonomicon', 0, 0, 0, 0, 0, 0, 0, 0),
-(3170, 'Moonflair Spellblade', 0, 0, 0, 0, 0, 0, 0, 0),
-(3174, 'Athene''s Unholy Grail', 0, 0, 0, 0, 0, 0, 0, 0),
-(3191, 'Seeker''s Armguard', 0, 0, 0, 0, 0, 0, 0, 0),
-(3196, 'The Hex Core mk-1', 0, 0, 0, 0, 0, 0, 0, 0),
-(3197, 'The Hex Core mk-2', 0, 0, 0, 0, 0, 0, 0, 0),
-(3198, 'Perfect Hex Core', 0, 0, 0, 0, 0, 0, 0, 0),
-(3285, 'Luden''s Echo', 0, 0, 0, 0, 0, 0, 0, 0),
-(3303, 'Spellthief''s Edge', 0, 0, 0, 0, 0, 0, 0, 0),
-(3430, 'Rite of Ruin', 0, 0, 0, 0, 0, 0, 0, 0),
-(3431, 'Netherstride Grimoire', 0, 0, 0, 0, 0, 0, 0, 0),
-(3433, 'Lost Chapter', 0, 0, 0, 0, 0, 0, 0, 0),
-(3434, 'Pox Arcana', 0, 0, 0, 0, 0, 0, 0, 0),
-(3504, 'Ardent Censer', 0, 0, 0, 0, 0, 0, 0, 0),
-(3744, 'Staff of Flowing Water', 0, 0, 0, 0, 0, 0, 0, 0),
-(3829, 'Trickster''s Glass', 0, 0, 0, 0, 0, 0, 0, 0);
 
--- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `champs`
@@ -238,7 +224,7 @@ INSERT INTO `champs` (`id`, `name`, `pic`) VALUES
 (429, 'Kalista', 'Kalista.png'),
 (432, 'Bard', 'Bard.png');
 
--- --------------------------------------------------------
+
 
 --
 -- Tabellenstruktur für Tabelle `champ_stats`
@@ -18371,6 +18357,7 @@ INSERT INTO `games` (`id`, `player_name`, `state_id`, `champId`, `currentScore`,
 (219, 'iaeiae', 2, 266, '1701.370', 'testMatch.json', 5, 1440845715, 5, 0),
 (222, 'iaeiae', 2, 266, '1720.900', 'testMatch.json', 8, 1440847958, 6, 0);
 
+
 -- --------------------------------------------------------
 
 --
@@ -18677,28 +18664,33 @@ INSERT INTO `items` (`id`, `name`, `description`) VALUES
 (3932, 'Enchantment: Sated Devourer', '+50% Attack Speed<br>+60 Magic Damage on Hit<br><br><passive>Passive - Phantom Hit:</passive> Every other basic attack will trigger on Hit effects an additional time.'),
 (3933, 'Enchantment: Sated Devourer', '+50% Attack Speed<br>+60 Magic Damage on Hit<br><br><passive>Passive - Phantom Hit:</passive> Every other basic attack will trigger on Hit effects an additional time.');
 
--- --------------------------------------------------------
+
 
 --
--- Tabellenstruktur für Tabelle `matches`
+-- Table structure for table `matches`
 --
 
 CREATE TABLE IF NOT EXISTS `matches` (
   `patch` varchar(255) NOT NULL,
-  `numberOfGames` int(11) NOT NULL
+  `numberOfGames` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `matches`
+-- Dumping data for table `matches`
 --
 
 INSERT INTO `matches` (`patch`, `numberOfGames`) VALUES
-('patch511', 10),
-('patch511ranked', 10),
-('patch514', 10),
-('patch514ranked', 10);
+('patch511', 92631),
+('patch511ranked', 94170),
+('patch514', 92908),
+('patch514ranked', 84289);
 
 -- --------------------------------------------------------
+
+--
+
+
+
 
 --
 -- Tabellenstruktur für Tabelle `proposedItems`
@@ -20858,6 +20850,7 @@ INSERT INTO `proposedItems` (`game_id`, `item_id`, `turn`) VALUES
 (222, 3434, 4),
 (222, 3829, 5);
 
+
 -- --------------------------------------------------------
 
 --
@@ -21049,3 +21042,4 @@ ALTER TABLE `stats`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
