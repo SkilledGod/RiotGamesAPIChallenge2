@@ -1,4 +1,2 @@
-BaseStats:-0.04
-Percent Attackspeed:0.3
-AS/level:3.00
-Slow:1
+186801
+177197

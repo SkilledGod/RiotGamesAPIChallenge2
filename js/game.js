@@ -93,20 +93,20 @@ function requestRandomItems() {
 
 			// set items table
 			console.log("setting items");	
-			$("#pickrate511Item1").html(Math.round(response['items'][0]['pickrate511']*10000)/100);
-			$("#pickrate514Item1").html(Math.round(response['items'][0]['pickrate514']*10000)/100 + (response['items'][0]['pickrate511'] < response['items'][0]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-			$("#winrate511Item1").html(Math.round(response['items'][0]['winrate511']*10000)/100);
-			$("#winrate514Item1").html(Math.round(response['items'][0]['winrate514']*10000)/100 + (response['items'][0]['winrate511'] < response['items'][0]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#pickrate511Item1").html(Math.round(response['items'][0]['pickrate511']*10000)/100 + "%");
+			$("#pickrate514Item1").html(Math.round(response['items'][0]['pickrate514']*10000)/100 + "%" + (response['items'][0]['pickrate511'] < response['items'][0]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item1").html(Math.round(response['items'][0]['winrate511']*10000)/100 + "%");
+			$("#winrate514Item1").html(Math.round(response['items'][0]['winrate514']*10000)/100 + "%" + (response['items'][0]['winrate511'] < response['items'][0]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
 
-			$("#pickrate511Item2").html(Math.round(response['items'][1]['pickrate511']*10000)/100);
-			$("#pickrate514Item2").html(Math.round(response['items'][1]['pickrate514']*10000)/100 + (response['items'][1]['pickrate511'] < response['items'][1]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-			$("#winrate511Item2").html(Math.round(response['items'][1]['winrate511']*10000)/100);
-			$("#winrate514Item2").html(Math.round(response['items'][1]['winrate514']*10000)/100 + (response['items'][1]['winrate511'] < response['items'][1]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#pickrate511Item2").html(Math.round(response['items'][1]['pickrate511']*10000)/100 + "%");
+			$("#pickrate514Item2").html(Math.round(response['items'][1]['pickrate514']*10000)/100 + "%" + (response['items'][1]['pickrate511'] < response['items'][1]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item2").html(Math.round(response['items'][1]['winrate511']*10000)/100 + "%");
+			$("#winrate514Item2").html(Math.round(response['items'][1]['winrate514']*10000)/100 + "%" + (response['items'][1]['winrate511'] < response['items'][1]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
 
-			$("#pickrate511Item3").html(Math.round(response['items'][2]['pickrate511']*10000)/100);
-			$("#pickrate514Item3").html(Math.round(response['items'][2]['pickrate514']*10000)/100 + (response['items'][2]['pickrate511'] < response['items'][2]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
-			$("#winrate511Item3").html(Math.round(response['items'][2]['winrate511']*10000)/100);
-			$("#winrate514Item3").html(Math.round(response['items'][2]['winrate514']*10000)/100 + (response['items'][2]['winrate511'] < response['items'][2]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#pickrate511Item3").html(Math.round(response['items'][2]['pickrate511']*10000)/100 + "%");
+			$("#pickrate514Item3").html(Math.round(response['items'][2]['pickrate514']*10000)/100  + "%"+ (response['items'][2]['pickrate511'] < response['items'][2]['pickrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
+			$("#winrate511Item3").html(Math.round(response['items'][2]['winrate511']*10000)/100 + "%");
+			$("#winrate514Item3").html(Math.round(response['items'][2]['winrate514']*10000)/100  + "%"+ (response['items'][2]['winrate511'] < response['items'][2]['winrate514'] ? "<img src='images/arrowUp.png' width='8' height='8' alt=''/>" : "<img src='images/arrowDown.png' width='8' height='8' alt=''/>"));
 		} else {
 			showError(response);
 		}
