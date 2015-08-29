@@ -1,4 +1,0 @@
-BaseStats:-0.04
-Percent Attackspeed:0.4
-AS/level:3.00
-Slow:1
