@@ -480,7 +480,7 @@ class Game {
 		$matchArray = NULL;	
 		$match = NULL;
 		$threshold = 0;
-		while ($choosenChamp == NULL && $threshold < 10) {
+		while ($choosenChamp == NULL && $threshold < 10 && $numberOfEntries > 0) {
 			// macth file
 			$match = $files[rand(0, $numberOfEntries-1)];
 			$matchArray = json_decode(file_get_contents(self::$MATCHES_FOLDER .$match), true);
