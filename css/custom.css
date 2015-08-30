@@ -321,20 +321,25 @@ body {
 .pagination > .disabled a {
 	background-color:black;
 	border-color:grey;	
+        cursor: pointer;
 }
 .pagination > .active a {
 	border-color:grey;
+        cursor: pointer;
 }
 
 .pagination > .active a:hover{
 	border-color:grey;
+        cursor: pointer;
 }
 .pagination li a:hover{
 	color:black;
 	border-color:grey;
+        cursor: pointer;
 }
 .pagination li a{
 	color:white;
     background-color: black;
 	border-color:grey;
+        cursor: pointer;
 }
