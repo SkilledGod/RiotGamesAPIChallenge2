@@ -41,7 +41,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
     <body class="full" onload="<?php echo $loadFunction; ?>" >
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -54,7 +54,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     <a class="navbar-brand" href="index.php">AP Arena</a>
                 </div>
                 <!-- Search -->
-                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
+                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs">
                     <div class="form-group">
                         <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
                             <?php
@@ -63,7 +63,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             $getItem = json_decode($items, true);
                             foreach ($getItem['data'] as $key => $val) {
                             if ($key == $row2['id']) {
-                            echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";
+                            echo "<option label='{$row2['id']}' value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";
                             }
                             }
                             }
@@ -111,9 +111,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
 			</div>
                 </div>
             </div>
-            <div style="display:none" id="startGameView" class="row" style="background-color: #202126;">
+            <div style="display:none;" id="startGameView" class="row">
                 <div id="champSelect"  class="col-lg-12 col-centered">
-                    <form method="get" class="form-horizontal" role="search" style="padding-top:100px;">
+                    <form method="get" class="form-horizontal" style="padding-top:100px;">
                         <div class="form-group">
                             <p class="col-sm-2 text-center">
                                 Your Name
@@ -126,12 +126,13 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             </p>
                             <div class="col-sm-2" style="text-align: center;">
                                 <select id="champion" data-live-search="true" data-size="5" data-width="200px" class="selectpicker form-control" required="">
+                                    <option label="chose" value=""> </option>
                                     <?php
                                     include_once('db.php');
                                     $champs = $mysqli->query("select id, name, pic from champs order by name asc");
                                     while ($champ = $champs->fetch_assoc()) {
                                         ?>
-                                        <option value="<?php echo $champ['id']; ?>" data-content="<img class='img-circle' width='20' height='20' src='images/chmpions/<?php echo $champ['pic']; ?>' /> <?php echo $champ['name']; ?>"></option>
+                                        <option label="<?php echo $champ['id']; ?>"  value="<?php echo $champ['id']; ?>" data-content="<img class='img-circle' width='20' height='20' src='images/chmpions/<?php echo $champ['pic']; ?>' /> <?php echo $champ['name']; ?>"></option>
                                         <?php
                                     }
                                     ?>
@@ -437,7 +438,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     <tr>
                                         <td>Pickrate</td>
                                         <td id="pickrate511Item1" >50%</td>
-                                        <td id="pickrate514Item1" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                        <td id="pickrate514Item1" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
                                     </tr>
                                     <tr>
                                         <td>Winrate</td>
@@ -456,7 +457,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     <tr>
                                         <td>Pickrate</td>
                                         <td id="pickrate511Item2" >50%</td>
-                                        <td id="pickrate514Item2" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                        <td id="pickrate514Item2" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
                                     </tr>
                                     <tr>
                                         <td>Winrate</td>
@@ -475,7 +476,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     <tr>
                                         <td>Pickrate</td>
                                         <td id="pickrate511Item3" >50%</td>
-                                        <td id="pickrate514Item3" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></td>
+                                        <td id="pickrate514Item3" style="white-space: nowrap">60%<span style="color:green"> <img src='images/arrowUp.png' width='8' height='8' alt=''/></span></td>
                                     </tr>
                                     <tr>
                                         <td>Winrate</td>
@@ -601,8 +602,10 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
 
                 </div>            
             </div>
-            <div id="highscore" style="display:none" class="row" style="background-color: #202126;">
-                <center><button type="button" style="width:200px;margin:0 auto;font-size: 30px;" onClick="checkActiveGame()" class="btn btn-success">Play</button></center>
+            <div id="highscore" style="display:none;" class="row">
+                <div class="col-sm-12 text-center">
+                <button type="button" style="width:200px;font-size: 30px;" onClick="checkActiveGame()" class="btn btn-success">Play</button>
+                </div>
                 <div class="col-sm-12 text-center" style="margin-top:50px;">
                     <table class="table">
                         <thead>

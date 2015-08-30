@@ -34,7 +34,7 @@ include 'db.php';
 
     <body class="full">
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -47,7 +47,7 @@ include 'db.php';
                     <a class="navbar-brand" href="index.php">AP Arena</a>
                 </div>
                 <!-- Search -->
-                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs" role="search">
+                <form action="item.php" method="get" class="navbar-form navbar-left hidden-sm hidden-xs">
                     <div class="form-group">
                         <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
                             <?php
@@ -57,7 +57,7 @@ include 'db.php';
                                 $getItem = json_decode($items, true);
                                 foreach ($getItem['data'] as $key => $val) {
                                     if ($key == $row2['id']) {
-                                    echo "<option value='{$row2['id']}' data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"></option>";                                       
+                                    echo " <option label=\"{$row2['id']}\" value=\"{$row2['id']}\" data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"> </option> \n";                                       
                                     }
                                 }
                             }
