@@ -365,7 +365,7 @@ class Game {
 		$response['games'] = array();
 		$currentRank = 25 * ($page-1) + 1;
 		while ($game = $topGames->fetch_assoc()) {
-			$game['mark'] = $game['id'] == $gameId;
+			$game['mark'] = $game['id'] == $_SESSION['lastGameId'];
 			$game['rank'] = $currentRank;
 			$currentRank++;
 			$response['games'][] = $game;

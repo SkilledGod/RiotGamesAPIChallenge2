@@ -18,9 +18,42 @@ class Champion {
 		}
 		$this->id = $champId;
 		$this->level = $level;
-		$this->stats['percentmovementspeed'] = array();
+		$this->initStats();
 	}	
 
+	private function initStats() {
+		// init all stats
+		$this->stats['percentmovementspeed'] = array();
+		$this->stats['asSlow'] = array();
+		$this->stats['percentattackspeed'] = 0;
+		$this->stats['flatmagicdamage'] = 0;
+		$this->stats['flatmagicdamageperlevel'] = 0;
+		$this->stats['flatmagicdamagepercentmanapool'] = 0;
+		$this->stats['percentmagicdamage'] = 0;
+		$this->stats['flatphysicaldamage'] = 0;
+		$this->stats['adperpercentmaxmana'] = 0;
+		$this->stats['flatspellblockpenetration'] = 0;
+		$this->stats['flatarmorpenetration'] = 0;
+		$this->stats['flatcooldownreduction'] = 0;
+		$this->stats['flatarmor'] = 0;
+		$this->stats['flatspellblock'] = 0;
+		$this->stats['percentspellblockpenetration'] = 0;
+		$this->stats['percentarmorpenetration'] = 0;
+		$this->stats['flatmovementspeed'] = 0;
+		$this->stats['flatcritchance'] = 0;
+		$this->stats['flatcritdamage'] = 0;
+		$this->stats['flathpool'] = 0;
+		$this->stats['percentbonushealth'] = 0;
+		$this->stats['flatmpool'] = 0;
+		$this->stats['flatmpregen'] = 0;
+		$this->stats['percentbasemanaregen'] = 0;
+		$this->stats['percentbasehealthregen'] = 0;
+		$this->stats['flathpregen'] = 0;
+		$this->stats['percentlifesteal'] = 0;
+		$this->stats['percentspellvamp'] = 0;
+		$this->stats['flattenacity'] = 0;
+
+	}
 	function increaseStat($statName, $statValue) {
 		if ($statName == "percentmovementspeed" || $statName == "asSlow") {
 			if (!is_array($this->stats[$statName])) { // movespeed bonuses are multiplicative...
@@ -107,6 +140,7 @@ class Champion {
 
 	function recalculateStats($enemy) {
 		$this->stats = array();
+		$this->initStats();
 		foreach($this->itemInventory as $item) {
 			$item->applyChampion($this); // own stats & effects
 		}
@@ -198,12 +232,6 @@ class Champion {
                         $slowFactor *= (1 - $slow);
                     }
                 }
-		$content = "BaseStats:" .$this->baseStats["attackspeedoffset"] ."\n";
-		$content .= "Percent Attackspeed:" .$this->stats['percentattackspeed'] ."\n";
-		$content .= "AS/level:" .$this->baseStats['attackspeedperlevel'] ."\n";
-		$content .= "Slow:" .$slowFactor ."\n";
-		
-                file_put_contents("debug.txt", $content);
 		return min(2.5, 0.625 / (1+$this->baseStats["attackspeedoffset"]) * (1 + $this->stats["percentattackspeed"] + $this->baseStats['attackspeedperlevel'] * $this->level/100))*$slowFactor;
 	}
 

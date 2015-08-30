@@ -158,6 +158,7 @@ function endGame() {
 			success: function(result) {
 				console.log(result);
 				response = JSON.parse(result);
+				console.log(response);
 			}
 		});
 	}
@@ -166,7 +167,7 @@ function endGame() {
 		if (response['code'] === 200) {
 			$("#winScreen").css("display", "");
 			$("#selectItemsTable").css("display", "none");
-			if (response['won']) {
+			if (response['playerWon']) {
 				$("#winImage").css("display", "");
 				$("#loseImage").css("display", "none");		
 			} else {
@@ -177,6 +178,7 @@ function endGame() {
 			$("#playerEndscore").text(Math.round(response['playerScore']));
 			$("#opponentEndscore").text(Math.round(response['opponentScore']));
 			console.log("game ended");
+			console.log(response);
 		} else {
 			showError(response);
 		}

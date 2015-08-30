@@ -1,54 +1,65 @@
 <?php
 session_start();
+// No notices  because champion sucks..
 error_reporting(E_ALL ^ E_NOTICE);
-function e($number, $msg, $file, $line, $vars) {
-    if ($number != E_USER_NOTICE) {
-        echo "<br><pre>";
-        var_dump(debug_backtrace());
-        echo "</pre>";
-    }
-   die();
-}
-set_error_handler('e', E_ALL^ E_NOTICE );
+
 include('../db.php');
-include('function_turn.php'); // turn functions
+include('Game.php');
+include('GameFactory.php'); 
 foreach($_GET as $key => $value) {
 	$_GET[$key] = $mysqli->real_escape_string($value);
 }
+session_start(); // last session id!
 
-	switch($_GET['action']) {
+// Step 1: Create game or get value if no game is needed
+$creat = null;
+switch($_GET['action']) {
 		case 'startGame':
-			$return = startGame($_GET['name'], $_GET['champId'], $mysqli);
-			echo json_encode($return);
+			$creat = GameFactory::createNewGame($_GET['name'], $_GET['champId'], $mysqli);
 		break;
 		case 'randomItem':
-			$return = randomItem($_SESSION['gameId'], $mysqli);
-			echo json_encode($return);
-		break;
 		case 'selectItem':
-			$return = selectItem($_SESSION['gameId'], $_GET['itemNumber'], $mysqli);
-			echo json_encode($return);
-		break;
 		case 'endGame':
-			$return = endGame($_SESSION['gameId'], $mysqli);
-			echo json_encode($return);
+		case 'abortGame': 
+		case 'getStats':
+			$creat = GameFactory::openGame($mysqli);
 		break;
 		case 'highscore':
+			$creat['game'] = null;
 			// top
-			$return = highScore($mysqli, isset($_GET['top']), $_SESSION['lastGameId'], isset($_GET['page']) ? $_GET['page'] : 1);
-			echo json_encode($return);
-		break;
-		case 'abortGame': 
-			$return = abortGame($_SESSION['gameId'], $mysqli);
-			echo json_encode($return);
-		break;
-		case 'getStats':
-			$return = getStats($_SESSION['gameId'], $mysqli);
-			echo json_encode($return);
+			$creat['returnValue'] = Game::getHighScore($mysqli, isset($_GET['top']), isset($_GET['page']) ? $_GET['page'] : 1);
+			$creat['returnValue']['session'] = $_SESSION['lastGameId'];
 		break;
 		case 'isGameActive':
-			$return = isGameActive($_SESSION['gameId'], $mysqli);
-			echo json_encode($return);
+			$creat['game'] = null;
+			$creat['returnValue'] = Game::isGameActive($_SESSION['gameId'], $mysqli);
 		break;
 	}
+
+// Step two: Either some error ocurred or we got the correct value. anyway set return
+$return = null;
+if ($creat['game'] == null) {
+	$return = $creat['returnValue'];
+} else {
+	$game = $creat['game'];
+	switch($_GET['action']) {
+		case 'startGame':
+		case 'getStats':
+			$return = $game->getStats();
+		break;
+		case 'randomItem':
+			$return = $game->getRandomItems();
+		break;
+		case 'selectItem':
+			$return = $game->selectItem($_GET['itemNumber']);
+		break;
+		case 'endGame':
+			$return = $game->endGame();
+		break;
+		case 'abortGame': 
+			$return = $game->abortGame();
+		break;
+	}
+}
+echo json_encode($return);
 ?>
