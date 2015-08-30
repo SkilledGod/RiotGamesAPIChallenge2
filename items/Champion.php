@@ -125,11 +125,10 @@ class Champion {
 	function evaluateChampion($mysqli) {
 		$object = $mysqli->query("SELECT * FROM statToPointMap");
 		$score = 0;
-		while ($row = $object->fetch_assoc()) {
-			$score += $this->getStatByName($row['name']) * $row['value'];
+        	while ($row = $object->fetch_assoc()) {
+        		$score += $this->getStatByName($row['name']) * $row['value'];
 		}		
-
-		return $score;
+        	return $score;
 	}
 
 	function applyEffectsEnemy($enemy) {

@@ -424,7 +424,10 @@ class Game {
 				continue;
 			}
 			$itemName = $this->mysqli->query("select * from items where id = " .$itemId)->fetch_assoc()['name'];
-			// TODO bring into one regex
+                        if ($itemName == "") {
+                            continue;
+                        }
+                        // TODO bring into one regex
 			$className = str_replace(" ", "_", $itemName);
 			$className = str_replace("(", "", $className);
 			$className = str_replace(")", "", $className);

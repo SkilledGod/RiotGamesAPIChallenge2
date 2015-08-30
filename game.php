@@ -389,7 +389,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     <div class="col-lg-6">
                         <div class="score">
                             <div class="yourscore"><span id="scorePlayer" class="gradeitntext">0</span></div>
-                            <div class="vsicon hidden-md hidden-sm hidden-xs hidden-print"></div>
+                            <div class="vsicon hidden-md hidden-sm hidden-xs"></div>  
                             <div class="topscore"><span id="topScore" class="gradeitntext2">51</span></div>
                         </div>
                         <div id="winScreen" style="display:none;margin-top: 70px;" class="randomitems">
@@ -409,7 +409,8 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     <div class="col-sm-6"><button style="width:150px;margin:0 auto;font-size: 15px;" onClick="tryAgain()" type="button" class="btn btn-danger">Try Again ?</button></div>
                                 </div>                                
                             </div>
-                        </div>                        
+                        </div>   
+                        <div class="text-center" style="font-size:20px;">Patch 5.14</div>
                         <div id="selectItemsTable" class="randomitems" style="margin-top: 100px;">
                             Click On One Item To Move It To Your Inventory <span style="float:right;"><span id="currentTurn">1</span>/<span id="numberOfTurns">6</span></span>
                             <table class="table table-full-width custum-table">
