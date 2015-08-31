@@ -192,13 +192,13 @@ class Game {
 	
 	public function selectItem($choosenItemId) {
 		if (!$this->isActive) {
-			return array("code" => 109, "message" => "Database failure");
+			return array("code" => 109, "message" => "No active game found.");
 		}
 		$phase = $this->getGamePhase();
 		if ($phase == "requestItem") {
 			return array("code" => 110, "message" => "You need to request new items first");
 		} elseif ($phase == "ended") {
-			return array("code" => 110, "message" => "Game has already ended");
+			return array("code" => 135, "message" => "Game has already ended");
 		}
 
 		$isInProposedItems = false;
@@ -235,7 +235,7 @@ class Game {
 			$response['code'] = 200;
 		} else {
 			$response['code'] = 200; // score is not important and actually the correct score gets delivered
-			$response['message'] = "Coudn't update score";
+			$response['message'] = "Couldn't update score";
 		}
 		$response['player'] = $this->generateChampResponse($champion);
 		$response['opponent'] = $this->generateChampResponse($opponent);
@@ -345,7 +345,7 @@ class Game {
 		
 		$entriesPerPage = 25;
 		$stateId = self::getGameEndedStateId($mysqli);
-		if (!$top) {
+		if (!$top && isset($_SESSION['lastGameId'])) {
 			$rowsInFront = $mysqli->query("select player_name, currentScore, won from games where currentScore >= (select currentScore from games where id = " .$_SESSION['lastGameId'] .") and state_id = " .$stateId ." order by currentScore desc")->num_rows;
 			$page = floor(($rowsInFront + 1) / 25) + 1;
 		}
@@ -358,7 +358,13 @@ class Game {
 		$response['numberOfPages'] = ceil($mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows / 25);
 		
 		if ($response['page'] > $response['numberOfPages']) {
-			return array("code" => 118, "message" => "Page number has to be lower than " .$response['numberOfPages']);
+			$message = "Page number has to be lower than " .$response['numberOfPages'];
+			$code = 118;
+			if ($response['numberOfPages'] == 0) {
+				$message = "0 games have ended. Come back later.";
+				$code = 200;
+			}
+			return array("code" => $code, "message" => $message);
 		}
 
 		// Add the games in the list

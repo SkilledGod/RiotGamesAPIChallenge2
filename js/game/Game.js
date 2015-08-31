@@ -108,6 +108,9 @@ Game.prototype.checkActiveGame = function() {
 Game.prototype.showHighscore = function(top, page) {
 	var that = this;
 	ajax.getHighscore(top, page, function(data) {
+			if ("message" in data) { // No highscores yet
+				data['code'] = 118;
+			}
 			if (!that.displayError(data)) {
 				helper.generateHighscoreTable(data['games']);
 				helper.generateHighscorePagination(data['page'], data['numberOfPages']);
