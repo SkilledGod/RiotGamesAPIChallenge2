@@ -7,14 +7,10 @@ function AjaxRequests() {}
 AjaxRequests.prototype.rootDir = getAbsolutePath("AjaxRequests.js");
 // RequestUrl is relative to the root of the project
 AjaxRequests.prototype.sendRequest = function(requestUrl, handleFunction) {
-		console.log("sending request");
-		console.log(requestUrl);
 		$.ajax({
 				url: this.rootDir + "../../" + requestUrl + "&t=" + Math.random(),
 				success: function(result) {
-					console.log(result);
 					response = JSON.parse(result);
-					console.log(response);
 					handleFunction(response);
 				}
 		});
@@ -49,8 +45,6 @@ AjaxRequests.prototype.checkActiveGame = function(handleFunction) {
 }
 
 AjaxRequests.prototype.getHighscore = function(top, page, handleFunction) {
-		console.log("getting highscore");
 		var modifiers = top ? "&top&page=" + page : "";
-		console.log("modifiers");
 		this.sendRequest("game/turn.php?action=highscore" + modifiers, handleFunction);
 }

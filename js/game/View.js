@@ -1,7 +1,6 @@
 function View() {}
 
 View.prototype.showView = function(name) {
-	console.log(name);
 	for (i = 0; i < this.views.length; i++) {
 			if (name.indexOf(this.views[i]) !== -1) {
 				$("#" + this.views[i]).css("display", "");

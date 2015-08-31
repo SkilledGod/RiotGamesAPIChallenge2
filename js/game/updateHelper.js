@@ -28,7 +28,6 @@ Helper.prototype.initGame = function(data) {
 }
 
 Helper.prototype.setTurn = function(turn) {
-	console.log("Setting turn to " + turn);
 	$("#currentTurn").text(turn);
 }
 Helper.prototype.updateStatistics = function(player, playerName, opponent, cont) {

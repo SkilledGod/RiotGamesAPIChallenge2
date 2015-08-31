@@ -94,7 +94,6 @@ Game.prototype.checkActiveGame = function() {
 						if (data['active']) {
 							// get Stats and update them and then show the view
 							ajax.getStats(function(data) {
-								console.log(data);
 								helper.updateStatistics(data['player'], data['name'], data['opponent'], true);	
 								view.showView(["continueView"]);
 							});
