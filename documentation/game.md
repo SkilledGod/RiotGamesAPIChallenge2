@@ -1,8 +1,10 @@
 # Game Documentation
 The API located at [game/turn.php](game/turn.php) supports multiple different calls.
 ## API
+
 All parameters are forwarded as HTTP GET variables.
 Every Return-Object contains a code field. 200 denotes a successful request, every other value a failure. If the code is not 200 the Return-Object additionally contains a message field with a description of the error.
+
 ---
 ### action-Parameter
 | Value  | Description  |
@@ -26,7 +28,7 @@ Every Return-Object contains a code field. 200 denotes a successful request, eve
 
 #### Return Value
 ##### Code: 200
-See: [getStats](#getstats)
+**See:** [getStats](#getstats)
 
 ##### Code: 101
 **Message:** A game was already started but not yet finished.
@@ -52,7 +54,7 @@ No additional parameters.
 | Name  | Type | Description  |
 |---|---|---|
 | turn  | int  | current turn |
-| items  | array([item](#item))  | Array with selectable items |
+| items  | array([selectableItem](#selectableitem))  | Array with selectable items |
 ##### Code: 105
 **Message:** Game is not active.
 <br>**Cause:** No actave game found. Please start a game.
@@ -78,8 +80,8 @@ No additional parameters.
 | Name  | Type | Description  |
 |---|---|---|
 | lastSelectionMade  | boolean  | true if the last selection was made  |
-|  opponent | [opponent](#opponent)  | Opponent-Object |
-|  player | [player](#player)  | Player-Object  |
+|  opponent | [champ](#champ)  | Opponent-Object |
+|  player | [champ](#champ)  | Player-Object  |
 ##### Code: 109
 **Message:** No active game found.
 <br>**Cause:** No game was started yet. Please start one.
@@ -108,8 +110,8 @@ No additional parameters.
 ##### Code: 200
 | Name  | Type | Description  |
 |---|---|---|
-|  opponent | [opponent](#opponent)  | Opponent-Object |
-|  player | [player](#player)  | Player-Object  |
+|  opponent | [champ](#champ)  | Opponent-Object |
+|  player | [champ](#champ)  | Player-Object  |
 | opponentScore  | int  | score achieved by the opponent |
 | playerScore  | int  | score achieved by the opponent |
 | playerWon  | boolean  | Did the human player win? |
@@ -153,8 +155,8 @@ No additional parameters needed.
 |---|---|---|
 | version  | string  | Patch-Version  |
 |  name | string  | Player Name  |
-|  opponent | [opponent](#opponent)  | Opponent-Object |
-|  player | [player](#player)  | Player-Object  |
+|  opponent | [champ](#champ)  | Opponent-Object |
+|  player | [champ](#champ)  | Player-Object  |
 |  selectableItems | array([item](#item))  | array of selectable items (**only** contained if the current game phase is selectItem)  |
 
 
@@ -201,4 +203,45 @@ No additional parameters.
 |---|---|---|
 | active | boolean | true if a game is active |
 | gameId | int | game id if active is true else **not** present |
+
+---
+### Data Objects
+#### Champ
+| Name  | Type | Description  |
+|---|---|---|
+| champId  | int  |  |
+| level  | int  | champion level |
+| items  | array([item](#item)  | array containing all items  |
+| name  | string  | champion name  |
+| stats  | Map(String, Double) | map from champion stats to the value  |
+
+#### Game
+| Name  | Type | Description  |
+|---|---|---|
+| id  | int  | game id |
+| champId  | int  |  |
+| champName  | string  |  |
+| player_name  | string  |  |
+| currentScore  | int  | game rating |
+| won  | boolean  | if the human player has won the game |
+| mark  | boolean  | true if this game was the last game finished within the current session |
+
+#### Item
+| Name  | Type | Description  |
+|---|---|---|
+| id  | int  | game id |
+| name  | string  |  |
+| description  | string  | |
+
+#### Selectable Item
+| Name  | Type | Description  |
+|---|---|---|
+| id  | int  | game id |
+| name  | string  |  |
+| description  | string  | |
+| pickrate511  | double  | Pickrate Patch 5.11 |
+| pickrate514  | double  | Pickrate Patch 5.14 |
+| winrate511  | double  | Winrate Patch 5.11 |
+| winkrate514  | double | Winrate Patch 5.14 |
+
 
