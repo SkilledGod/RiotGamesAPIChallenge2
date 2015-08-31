@@ -22,3 +22,6 @@ Webserver with
 ## System notes
 - The game itself is a RESTful webservice. For a documentation of the available calls click [here](documentation/game.md).
 - The UI of the game is updated by JavaScript (and the data retrieved by AJAX-Requests to the service mentioned above).
+
+## Documentation
+See [here](documentation/game.md).
