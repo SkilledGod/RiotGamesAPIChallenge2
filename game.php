@@ -21,7 +21,12 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
         <script src="js/tip/jquery.js"></script>
         <script src="js/tip/uikit.min.js"></script>
         <script src="js/tip/tooltip.js"></script>
-        <script src="js/game.js"></script>
+        <script src="js/absolutePath.js"></script>
+        <script src="js/stringPrototypeMod.js"></script>
+        <script src="js/game/AjaxRequests.js"></script>
+        <script src="js/game/updateHelper.js"></script>
+        <script src="js/game/View.js"></script>
+        <script src="js/game/Game.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -33,9 +38,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
 <?php 
 	include_once('db.php');
 		
-	$loadFunction = "checkActiveGame()";
+	$loadFunction = "game.checkActiveGame()";
 	if (isset($_GET['showHighscore'])) {
-		$loadFunction = "showHighscore(true, 1)";
+		$loadFunction = "game.showHighscore(true, 1)";
 	}
 ?>
     <body class="full" onload="<?php echo $loadFunction; ?>" >
@@ -139,13 +144,13 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                 </select>
                             </div>   
                             <div class="col-sm-12 text-center" style="padding-top:50px;">
-                                <button style="width:200px;margin:0 auto;" type="button" onClick="startGame()" class="btn btn-success">Start Game</button>
+                                <button style="width:200px;margin:0 auto;" type="button" onClick="game.startGame()" class="btn btn-success">Start Game</button>
                             </div>                             
                         </div>
                     </form>
                 </div>
             </div>
-            <div id="continueGameView" style="display:none" class="row">
+            <div id="continueView" style="display:none" class="row">
                 <div class="col-lg-6">
                     <div  id="playerNameContinue" class="opponentname"> Twisted Fate </div>
                     <div class="champpic">
@@ -255,12 +260,12 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     </table>
                 </div>
                 <div class="col-lg-6">
-                    <div class="contabort">
-                        <div class="col-sm-12 text-center" style="padding-bottom:60px;">
-                            <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
+                    <div class="contabort hidden-sm hidden-xs hidden-md">
+                        <div class="col-sm-12 text-center" style="padding:60px;">
+                            <button onClick="game.abortGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <button onClick="restoreGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-success">Continue</button>                                
+                            <button onClick="game.continueGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-success">Continue</button>                                
                         </div>
                     </div>
                 </div>
@@ -382,7 +387,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <div class="vsicon hidden-md hidden-sm hidden-xs"></div>  
                             <div class="topscore"><span id="topScore" class="gradeitntext2">51</span></div>
                         </div>
-                        <div id="winScreen" style="display:none;margin-top: 70px;" class="randomitems">
+                        <div id="winGameView" style="display:none;margin-top: 70px;" class="randomitems">
                             <span>Result</span>
                             <hr class="hrstyle">
                             <div class="row">
@@ -395,25 +400,25 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                     <img id="loseImage" style="margin:0 auto;" class="img-responsive" src="images/lose.png" alt=""/>
                                 </div>  
                                 <div class="col-sm-12 text-center" style="padding-top:20px;">
-                                    <div class="col-sm-6"><button onClick="showHighscore(false, 0)" style="width:150px;margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">High Score</button></div>
-                                    <div class="col-sm-6"><button style="width:150px;margin:0 auto;font-size: 15px;" onClick="tryAgain()" type="button" class="btn btn-danger">Try Again ?</button></div>
+                                    <div class="col-sm-6"><button onClick="game.showHighscore(false, 0)" style="width:150px;margin: 0px auto; font-size: 15px; padding: 5px;" type="button" class="btn btn-success">High Score</button></div>
+                                    <div class="col-sm-6"><button style="width:150px;margin:0 auto;font-size: 15px;" onClick="game.tryAgain()" type="button" class="btn btn-danger">Try Again ?</button></div>
                                 </div>                                
                             </div>
-                        </div>   
+                        </div>                        
                         <div class="text-center" style="font-size:20px;">Patch 5.14</div>
-                        <div id="selectItemsTable" class="randomitems" style="margin-top: 100px;">
+                        <div id="selectableItems" class="randomitems" style="margin-top: 100px;">
                             Click On One Item To Move It To Your Inventory <span style="float:right;"><span id="currentTurn">1</span>/<span id="numberOfTurns">6</span></span>
                             <table class="table table-full-width custum-table">
                                 <tbody>
                                     <tr>
                                         <td class="text-center">
-                                            <img id="item1" onClick="selectItem(0)" data-uk-tooltip title="" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img id="item1" onClick="game.selectItem(0)" data-uk-tooltip title="" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                         <td class="text-center">
-                                            <img id="item2"  onClick="selectItem(1)" data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>50%</td><td style='color:red;'><img style='margin-top:-2px;' src='images/arrowDown.png' width='8' height='8' alt=''/> 10%</td></tr></table>  <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img id="item2"  onClick="game.selectItem(1)" data-uk-tooltip title="<table class='table table-full-width custum-table2'><tr><td>Type</td><td>Patch 5.11</td><td>Patch 5.14</td><td>Change</td></tr><tr><td>Pickrate</td><td>50%</td><td>60%</td><td style='color:green;'><img src='images/arrowUp.png' width='8' height='8' alt=''/> 10%</td></tr><tr><td>Winrate</td><td>60%</td><td>50%</td><td style='color:red;'><img style='margin-top:-2px;' src='images/arrowDown.png' width='8' height='8' alt=''/> 10%</td></tr></table>  <span style='color:red;'> NOTE </span><span style='font-size:9px;'> : This Analysis From Ranked Matches</span>" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                         <td class="text-center">
-                                            <img id="item3"  onClick="selectItem(2)" data-uk-tooltip title="" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
+                                            <img id="item3"  onClick="game.selectItem(2)" data-uk-tooltip title="" class="img-responsive img-rounded col-centered" src="images/item/NoItem.png" alt="">
                                         </td>
                                     </tr> 
                                 </tbody>
@@ -477,7 +482,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                 </table> 
                             </div>
                             <div class="col-sm-12 text-center" style="margin-bottom:20px;">
-                                <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-danger">Abort</button>
+                                <button onClick="game.abortGame()" style="width:200px;margin:0 auto;font-size: 25px;" type="button" class="btn btn-danger">Abort</button>
                             </div>    
                         </div>
                         </div>
@@ -593,9 +598,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
 
                 </div>            
             </div>
-            <div id="highscore" style="display:none;" class="row">
+            <div id="highscoreView" style="display:none" class="row">
                 <div class="col-sm-12 text-center">
-                <button type="button" style="width:200px;font-size: 30px;" onClick="checkActiveGame()" class="btn btn-success">Play</button>
+			<button type="button" style="width:200px;margin:0 auto;font-size: 30px;" onClick="game.checkActiveGame()" class="btn btn-success">Play</button>
                 </div>
                 <div class="col-sm-12 text-center" style="margin-top:50px;">
                     <table class="table">

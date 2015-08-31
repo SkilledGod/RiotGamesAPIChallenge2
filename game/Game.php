@@ -280,7 +280,7 @@ class Game {
 			return array("code" => 114, "message" => "Game is not active");
 		}
 		
-		if ($this->getCurrentTurn() <= $this->gameInfo['numberOfTurns']) {
+		if ($this->getCurrentTurn() <= $this->gameInfo['numberOfTurns'] && $this->getGamePhase() != "ended") {
 			return array("code" => 115, "message" => "Last turn not yet made");
 		}
 		
@@ -512,7 +512,7 @@ class Game {
 	}
 	
 	private function getGamePhase() {
-		if (count($this->proposedItems) == count($this->choosenItems)) {
+		if (count($this->proposedItems) == count($this->choosenItems) && count($this->choosenItems) < $this->gameInfo['numberOfTurns']) {
 			return "requestItem";
 		} else if (count($this->choosenItems) < $this->gameInfo['numberOfTurns']) {
 			return "selectItem";
@@ -567,7 +567,7 @@ class Game {
 		$phase = $this->getGamePhase();
 		if ($phase === "requestItem") {
 			return count($this->proposedItems)+1;
-		} else if ($phase === "selectItem") {
+		} else if ($phase === "selectItem" || $phase === "ended") {
 			return count($this->proposedItems);
 		}
 	}

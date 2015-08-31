@@ -239,7 +239,7 @@ class Champion {
 	}
 
 	function getAttackDamage() {
-		return ($this->baseStats['attackdamage'] + ($this->level - 1) * $this->baseStats['attackdamageperlevel'] + $this->stats['flatphysicaldamage']) * (1 + $this->stats['adperpercentmaxmana'] * $this->getManaPool());
+		return ($this->baseStats['attackdamage'] + ($this->level - 1) * $this->baseStats['attackdamageperlevel'] + $this->stats['flatphysicaldamage'] + $this->stats['adperpercentmaxmana'] * $this->getManaPool());
 	}
 
 	function getSpellblockPenetration() {

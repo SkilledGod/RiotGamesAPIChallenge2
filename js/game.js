@@ -18,11 +18,6 @@ function startGame() {
 
 	name = $("#name").val();
 	champ = $("#champion").val();
-/*	if (name == "" || champ % 1 !== 0) {
-		// todo show error
-		console.log("invalid name or champ");	
-		return;
-	}*/
 	// ajax request and answer :)
 	$.when(ajaxRequestStartGame()).done(function() {
 		// hide champ select
