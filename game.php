@@ -255,8 +255,8 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     </table>
                 </div>
                 <div class="col-lg-6">
-                    <div class="contabort hidden-sm hidden-xs hidden-md">
-                        <div class="col-sm-12 text-center" style="padding:60px;">
+                    <div class="contabort">
+                        <div class="col-sm-12 text-center" style="padding-bottom:60px;">
                             <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
                         </div>
                         <div class="col-sm-12 text-center">
@@ -264,16 +264,6 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="hidden-lg">
-                        <div class="col-sm-12 text-center" style="margin-top:10px;">
-                            <button onClick="abortGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
-                        </div>
-                        <div class="col-sm-12 text-center">
-                            <button onClick="restoreGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-success">Continue</button>                                
-                        </div>
-                    </div>
-                </div>  
             </div>
 
             <div class="row">                

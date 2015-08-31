@@ -280,7 +280,8 @@ body{
 
 
 .contabort{
-    margin-top: 250px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .alert-danger, .alert-error {
