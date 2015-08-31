@@ -358,10 +358,10 @@ class Game {
 		$response['numberOfPages'] = ceil($mysqli->query("select id from games where state_id = " .$stateId ." order by currentScore desc")->num_rows / 25);
 		
 		if ($response['page'] > $response['numberOfPages']) {
-			$message = "Page number has to be lower than " .$response['numberOfPages'];
+			$message = "Page number has to be lower than or equal to " .$response['numberOfPages'];
 			$code = 118;
 			if ($response['numberOfPages'] == 0) {
-				$message = "0 games have ended. Come back later.";
+				$message = "No highscores to show. Play one game or come back later.";
 				$code = 200;
 			}
 			return array("code" => $code, "message" => $message);
