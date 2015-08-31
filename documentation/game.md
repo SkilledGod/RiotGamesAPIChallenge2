@@ -26,8 +26,10 @@ The table contains a map from a stat to the number of points per unit of the sta
 | Spellvamp  | 200.00  |  |
 | Tenacity  | 100.00  |  |
 
-The API located at [game/turn.php](game/turn.php) supports multiple different calls.
 ## API
+
+The API located at [game/turn.php](game/turn.php) supports multiple different calls.
+
 
 All parameters are forwarded as HTTP GET variables.
 Every Return-Object contains a code field. 200 denotes a successful request, every other value a failure. If the code is not 200 the Return-Object additionally contains a message field with a description of the error.
@@ -160,7 +162,7 @@ No additional parameters.
 ---
 ### abortGame
 #### Parameters
-No additional parameters needed.
+No additional parameters.
 
 #### Return Value
 ##### Code: 200
@@ -175,7 +177,7 @@ No additional return values.
 ---
 ### getStats
 #### Parameters
-No additional parameters needed.
+No additional parameters.
 #### Return values
 ##### Code: 200
 | Name  | Type | Description  |
@@ -184,7 +186,7 @@ No additional parameters needed.
 |  name | string  | Player Name  |
 |  opponent | [champ](#champ)  | Opponent-Object |
 |  player | [champ](#champ)  | Player-Object  |
-|  selectableItems | array([selectableItem](#selectableItem))  | array of selectable items (**only** contained if the current game phase is selectItem)  |
+|  selectableItems | array([selectableItem](#selectableitem))  | array of selectable items (**only** contained if the current game phase is selectItem)  |
 
 
 ##### Code: 121
@@ -197,7 +199,7 @@ No additional parameters needed.
 | Name  | Typ  | Description | example  |
 |---|---|---| --- |
 | top  | boolean  | true if page should be used. false if the page of the last ended game should be opened | true  |
-| page  | int  | page of the highscore (25 results per page) **(ignored if top == true)** | 2 for the second page.  |
+| page  | int  | page of the highscore (25 results per page) **(ignored if top == false)** | 2 for the second page.  |
 
 #### Return Values
 ##### Code 200
@@ -238,7 +240,7 @@ No additional parameters.
 |---|---|---|
 | champId  | int  |  |
 | level  | int  | champion level |
-| items  | array([item](#item)  | array containing all items  |
+| items  | array([item](#item))  | array containing all items  |
 | name  | string  | champion name  |
 | stats  | Map(String, Double) | map from champion stats to the value  |
 
