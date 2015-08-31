@@ -15,9 +15,9 @@ Webserver with
 
 ## Setup
 - Configure [db.php](db.php) with the username, password, database for your installation
- - Create the database with the [sql-file](sql/riotchallenger2.sql)
- - [OPTIONAL] Put matches from the match data endpoint into the [matches-folder](matches/) (100 sample matches are included)
- - Open the [index.php](index.php) in your browser
+- Create the database with the [sql-file](sql/riotchallenger2.sql)
+- [OPTIONAL] Put matches from the match data endpoint into the [matches-folder](matches/) (100 sample matches are included)
+- Open the [index.php](index.php) in your browser
 
 ## System notes
 - The game itself is a RESTful webservice. For a documentation of the available calls click [here](documentation/game.md).
