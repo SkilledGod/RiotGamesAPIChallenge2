@@ -161,9 +161,12 @@ No additional parameters needed.
 |---|---|---| --- |
 | top  | boolean  | true if page should be used. false if the page of the last ended game should be opened | true  |
 | page  | int  | page of the highscore (25 results per page) **(ignored if top == true)** | 2 for the second page.  |
+
 #### Return Values
 ##### Code 200
+
 If 0 games have been finished message is contained else the following keys.
+
 | Name  | Type | Description  |
 |---|---|---|
 | message  | string  | "No highscores to show. Play one game or come back later." (**only** if 0 games have been finished)|
