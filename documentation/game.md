@@ -28,16 +28,16 @@ See: [getStats](#getstats)
 
 ##### Code: 101
 **Message:** A game was already started but not yet finished.
-**Cause:** Check [isGameActive](#isGameActive) if there's a game in progress (maybe checkout [abortGame](#abortGame) aswell).
+<br>**Cause:** Check [isGameActive](#isgameactive) if there's a game in progress (maybe checkout [abortGame](#abortgame) aswell).
 ##### Code: 122
 **Message:** Please select a valid name.
-**Cause:** Try to submit a name which is not the empty string.
+<br>**Cause:** Try to submit a name which is not the empty string.
 ##### Code: 102
 **Message:** Please choose a valid champion.
-**Cause:** The champion id is not valid. Check the Riot Games API for the correct id.
+<br>**Cause:** The champion id is not valid. Check the Riot Games API for the correct id.
 ##### Code: 103
 **Message:** No champion could be choosen as an opponent.
-**Cause:** Try to put more matches into the matches folder.
+<br>**Cause:** Try to put more matches into the matches folder.
 ##### Code: 104
 **Message:** Database failure.	
 
@@ -52,16 +52,16 @@ No additional parameters.
 | items  | array([item](#item))  | Array with selectable items |
 ##### Code: 105
 **Message:** Game is not active.
-**Cause:** No actave game found. Please start a game.
+<br>**Cause:** No actave game found. Please start a game.
 ##### Code: 106
 **Message:** Your last turn isn't over yet.
-**Cause:** Select an item before requesting new items.
+<br>**Cause:** Select an item before requesting new items.
 ##### Code: 107
 **Message:** Maximum number of turns already made
-**Cause:** You already made all your turns. Please call [endGame](#endgame).
+<br>**Cause:** You already made all your turns. Please call [endGame](#endgame).
 ##### Code: 108
 **Message:** Database failure.
-**Cause:** Check your database.
+<br>**Cause:** Check your database.
 
 ### selectItem
 #### Parameters
@@ -78,22 +78,22 @@ No additional parameters.
 |  player | [player](#player)  | Player-Object  |
 ##### Code: 109
 **Message:** No active game found.
-**Cause:** No game was started yet. Please start one.
+<br>**Cause:** No game was started yet. Please start one.
 
 ##### Code: 110
 **Message:** You need to request new items first.
-**Cause:** No items were requested for this turn.
+<br>**Cause:** No items were requested for this turn.
 
 ##### Code: 135
 **Message:** Game has already ended.
-**Cause:** Game is finished already.
+<br>**Cause:** Game is finished already.
 
 ##### Code: 111
 **Message:** You need to choose one of the proposed items.
-**Cause:** The selected item was not proposed from [randomItem](#randomitem).
+<br>**Cause:** The selected item was not proposed from [randomItem](#randomitem).
 ##### Code: 112
 **Message:** Database failure.
-**Cause:** Check your database.
+<br>**Cause:** Check your database.
 
 ### endGame
 #### Parameters
@@ -113,15 +113,15 @@ No additional parameters.
 
 ##### Code: 114
 **Message:** Game is not active
-**Cause:** You can't end an inactive game.
+<br>**Cause:** You can't end an inactive game.
 
 ##### Code: 115
 **Message:** Last turn not yet made.
-**Cause:** The required number of item selections was not done. Request (random Items)[#randomitem] or (select)[#selectitem] an item.
+<br>**Cause:** The required number of item selections was not done. Request (random Items)[#randomitem] or (select)[#selectitem] an item.
 
 ##### Code: 116
 **Message:** Database failure.
-**Cause:** Check your database.
+<br>**Cause:** Check your database.
 
 ### abortGame
 #### Parameters
@@ -132,10 +132,10 @@ No additional parameters needed.
 No additional return values.
 ##### Code: 119
 **Message:** Game already finished or no game found.
-**Cause:** No game found. 
+<br>**Cause:** No game found. 
 ##### Code: 120
 **Message:** Database failure
-**Cause:** Check your database.
+<br>**Cause:** Check your database.
 
 ### getStats
 #### Parameters
@@ -153,7 +153,7 @@ No additional parameters needed.
 
 ##### Code: 121
 **Message:** Game is not active.
-**Cause:** The current game (if there's any) is not active. Try to start a new game.
+<br>**Cause:** The current game (if there's any) is not active. Try to start a new game.
 
 ### highscore
 #### Parameters
@@ -173,11 +173,11 @@ If 0 games have been finished message is contained else the following keys.
 
 ##### Code: 117
 **Message:** Page has to be greater than 0.
-**Cause:** Page lower than 0.
+<br>**Cause:** Page lower than 0.
 
 ##### Code: 118
 **Message:** Page number has to be lower than or equal to %d.
-**Cause:** Page was higher than %d.
+<br>**Cause:** Page was higher than %d.
 
 ### isGameActive
 #### Parameters
