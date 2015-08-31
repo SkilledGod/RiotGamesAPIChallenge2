@@ -63,7 +63,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     <div class="form-group">
                         <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
                             <?php
-                            $items = file_get_contents("item.json");
+                            $items = file_get_contents("json/item.json");
                             while ($row2 = $search->fetch_assoc()) {
                             $getItem = json_decode($items, true);
                             foreach ($getItem['data'] as $key => $val) {

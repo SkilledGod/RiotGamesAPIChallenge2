@@ -52,7 +52,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     <div class="form-group">
                         <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
                             <?php
-                            $items = file_get_contents("item.json");
+                            $items = file_get_contents("json/item.json");
                             while ($row2 = $search->fetch_assoc()) {
                             $getItem = json_decode($items, true);
                             foreach ($getItem['data'] as $key => $val) {
@@ -150,9 +150,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-left" style="color:#D9534F;">Download Data</h3>
-                    <p><a href="patch511.json">Patch 5.11 as JSON</a></p>
-                    <p><a href="patch514.json">Patch 5.14 as JSON</a></p>
-                    <p><a href="popularPicks.json">Most popular champion by item as JSON</a></p>
+                    <p><a href="json/patch511.json">Patch 5.11 as JSON</a></p>
+                    <p><a href="json/patch514.json">Patch 5.14 as JSON</a></p>
+                    <p><a href="json/popularPicks.json">Most popular champion by item as JSON</a></p>
                 </div>
             </div>            
             <!-- Footer -->

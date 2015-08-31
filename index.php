@@ -52,9 +52,8 @@ include 'db.php';
                         <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
                             <?php
                             $search = $mysqli->query("SELECT * FROM `ap_items`");
-                            $items = file_get_contents("item.json");
+                            $getItem = json_decode(file_get_contents("json/item.json"), true);
                             while ($row2 = $search->fetch_assoc()) {
-                                $getItem = json_decode($items, true);
                                 foreach ($getItem['data'] as $key => $val) {
                                     if ($key == $row2['id']) {
                                     echo " <option label=\"{$row2['id']}\" value=\"{$row2['id']}\" data-content=\"<img class='img-circle' src='images/item/{$row2['id']}.png' width='20' height='20' alt='{$row2['name']}' /> {$row2['name']}\"> </option> \n";                                       
@@ -99,7 +98,6 @@ include 'db.php';
                     <?php
 		$result = $mysqli->query("SELECT * FROM `ap_items`");
 		while ($row = $result->fetch_assoc()) {
-                        $items = file_get_contents("item.json");
                                 ?>
                                 <a href="item.php?id=<?php echo $row['id']; ?>">
                                     <img class="img-circle" style="padding:9px;" data-uk-tooltip  title="<?php echo $row['name']; ?>" src="images/item/<?php echo $row['id'] ?>.png" alt="" />

@@ -3,6 +3,7 @@ if (typeof getAbsolutePath != 'function') {
 }
 
 function AjaxRequests() {}
+
 AjaxRequests.prototype.rootDir = getAbsolutePath("AjaxRequests.js");
 // RequestUrl is relative to the root of the project
 AjaxRequests.prototype.sendRequest = function(requestUrl, handleFunction) {

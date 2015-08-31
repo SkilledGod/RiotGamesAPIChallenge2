@@ -107,7 +107,7 @@ if (is_null($id_raw)) {
                     <div class="form-group">
                         <select title='Search For Item From Here...' name='id' data-live-search="true" data-size="5" data-width="250px" class="selectpicker">
                             <?php
-                            $items = file_get_contents("item.json");
+                            $items = file_get_contents("json/item.json");
                             while ($row2 = $search->fetch_assoc()) {
                                 $getItem = json_decode($items, true);
                                 foreach ($getItem['data'] as $key => $val) {
@@ -225,7 +225,7 @@ if (is_null($id_raw)) {
                             </thead>
                             <tbody>
                                 <?php
-                                $patch511a = file_get_contents("patch511.json");
+                                $patch511a = file_get_contents("json/patch511.json");
                                 $getpatch511a = json_decode($patch511a, true);
                                 foreach ($getpatch511a as $key => $val) {
                                     if ($getpatch511a[$key]['id'] == $id_secure) { 
@@ -240,7 +240,7 @@ if (is_null($id_raw)) {
                                 }
                                 ?>
                                 <?php
-                                $patch514a = file_get_contents("patch514.json");
+                                $patch514a = file_get_contents("json/patch514.json");
                                 $getpatch514a = json_decode($patch514a, true);
                                 foreach ($getpatch514a as $key => $val) {
                                     if ($getpatch514a[$key]['id'] == $id_secure) { 
