@@ -2,6 +2,7 @@
 ## Balance
 If you want to balance the game differently, you need to change the database table statToPointMap.
 The table contains a map from a stat to the number of points per unit of the stat.
+
 | Name  | Value  | Description |
 |---|---|---|
 | Armor  | 2.00  |  |
