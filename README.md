@@ -2,7 +2,7 @@
 ## General Information
 This project is an entry for the [Riot Games API Challenge 2](https://developer.riotgames.com/discussion/announcements/show/2lxEyIcE).
 
-You can find a demo at http://leagueoflegendssarabic.com/aparena/
+You can find a demo [here](http://leagueoflegendssarabic.com/aparena/)
 
 The project provides statistics (pickrate and winrate in ranked and normal games) from patch 5.11 and 5.14. Additionally it contains a small mini-game where you play against a champion - either from patch 5.11 or 5.14.
 
