@@ -24,7 +24,7 @@ Every Return-Object contains a code field. 200 denotes a successful request, eve
 
 #### Return Value
 ##### Code: 200
-See: [getStats](#getStats)
+See: [getStats](#getstats)
 
 ##### Code: 101
 **Message:** A game was already started but not yet finished.
