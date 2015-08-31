@@ -1,4 +1,30 @@
 # Game Documentation
+## Balance
+If you want to balance the game differently, you need to change the database table statToPointMap.
+The table contains a map from a stat to the number of points per unit of the stat.
+| Name  | Value  | Description |
+|---|---|---|
+| Armor  | 2.00  |  |
+| ArmorPenetration  | 7.50  |  |
+| AttackDamage  | 2.00  |  |
+| AttackSpeed  | 100.00  |  |
+| CooldownReduction  | 3.00  |  |
+| CritChance  | 1.50  |  |
+| CritDamage  | 100.00  | (as decimal e. g. 0.5)  |
+| HealthPool  | 0.05  |  |
+| HealthPoolRegen  | 2.00  |  |
+| LifeSteal  | 100.00  |  |
+| MagicDamage  | 1.00  | AP |
+| ManaPool  | 0.05  |  |
+| ManaPoolRegen  | 2.00  |  |
+| MovementSpeed  | 0.25  |  |
+| PercentArmorPenetration  | 200  | (as decimal e. g. 0.35) |
+| PercentSpellblockPenetration  | 200  | (as decimal) |
+| Spellblock  | 2.00  | Magic Resist |
+| SpellblockPenetration  | 2.00  |  |
+| Spellvamp  | 200.00  |  |
+| Tenacity  | 100.00  |  |
+
 The API located at [game/turn.php](game/turn.php) supports multiple different calls.
 ## API
 

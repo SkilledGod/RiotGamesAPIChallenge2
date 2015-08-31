@@ -17951,7 +17951,7 @@ INSERT INTO `statToPointMap` (`name`, `value`) VALUES
 ('CritDamage', '100.00'),
 ('HealthPool', '0.05'),
 ('HealthPoolRegen', '2.00'),
-('LifeSteal', '12.00'),
+('LifeSteal', '100.00'),
 ('MagicDamage', '1.00'),
 ('ManaPool', '0.05'),
 ('ManaPoolRegen', '2.00'),
@@ -17960,7 +17960,7 @@ INSERT INTO `statToPointMap` (`name`, `value`) VALUES
 ('PercentSpellblockPenetration', '200.00'),
 ('Spellblock', '2.00'),
 ('SpellblockPenetration', '7.50'),
-('Spellvamp', '5.00'),
+('Spellvamp', '200.00'),
 ('Tenacity', '100.00');
 
 --
