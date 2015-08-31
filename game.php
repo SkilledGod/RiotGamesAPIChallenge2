@@ -260,15 +260,20 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                     </table>
                 </div>
                 <div class="col-lg-6">
-                    <div class="contabort hidden-sm hidden-xs hidden-md">
-                        <div class="col-sm-12 text-center" style="padding:60px;">
+                <div class="col-sm-12 hidden-xs hidden-sm" style="margin-bottom:225px;">
+                
+                </div>
+<div class="col-sm-12">
+                    <div style="margin-top:20px;">
+                        <div class="col-sm-12 text-center" style="padding-bottom:60px;">
                             <button onClick="game.abortGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-danger">Abort</button>
                         </div>
                         <div class="col-sm-12 text-center">
                             <button onClick="game.continueGame()" style="width:200px;margin:0 auto;font-size: 50px;" type="button" class="btn btn-success">Continue</button>                                
                         </div>
                     </div>
-                </div>
+                    </div>
+                </div>                
             </div>
 
             <div class="row">                
