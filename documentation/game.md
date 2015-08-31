@@ -54,7 +54,7 @@ No additional parameters.
 | Name  | Type | Description  |
 |---|---|---|
 | turn  | int  | current turn |
-| items  | array([selectableItem](#selectableitem))  | Array with selectable items |
+| items  | array([selectableItem](#selectable-item))  | Array with selectable items |
 ##### Code: 105
 **Message:** Game is not active.
 <br>**Cause:** No actave game found. Please start a game.
@@ -157,7 +157,7 @@ No additional parameters needed.
 |  name | string  | Player Name  |
 |  opponent | [champ](#champ)  | Opponent-Object |
 |  player | [champ](#champ)  | Player-Object  |
-|  selectableItems | array([item](#item))  | array of selectable items (**only** contained if the current game phase is selectItem)  |
+|  selectableItems | array([selectableItem](#selectableItem))  | array of selectable items (**only** contained if the current game phase is selectItem)  |
 
 
 ##### Code: 121
