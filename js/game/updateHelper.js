@@ -24,14 +24,20 @@ Helper.prototype.initGame = function(data) {
 					this.setItem(data['selectableItems'][i], "item" + (i+1), true);
 			}
 		}
+		this.setTurn(data['currentTurn']);
 }
 
+Helper.prototype.setTurn = function(turn) {
+	console.log("Setting turn to " + turn);
+	$("#currentTurn").text(turn);
+}
 Helper.prototype.updateStatistics = function(player, playerName, opponent, cont) {
 	var modifier = "";
 	if (cont) {
 		// update playerName
 		modifier = "Continue";
 	}
+
 	if (playerName !== "") {
 		$("#playerName" + modifier).text(playerName);
 	}

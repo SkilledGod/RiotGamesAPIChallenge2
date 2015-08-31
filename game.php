@@ -387,8 +387,9 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             <div class="vsicon hidden-md hidden-sm hidden-xs"></div>  
                             <div class="topscore"><span id="topScore" class="gradeitntext2">51</span></div>
                         </div>
-                        <div id="winGameView" style="display:none;margin-top: 70px;" class="randomitems">
-                            <span>Result</span>
+                        <div class="text-center" style="font-size:20px;">Patch <span id="patch">5.14</span></div>
+                        <div id="winGameView" style="display:none;margin-top: 30px;" class="randomitems">
+                            <span >Result</span>
                             <hr class="hrstyle">
                             <div class="row">
                                 <div class="col-sm-12 text-center" style="padding-top:20px;">
@@ -405,8 +406,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                 </div>                                
                             </div>
                         </div>                        
-                        <div class="text-center" style="font-size:20px;">Patch <span id="patch">5.14</span></div>
-                        <div id="selectableItems" class="randomitems" style="margin-top: 100px;">
+                        <div id="selectableItems" class="randomitems" style="margin-top: 45px;">
                             Click On One Item To Move It To Your Inventory <span style="float:right;"><span id="currentTurn">1</span>/<span id="numberOfTurns">6</span></span>
                             <table class="table table-full-width custum-table">
                                 <tbody>

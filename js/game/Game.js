@@ -29,6 +29,7 @@ Game.prototype.requestRandomItems = function() {
 	var that = this;
 	ajax.getRandomItems(function(data) {
 			if (!that.displayError(data)) {
+				helper.setTurn(data['turn']);
 				for (var i = 0; i < 3; i++){
 					helper.setItem(response['items'][i], "item" + (i+1), true);
 				}
