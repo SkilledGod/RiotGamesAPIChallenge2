@@ -405,7 +405,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                 </div>                                
                             </div>
                         </div>                        
-                        <div class="text-center" style="font-size:20px;">Patch 5.14</div>
+                        <div class="text-center" style="font-size:20px;">Patch <span id="patch">5.14</span></div>
                         <div id="selectableItems" class="randomitems" style="margin-top: 100px;">
                             Click On One Item To Move It To Your Inventory <span style="float:right;"><span id="currentTurn">1</span>/<span id="numberOfTurns">6</span></span>
                             <table class="table table-full-width custum-table">

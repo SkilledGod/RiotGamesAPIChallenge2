@@ -56,7 +56,7 @@ Game.prototype.endGame = function() {
 				if(!that.displayError(data)) {
 					$("#playerEndscore").text(Math.round(response['playerScore']));
 					$("#opponentEndscore").text(Math.round(response['opponentScore']));	
-					var image = data['playerWon'] ? "winImage" : "looseImage";
+					var image = data['playerWon'] ? "winImage" : "loseImage";
 					view.showView(["matchView", "winGameView", image]);
 				}
 		});

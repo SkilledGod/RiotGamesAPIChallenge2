@@ -5,7 +5,19 @@ Helper.prototype.initGame = function(data) {
 		$("#topScore").text(Math.round(data['topScore']));
 		$("#currentTurn").text(data['currentTurn']);		
 		this.updateStatistics(data['player'], data['name'], data['opponent'], false);
-
+		var count = 0;
+		var index = 0;
+		var patch = "";		
+		while (count < 2) {
+			if (data['version'].charAt(index) == '.') {
+				count++;
+			}
+			if (count < 2) {
+				patch += data['version'].charAt(index);
+			}
+			index++;
+		}
+		$("#patch").text(patch);	
 		// set selectable items
 		if (data['currentPhase'] == "selectItem") {
 			for (i = 0; i < data['selectableItems'].length; i++) {
