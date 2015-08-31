@@ -131,7 +131,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                             </p>
                             <div class="col-sm-2" style="text-align: center;">
                                 <select id="champion" data-live-search="true" data-size="5" data-width="200px" class="selectpicker form-control" required="">
-                                    <option label="chose" value=""> </option>
+<!--                                    <option label="chose" value=""> </option> -->
                                     <?php
                                     include_once('db.php');
                                     $champs = $mysqli->query("select id, name, pic from champs order by name asc");
