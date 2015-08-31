@@ -11,6 +11,7 @@ The game is played with items on patch 5.14.The game chooses one match and one c
 Webserver with
 - PHP 5.6.12
 - MySQL 5.6.12
+
 ## Setup
 - Configure [db.php](db.php) with the username, password, database for your installation
  - Create the database with the [sql-file](sql/riotchallenger2.sql)
