@@ -130,7 +130,7 @@ $search = $mysqli->query("SELECT * FROM `ap_items`");
                                 Champion
                             </p>
                             <div class="col-sm-2" style="text-align: center;">
-                                <select id="champion" data-live-search="true" data-size="5" data-width="200px" class="selectpicker form-control" required="">
+                                <select id="champion" data-live-search="true" data-size="5" data-width="200px" class="selectpicker form-control">
 <!--                                    <option label="chose" value=""> </option> -->
                                     <?php
                                     include_once('db.php');
