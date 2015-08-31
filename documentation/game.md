@@ -3,6 +3,7 @@ The API located at [game/turn.php](game/turn.php) supports multiple different ca
 ## API
 All parameters are forwarded as HTTP GET variables.
 Every Return-Object contains a code field. 200 denotes a successful request, every other value a failure. If the code is not 200 the Return-Object additionally contains a message field with a description of the error.
+---
 ### action-Parameter
 | Value  | Description  |
 |---|---|
@@ -15,6 +16,7 @@ Every Return-Object contains a code field. 200 denotes a successful request, eve
 | [highscore](#highscore)  |  Returns the highscore. |
 | [isGameActive](#isgameactive)  |  Checks if a game is active. |
 
+---
 ### startGame
 #### Parameters
 | Name  | Typ  | Description | example  |
@@ -41,6 +43,7 @@ See: [getStats](#getstats)
 ##### Code: 104
 **Message:** Database failure.	
 
+---
 ### randomItem
 #### Parameters
 No additional parameters.
@@ -63,6 +66,7 @@ No additional parameters.
 **Message:** Database failure.
 <br>**Cause:** Check your database.
 
+---
 ### selectItem
 #### Parameters
 | Name  | Typ  | Description | example  |
@@ -95,6 +99,7 @@ No additional parameters.
 **Message:** Database failure.
 <br>**Cause:** Check your database.
 
+---
 ### endGame
 #### Parameters
 No additional parameters.
@@ -123,6 +128,7 @@ No additional parameters.
 **Message:** Database failure.
 <br>**Cause:** Check your database.
 
+---
 ### abortGame
 #### Parameters
 No additional parameters needed.
@@ -137,6 +143,7 @@ No additional return values.
 **Message:** Database failure
 <br>**Cause:** Check your database.
 
+---
 ### getStats
 #### Parameters
 No additional parameters needed.
@@ -155,6 +162,7 @@ No additional parameters needed.
 **Message:** Game is not active.
 <br>**Cause:** The current game (if there's any) is not active. Try to start a new game.
 
+---
 ### highscore
 #### Parameters
 | Name  | Typ  | Description | example  |
@@ -182,7 +190,9 @@ If 0 games have been finished message is contained else the following keys.
 **Message:** Page number has to be lower than or equal to %d.
 <br>**Cause:** Page was higher than %d.
 
+---
 ### isGameActive
+
 #### Parameters
 No additional parameters.
 #### Return Values
